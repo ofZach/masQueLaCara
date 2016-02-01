@@ -7,34 +7,9 @@
     <script type="text/javascript" src="frameData.json"></script>
     <script type="text/javascript" src="vendor/paper-full.js"></script>
 
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="86.331px" height="136.412px" viewBox="0 0 86.331 136.412" style="enable-background:new 0 0 86.331 136.412;"
-     xml:space="preserve" id="eye">
-    <g id="eye">
-    <path style="fill:#FFFFFF;" d="M43.165,43.302c-10.245,0-19.184,5.57-23.971,13.841c4.787,8.273,13.726,13.841,23.971,13.841
-        c10.244,0,19.183-5.568,23.971-13.841C62.348,48.872,53.409,43.302,43.165,43.302z M43.165,67.367
-        c-5.647,0-10.225-4.577-10.225-10.224c0-5.646,4.577-10.224,10.225-10.224c5.646,0,10.224,4.577,10.224,10.224
-        C53.389,62.79,48.812,67.367,43.165,67.367z"/>
-    <circle style="fill:#FFFFFF;" cx="43.165" cy="57.143" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="14.682" cy="57.143" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="71.648" cy="56.842" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="43.165" cy="4.512" r="4.513"/>
-    <path style="fill:#FFFFFF;" d="M43.163,29.973c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.899,1.23-4.563
-        c0-5.038-4.085-9.123-9.126-9.123c-5.039,0-9.123,4.085-9.123,9.123c0,1.664,0.452,3.219,1.23,4.563
-        C36.849,31.81,39.788,29.973,43.163,29.973z"/>
-    <path style="fill:#FFFFFF;" d="M43.173,93.249c-15.976,0-29.882-8.695-37.353-21.584C2.139,78.021,0,85.381,0,93.253
-        c0,23.835,19.324,43.159,43.173,43.159c23.838,0,43.158-19.324,43.158-43.159c0-7.872-2.139-15.231-5.82-21.588
-        C73.045,84.554,59.139,93.249,43.173,93.249z"/>
-    <path style="fill:#FFFFFF;" d="M43.166,13.587c-3.377,0-6.316-1.838-7.896-4.562c-0.778,1.344-1.23,2.899-1.23,4.563
-        c0,5.038,4.085,9.123,9.126,9.123c5.039,0,9.123-4.085,9.123-9.123c0-1.664-0.452-3.22-1.23-4.563
-        C49.48,11.75,46.541,13.587,43.166,13.587z"/>
-    </g>
 
-    <g id="Layer_1">
-    </g>
-    </svg>
     <script type="text/paperscript" canvas="canvas">
-        var svgEye = project.importSVG(document.getElementById('eye'));
+        
         var dataObject = JSON.parse(data);
         //console.log(dataObject.length);
         //console.log(dataObject);
@@ -94,6 +69,11 @@
             project.activeLayer.children[i].fillColor = new Color(0,255,0,0.3);
         }
 
+        var artworkLayer = new Layer();
+        var svgEye = project.importSVG(document.getElementById('eye'));
+
+        console.log(svgEye);
+        //
 
         function onFrame(event) {
             
@@ -153,7 +133,8 @@
             faceParts.children[2].position = nose;
             faceParts.children[3].position = mouth;
 
-                
+            
+            svgEye.position= leftEye;
         }
 
         // Reposition the paths whenever the window is resized:
@@ -163,6 +144,30 @@
     </script>
 </head>
 <body>
+
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+     width="86.331px" height="136.412px"
+      visibility="hidden" >
+    <g id="eye">
+    <path style="fill:#FFFFFF;" d="M43.165,43.302c-10.245,0-19.184,5.57-23.971,13.841c4.787,8.273,13.726,13.841,23.971,13.841
+        c10.244,0,19.183-5.568,23.971-13.841C62.348,48.872,53.409,43.302,43.165,43.302z M43.165,67.367
+        c-5.647,0-10.225-4.577-10.225-10.224c0-5.646,4.577-10.224,10.225-10.224c5.646,0,10.224,4.577,10.224,10.224
+        C53.389,62.79,48.812,67.367,43.165,67.367z"/>
+    <circle style="fill:#FFFFFF;" cx="43.165" cy="57.143" r="4.513"/>
+    <circle style="fill:#FFFFFF;" cx="14.682" cy="57.143" r="4.513"/>
+    <circle style="fill:#FFFFFF;" cx="71.648" cy="56.842" r="4.513"/>
+    <circle style="fill:#FFFFFF;" cx="43.165" cy="4.512" r="4.513"/>
+    <path style="fill:#FFFFFF;" d="M43.163,29.973c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.899,1.23-4.563
+        c0-5.038-4.085-9.123-9.126-9.123c-5.039,0-9.123,4.085-9.123,9.123c0,1.664,0.452,3.219,1.23,4.563
+        C36.849,31.81,39.788,29.973,43.163,29.973z"/>
+    <path style="fill:#FFFFFF;" d="M43.173,93.249c-15.976,0-29.882-8.695-37.353-21.584C2.139,78.021,0,85.381,0,93.253
+        c0,23.835,19.324,43.159,43.173,43.159c23.838,0,43.158-19.324,43.158-43.159c0-7.872-2.139-15.231-5.82-21.588
+        C73.045,84.554,59.139,93.249,43.173,93.249z"/>
+    <path style="fill:#FFFFFF;" d="M43.166,13.587c-3.377,0-6.316-1.838-7.896-4.562c-0.778,1.344-1.23,2.899-1.23,4.563
+        c0,5.038,4.085,9.123,9.126,9.123c5.039,0,9.123-4.085,9.123-9.123c0-1.664-0.452-3.22-1.23-4.563
+        C49.48,11.75,46.541,13.587,43.166,13.587z"/>
+    </g>
+    </svg>
     <canvas id="canvas" resize ></canvas>
 </body>
 </html>
