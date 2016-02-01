@@ -1,0 +1,457 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Set",
+				"SetToSlot(PuzzleSlot _slot)	void"
+			],
+			[
+				"fir",
+				"firstSolvedSlot	PuzzleSlot"
+			],
+			[
+				"slo",
+				"slots	ArrayList"
+			],
+			[
+				"get",
+				"GetComponent<T>()	T"
+			],
+			[
+				"In",
+				"Interact()	void"
+			],
+			[
+				"fin",
+				"finishRotation	bool"
+			],
+			[
+				"Ro",
+				"RotateAround	RotateAround"
+			],
+			[
+				"s",
+				"startXPos"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "javascript/pointsTest/vendor/paper-core.js",
+			"settings":
+			{
+				"buffer_size": 338902,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n<head>\n    <meta charset=\"UTF-8\">\n    <title>point player</title>\n    <link rel=\"stylesheet\" href=\"css/style.css\">\n    <script type=\"text/javascript\" src=\"frameData.json\"></script>\n    <script type=\"text/javascript\" src=\"vendor/paper-full.js\"></script>\n\n    <script type=\"text/paperscript\" canvas=\"canvas\">\n        var svgNose = project.importSVG(document.getElementById('svg'));\n        var dataObject = JSON.parse(data);\n        //console.log(dataObject.length);\n        //console.log(dataObject);\n        var frameData;\n        var frame = 0;\n\n        var leftEye = new Point(0, 0);\n        var rightEye = new Point(0, 0);\n        var mouth = new Point(0, 0);\n        var nose = new Point(0, 0);\n        \n        var leftEyeAngle;\n\n\n\n        var values = {\n            count: 68\n        };\n\n        // ------------------------------------------------------------- make circles: \n        var layer = project.activeLayer;\n        for (var i = 0; i < values.count; i++) {\n            var path = new Path.Circle(new Point(100, 100), 5);\n            project.activeLayer.children[i].fillColor = 'red';\n            console.log(project.activeLayer.children[i]);\n        }\n        console.log(project.activeLayer.children.length);\n\n        // ------------------------------------------------------------- make typography in another layer (so we an see points) \n        var typeLayer = new Layer();\n        for (var i = 0; i < values.count; i++) {\n            var text = new PointText({\n                    point: view.center,\n                    justification: 'center',\n                    fontSize: 10,\n                    fillColor: 'blue'\n            });\n            text.content = i;\n        }\n        // ------------------------------------------------------------- mouth eyes nose\n        var faceParts = new Layer();\n        for (var i = 0; i < 4; i++) {\n            if (i != 0){\n                var path = new Path.Circle(new Point(100, 100), 20);\n            } else {\n                var path = new Path.Rectangle(new Point(50, 50), new Size(100, 50));\n\n                // Create a group from the two paths:\n                var group = new Group({\n                    children: [path],\n                    // Set the stroke color of all items in the group:\n                    strokeColor: 'black',\n                    // Move the group to the center of the view:\n                    position: view.center, \n                    transformContent: false\n                });\n\n            }\n            project.activeLayer.children[i].fillColor = new Color(0,255,0,0.3);\n        }\n\n\n        function onFrame(event) {\n            \n            frame++;\n            frameData = dataObject[frame % dataObject.length];\n            //console.log(frameData);\n            for (var i = 0; i < values.count; i++) {\n                \n               var item = layer.children[i];\n               // console.log();\n               item.position.x =  frameData[i][0] * 2.0;\n               item.position.y =  frameData[i][1] * 2.0;\n\n               item = typeLayer.children[i];\n               item.position.x =  frameData[i][0] * 2.0;\n               item.position.y =  frameData[i][1] * 2.0 + 10;\n\n\n                //var angle = (values.count - i) * Math.sin(event.count / 128) / 10;\n                //item.rotate(angle);\n            }\n\n            // calculate the right eye, left eye, etc: \n            leftEye.x = leftEye.y = 0;\n            for (var i = 36; i <= 41; i++){\n                leftEye += new Point(frameData[i][0], frameData[i][1]) * 2.0;\n            }\n            leftEye /= 6.0;\n\n            var diff = new Point(frameData[39][0] - frameData[36][0], frameData[39][1] - frameData[36][1]);\n            var leftEyeAngle = Math.atan2(diff.y, diff.x);\n\n\n            rightEye.x = rightEye.y = 0;\n            for (var i = 42; i <= 47; i++){\n                rightEye += new Point(frameData[i][0], frameData[i][1]) * 2.0;\n            }\n            rightEye /= 6.0;\n\n            nose.x = nose.y = 0;\n            for (var i = 29; i <= 35; i++){\n                nose += new Point(frameData[i][0], frameData[i][1]) * 2.0;\n            }\n            nose /= 7.0;\n\n            mouth.x = mouth.y = 0;\n            for (var i = 48; i <= 59; i++){\n                mouth += new Point(frameData[i][0], frameData[i][1]) * 2.0;\n            }\n            mouth /= 12.0;\n\n            //console.log(mouth);\n\n            faceParts.children[0].position = leftEye;\n            faceParts.children[0].rotation = leftEyeAngle * (180.0 / Math.PI);\n            faceParts.children[1].position = rightEye;\n            faceParts.children[2].position = nose;\n            faceParts.children[3].position = mouth;\n\n\n                \n        }\n\n        // Reposition the paths whenever the window is resized:\n        function onResize(event) {\n            layer.position = view.center;\n        }\n    </script>\n</head>\n<body>\n    <canvas id=\"canvas\" resize ></canvas>\n</body>\n</html>\n",
+			"file": "javascript/pointsTest/pointsPlayer.html",
+			"file_size": 4900,
+			"file_write_time": 130988242920000000,
+			"settings":
+			{
+				"buffer_size": 4962,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/css/style.css",
+			"settings":
+			{
+				"buffer_size": 199,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"om",
+				"OmniSharpSublime: Reload Solution"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 467.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/gordey/Projects/Mask/masQueLaCara",
+		"/Users/gordey/Projects/Mask/masQueLaCara/javascript",
+		"/Users/gordey/Projects/Mask/masQueLaCara/javascript/pointsTest",
+		"/Users/gordey/Projects/Mask/masQueLaCara/javascript/pointsTest/css",
+		"/Users/gordey/Projects/Mask/masQueLaCara/javascript/pointsTest/vendor"
+	],
+	"file_history":
+	[
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/PuzzleSlot.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/WuMachineHandler.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/BubblePoint.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/PuzzleDrag.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/BubbleControl.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/BubbleCollector.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/BubbleHandle.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Animations/RewardTicket.anim",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/ContentFitter.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/PuzzleManager.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/FilmHandle.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/CombinationChecker.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/RadialCloner.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/R_SlotManager.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/RotateAround.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/R_Puzzle.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/R_PuzzleSlot.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/AdventureCreator/Scripts/Speech/Speech.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/AdventureCreator/Scripts/Speech/Dialog.cs",
+		"/Users/gordey/Desktop/ac backup/Dialog.cs",
+		"/Users/gordey/Desktop/ac backup/Speech.cs",
+		"/Users/gordey/Documents/Unity/OSCtest/Assets/OSCManage.cs",
+		"/Users/gordey/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/22E98C22-C908-47EC-B7B1-D7E17F272322/OSC-module_radical_DEF.pd",
+		"/Users/gordey/Documents/Unity/OSCtest/Assets/UnityOSC/src/OSCHandler.cs",
+		"/Users/gordey/Documents/Unity/tests/touchosc_integration/Assets/oscControl.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/DebugDissapear.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/CombinationChecker.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/R_Puzzle.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/Scaler.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/RadialCloner.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/R_SlotManager.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/AdventureCreator/Scripts/Menu/Menu classes/Menu.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/RotateAround.cs",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/BoxPosition.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/Drag.cs",
+		"/Users/gordey/Documents/Unity/Philosopharium/Philosopharium.sublime-project",
+		"/Users/gordey/Documents/Unity/Philosopharium/Test",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/C#.sublime-settings"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"<open files>",
+			"<open files>,<open folders>",
+			"<open files>",
+			"/Users/gordey/Documents/Unity/Philosopharium/Assets/AdventureCreator/Scripts"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"bubbleDialogPos",
+			"GetScreenPosition",
+			"anchored",
+			"Rect",
+			"firstSolvedItem",
+			"OnMatch",
+			"Instance",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Behaviour",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"Halo",
+			"halo",
+			"dropedItem",
+			"draggedItem",
+			"dropedItem",
+			"isFirstSolved",
+			"result",
+			"PuzzleFinished",
+			"skin",
+			"modified",
+			"Gordey",
+			"gordey",
+			"DreamBrush",
+			"features",
+			"xthsense",
+			"speed",
+			"angle",
+			"pos",
+			"Pos",
+			"pos",
+			"radius",
+			"centerPos",
+			"angle",
+			"Time.timeScale",
+			"pauseWhenEnabled",
+			"pause game",
+			"speed",
+			"radius",
+			"speed",
+			"Time.",
+			"Time",
+			"6",
+			"startXPos",
+			"ScreenToWorldPoint"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "javascript/pointsTest/vendor/paper-core.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 338902,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 6274.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "javascript/pointsTest/pointsPlayer.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4962,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								522,
+								522
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 38.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "javascript/pointsTest/css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 199,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								32,
+								32
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 100.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.variable_get":
+	{
+		"height": 100.0
+	},
+	"pinned_build_system": "",
+	"project": "masQueLaCara.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"dra",
+				"Assets/Scripts/Drag.cs"
+			],
+			[
+				"drag",
+				"Assets/Scripts/Drag.cs"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 365.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
