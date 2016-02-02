@@ -6,88 +6,11 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="frameData.json"></script>
     <script type="text/javascript" src="vendor/paper-full.js"></script>
-    <script type="text/javascript" src="javascript/dataPlayer.js"></script>
-    <script type="text/paperscript" canvas="canvas">
-        
-        
-        setup(data);    // load the data in! 
-
-        var values = {
-            count: 68
-        };
-
-        // ------------------------------------------------------------- make circles: 
-        var layer = project.activeLayer;
-        for (var i = 0; i < values.count; i++) {
-            var path = new Path.Circle(new Point(100, 100), 5);
-            project.activeLayer.children[i].fillColor = 'red';
-        }
-        
-        // ------------------------------------------------------------- make typography in another layer (so we an see points) 
-        var typeLayer = new Layer();
-        for (var i = 0; i < values.count; i++) {
-            var text = new PointText({
-                    point: view.center,
-                    justification: 'center',
-                    fontSize: 10,
-                    fillColor: 'blue'
-            });
-            text.content = i;
-        }
-        // ------------------------------------------------------------- mouth eyes nose
-        var faceParts = new Layer();
-        var facePartsColor = (255, 255, 255, 100);
-        var groupEyeL;
-
-        var mouth;
-        project.importSVG('assets/mouth.svg', function(item){
-            mouth = item;
-        });
-
-        project.importSVG('assets/nose.svg', function(item){
-            console.log(item);
-        });
-        
-        project.importSVG('assets/eye.svg', function(item){
-            //console.log(item);
-            groupEyeL = new Group({
-                    children: [item],
-                    fillColor: facePartsColor, 
-                    position: view.center, 
-                    transformContent: false
-                });
-
-        });
-
-        //console.log(mouth);
-        
-        function onFrame(event) {
-            
-            var frameData = getFrameData();     // grab frame data, update points. 
-
-            for (var i = 0; i < values.count; i++) {
-               var item = layer.children[i];
-               item.position.x =  frameData[i][0] * 2.0;
-               item.position.y =  frameData[i][1] * 2.0;
-               item = typeLayer.children[i];
-               item.position.x =  frameData[i][0] * 2.0;
-               item.position.y =  frameData[i][1] * 2.0 + 10;
-            }
-
-            var obj = computeStats(frameData);
-            
-            if (typeof groupEyeL !== "undefined"){
-                groupEyeL.position = obj['leftEye'];
-            }
-        }
-
-        // Reposition the paths whenever the window is resized:
-        function onResize(event) {
-            layer.position = view.center;
-        }
-    </script>
+    <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
+    <script type="text/javascript" src="src/dataPlayer.js"></script>
+ 
 </head>
 <body>
-    <canvas id="canvas" resize></canvas>
+    <canvas id="myCanvas" resize></canvas>
 </body>
 </html>
