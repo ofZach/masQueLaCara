@@ -3,6 +3,7 @@ var offsetX = -300;
 var offsetY = -130;
 // global scale 
 var viewScale = 1.7;
+var frame = 0;
 setup(data);  
 var values = {
     count: 68
@@ -29,26 +30,31 @@ for (var i = 0; i < values.count; i++) {
 // ------------------------------------------------------------- mouth eyes nose
 var faceParts = new Layer();
 var facePartsColor = (255, 255, 255, 100);
-var groupEyeL;
 
-var mouth;
-project.importSVG('assets/mouth.svg', function(item){
-    mouth = item;
-});
+eyeL = new Eye();
+eyeR = new Eye();
+// var copy = groupEyeL.clone();
+// var symbol = new Symbol(groupEyeL);
+// var groupEyeL;
 
-project.importSVG('assets/nose.svg', function(item){
-    console.log(item);
-});
+// var mouth;
+// project.importSVG('assets/mouth.svg', function(item){
+//     mouth = item;
+// });
 
-project.importSVG('assets/eye.svg', function(item){  
-    //console.log(item);
-    groupEyeL = new Group({
-            children: [item],
-            fillColor: facePartsColor, 
-            position: view.center, 
-            transformContent: false
-        });
-});
+// project.importSVG('assets/nose.svg', function(item){
+//     console.log(item);
+// });
+
+// project.importSVG('assets/eye.svg', function(item){  
+//     //console.log(item);
+//     groupEyeL = new Group({
+//             children: [item],
+//             fillColor: facePartsColor, 
+//             position: view.center, 
+//             transformContent: false
+//         });
+// });
 
 //console.log(mouth);
 
@@ -66,10 +72,17 @@ function onFrame(event) {
     }
 
     var obj = computeStats(frameData);
-    if (typeof groupEyeL !== "undefined"){
-        groupEyeL.position.x = offsetValueX(obj['leftEye'].x);
-        groupEyeL.position.y = offsetValueY(obj['leftEye'].y);
-    }
+    var eyeLX = offsetValueX(obj['leftEye'].x);
+    var eyeLY = offsetValueX(obj['leftEye'].y);
+    eyeL.update(eyeLX, eyeLY);
+    var eyeRX = offsetValueX(obj['rightEye'].x);
+    var eyeRY = offsetValueX(obj['rightEye'].y);
+    eyeR.update(eyeRX, eyeRY);
+    // if (typeof groupEyeL !== "undefined"){
+    //     groupEyeL.position.x = offsetValueX(obj['leftEye'].x);
+    //     groupEyeL.position.y = offsetValueY(obj['leftEye'].y);
+    // }
+    frame++;
 }
 function offsetValueX( value){
     return value+offsetX;
