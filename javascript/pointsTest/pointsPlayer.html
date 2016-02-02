@@ -6,26 +6,11 @@
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="frameData.json"></script>
     <script type="text/javascript" src="vendor/paper-full.js"></script>
-
-
+    <script type="text/javascript" src="javascript/dataPlayer.js"></script>
     <script type="text/paperscript" canvas="canvas">
         
-        var dataObject = JSON.parse(data);
-        //console.log(dataObject.length);
-        //console.log(dataObject);
-        var frameData;
-        var frame = 0;
-
-        var leftEye = new Point(0, 0);
-        var rightEye = new Point(0, 0);
-        var mouth = new Point(0, 0);
-        var nose = new Point(0, 0);
         
-        var leftEyeAngle;
-        var rightEyeAngle;
-        var mouthAngle;
-        var noseAngle;
-        var averageScale;
+        setup(data);    // load the data in! 
 
         var values = {
             count: 68
@@ -36,10 +21,8 @@
         for (var i = 0; i < values.count; i++) {
             var path = new Path.Circle(new Point(100, 100), 5);
             project.activeLayer.children[i].fillColor = 'red';
-            console.log(project.activeLayer.children[i]);
         }
-        console.log(project.activeLayer.children.length);
-
+        
         // ------------------------------------------------------------- make typography in another layer (so we an see points) 
         var typeLayer = new Layer();
         for (var i = 0; i < values.count; i++) {
@@ -54,128 +37,48 @@
         // ------------------------------------------------------------- mouth eyes nose
         var faceParts = new Layer();
         var facePartsColor = (255, 255, 255, 100);
-        var svgEyeL = project.importSVG(document.getElementById('eye'));
-        var svgEyeR = project.importSVG(document.getElementById('eye'));
-        var svgMouth = project.importSVG(document.getElementById('mouth'));
-        var svgNose = project.importSVG(document.getElementById('nose'));
-                // var path = new Path.Rectangle(new Point(50, 50), new Size(100, 50));
+        var groupEyeL;
 
-                // Create a group from the two paths:
-        var groupEyeL = new Group({
-                    children: [svgEyeL],
-                    fillColor: facePartsColor, 
-                    position: view.center, 
-                    transformContent: false
-                });
-        var groupEyeR = new Group({
-                    children: [svgEyeR],
-                    fillColor: facePartsColor, 
-                    position: view.center, 
-                    transformContent: false
-                });
+        var mouth;
+        project.importSVG('assets/mouth.svg', function(item){
+            mouth = item;
+        });
 
-        var groupEyeR = new Group({
-                    children: [svgNose],
-                    fillColor: facePartsColor, 
-                    position: view.center, 
-                    transformContent: false
-                });
-        var groupEyeR = new Group({
-                    children: [svgMouth],
-                    fillColor: facePartsColor, 
-                    position: view.center, 
-                    transformContent: false
-                });
-            
-
-        var artworkLayer = new Layer();
+        project.importSVG('assets/nose.svg', function(item){
+            console.log(item);
+        });
         
+        project.importSVG('assets/eye.svg', function(item){
+            //console.log(item);
+            groupEyeL = new Group({
+                    children: [item],
+                    fillColor: facePartsColor, 
+                    position: view.center, 
+                    transformContent: false
+                });
 
-        //console.log(svgEye);
-        //
+        });
 
+        //console.log(mouth);
+        
         function onFrame(event) {
             
-            frame++;
-            frameData = dataObject[frame % dataObject.length];
-            //console.log(frameData);
+            var frameData = getFrameData();     // grab frame data, update points. 
+
             for (var i = 0; i < values.count; i++) {
-                
                var item = layer.children[i];
-               // console.log();
                item.position.x =  frameData[i][0] * 2.0;
                item.position.y =  frameData[i][1] * 2.0;
-
                item = typeLayer.children[i];
                item.position.x =  frameData[i][0] * 2.0;
                item.position.y =  frameData[i][1] * 2.0 + 10;
-
-
-                //var angle = (values.count - i) * Math.sin(event.count / 128) / 10;
-                //item.rotate(angle);
             }
 
-            // calculate the right eye, left eye, etc: 
-            leftEye.x = leftEye.y = 0;
-            for (var i = 36; i <= 41; i++){
-                leftEye += new Point(frameData[i][0], frameData[i][1]) * 2.0;
+            var obj = computeStats(frameData);
+            
+            if (typeof groupEyeL !== "undefined"){
+                groupEyeL.position = obj['leftEye'];
             }
-            leftEye /= 6.0;
-
-            var diff = new Point(frameData[39][0] - frameData[36][0], frameData[39][1] - frameData[36][1]);
-             leftEyeAngle = Math.atan2(diff.y, diff.x);
-
-            var diff2 = new Point(frameData[45][0] - frameData[42][0], frameData[45][1] - frameData[42][1]);
-             rightEyeAngle = Math.atan2(diff2.y, diff2.x);
-
-            var diff3 = new Point(frameData[35][0] - frameData[31][0], frameData[35][1] - frameData[31][1]);
-             noseAngle = Math.atan2(diff3.y, diff3.x);
-
-            var diff4 = new Point(frameData[54][0] - frameData[48][0], frameData[54][1] - frameData[48][1]);
-             mouthAngle = Math.atan2(diff4.y, diff4.x);
-            
-            var p0 = new Point(frameData[0][0], frameData[0][1]);
-            var p16 = new Point(frameData[16][0], frameData[16][1]);
-            
-            // averageScale = getDistance([p0, p16]);
-
-            rightEye.x = rightEye.y = 0;
-            for (var i = 42; i <= 47; i++){
-                rightEye += new Point(frameData[i][0], frameData[i][1]) * 2.0;
-            }
-            rightEye /= 6.0;
-
-            nose.x = nose.y = 0;
-            for (var i = 29; i <= 35; i++){
-                nose += new Point(frameData[i][0], frameData[i][1]) * 2.0;
-            }
-            nose /= 7.0;
-
-            mouth.x = mouth.y = 0;
-            for (var i = 48; i <= 59; i++){
-                mouth += new Point(frameData[i][0], frameData[i][1]) * 2.0;
-            }
-            mouth /= 12.0;
-
-            //console.log(mouth);
-
-            faceParts.children[0].position = leftEye + new Point(0, 20, 0); ;
-            faceParts.children[0].scaling = 1.5;
-            faceParts.children[0].rotation = leftEyeAngle * (180.0 / Math.PI);
-            
-            faceParts.children[1].position = rightEye + new Point(0, 20, 0);;
-            faceParts.children[1].scaling = 1.5;
-            faceParts.children[1].rotation = rightEyeAngle * (180.0 / Math.PI);
-            
-            faceParts.children[2].position = nose + new Point(0, -40, 0);
-            faceParts.children[2].scaling = 2.5;
-            faceParts.children[2].rotation = noseAngle * (180.0 / Math.PI);
-            
-            faceParts.children[3].position = mouth + new Point(0, 50, 0);
-            faceParts.children[3].rotation = mouthAngle * (180.0 / Math.PI);
-
-            
-            // svgEye.position= leftEye;
         }
 
         // Reposition the paths whenever the window is resized:
@@ -185,79 +88,6 @@
     </script>
 </head>
 <body>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="-1000px"
-     width="0px" height="0px"
-       >
-    <g id="eye">
-    <path style="fill:#FFFFFF;" d="M43.165,43.302c-10.245,0-19.184,5.57-23.971,13.841c4.787,8.273,13.726,13.841,23.971,13.841
-        c10.244,0,19.183-5.568,23.971-13.841C62.348,48.872,53.409,43.302,43.165,43.302z M43.165,67.367
-        c-5.647,0-10.225-4.577-10.225-10.224c0-5.646,4.577-10.224,10.225-10.224c5.646,0,10.224,4.577,10.224,10.224
-        C53.389,62.79,48.812,67.367,43.165,67.367z"/>
-    <circle style="fill:#FFFFFF;" cx="43.165" cy="57.143" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="14.682" cy="57.143" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="71.648" cy="56.842" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="43.165" cy="4.512" r="4.513"/>
-    <path style="fill:#FFFFFF;" d="M43.163,29.973c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.899,1.23-4.563
-        c0-5.038-4.085-9.123-9.126-9.123c-5.039,0-9.123,4.085-9.123,9.123c0,1.664,0.452,3.219,1.23,4.563
-        C36.849,31.81,39.788,29.973,43.163,29.973z"/>
-    <path style="fill:#FFFFFF;" d="M43.173,93.249c-15.976,0-29.882-8.695-37.353-21.584C2.139,78.021,0,85.381,0,93.253
-        c0,23.835,19.324,43.159,43.173,43.159c23.838,0,43.158-19.324,43.158-43.159c0-7.872-2.139-15.231-5.82-21.588
-        C73.045,84.554,59.139,93.249,43.173,93.249z"/>
-    <path style="fill:#FFFFFF;" d="M43.166,13.587c-3.377,0-6.316-1.838-7.896-4.562c-0.778,1.344-1.23,2.899-1.23,4.563
-        c0,5.038,4.085,9.123,9.126,9.123c5.039,0,9.123-4.085,9.123-9.123c0-1.664-0.452-3.22-1.23-4.563
-        C49.48,11.75,46.541,13.587,43.166,13.587z"/>
-    </g>
-    </svg>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="-1000px"
-     width="0px" height="0px"   >
-    <g id="mouth">
-    <path style="fill:#FFFFFF;" d="M127.33,0c-10.245,0-19.184,5.569-23.971,13.841c4.787,8.272,13.726,13.842,23.971,13.842
-        c10.244,0,19.183-5.569,23.971-13.842C146.513,5.569,137.574,0,127.33,0z M127.33,24.065c-5.647,0-10.225-4.577-10.225-10.225
-        c0-5.646,4.577-10.224,10.225-10.224c5.646,0,10.224,4.577,10.224,10.224C137.554,19.488,132.977,24.065,127.33,24.065z"/>
-    <path style="fill:#FFFFFF;" d="M80.135,0C69.889,0,60.952,5.569,56.165,13.841c4.787,8.272,13.725,13.842,23.971,13.842
-        c10.244,0,19.181-5.569,23.97-13.842C99.316,5.569,90.379,0,80.135,0z M80.135,24.065c-5.648,0-10.225-4.577-10.225-10.225
-        c0-5.646,4.576-10.224,10.225-10.224c5.646,0,10.222,4.577,10.222,10.224C90.357,19.488,85.781,24.065,80.135,24.065z"/>
-    <path style="fill:#FFFFFF;" d="M66.293,118.815c0,10.246,5.569,19.184,13.841,23.971c8.272-4.787,13.841-13.725,13.841-23.971
-        c0-10.244-5.569-19.182-13.841-23.971C71.863,99.634,66.293,108.571,66.293,118.815z M90.358,118.815
-        c0,5.648-4.577,10.225-10.224,10.225c-5.646,0-10.224-4.576-10.224-10.225c0-5.646,4.577-10.223,10.224-10.223
-        C85.781,108.593,90.358,113.169,90.358,118.815z"/>
-    <path style="fill:#FFFFFF;" d="M32.939,0C22.694,0,13.755,5.569,8.968,13.841c4.787,8.272,13.726,13.842,23.971,13.842
-        c10.244,0,19.183-5.569,23.971-13.842C52.122,5.569,43.183,0,32.939,0z M32.939,24.065c-5.647,0-10.225-4.577-10.225-10.225
-        c0-5.646,4.577-10.224,10.225-10.224c5.646,0,10.224,4.577,10.224,10.224C43.163,19.488,38.585,24.065,32.939,24.065z"/>
-    <circle style="fill:#FFFFFF;" cx="156.587" cy="13.841" r="4.513"/>
-    <circle style="fill:#FFFFFF;" cx="4.513" cy="13.841" r="4.513"/>
-    <path style="fill:#FFFFFF;" d="M57.831,38.044c-8.409,0-15.729-4.577-19.662-11.361c-1.938,3.346-3.062,7.22-3.062,11.363
-        c0,12.546,10.172,22.718,22.725,22.718c12.547,0,22.717-10.172,22.717-22.718c0-4.144-1.125-8.018-3.062-11.363
-        C73.554,33.467,66.235,38.044,57.831,38.044z"/>
-    <path style="fill:#FFFFFF;" d="M82.049,72.125c-8.408,0-15.728-4.577-19.661-11.361c-1.938,3.346-3.063,7.22-3.063,11.363
-        c0,12.546,10.172,22.718,22.724,22.718c12.548,0,22.718-10.172,22.718-22.718c0-4.144-1.126-8.018-3.063-11.363
-        C97.773,67.548,90.453,72.125,82.049,72.125z"/>
-    <path style="fill:#FFFFFF;" d="M104.771,38.044c-8.409,0-15.729-4.577-19.661-11.361c-1.938,3.346-3.064,7.22-3.064,11.363
-        c0,12.546,10.172,22.718,22.726,22.718c12.548,0,22.718-10.172,22.718-22.718c0-4.144-1.127-8.018-3.064-11.363
-        C120.494,33.467,113.174,38.044,104.771,38.044z"/>
-    </g>
-    </svg>
-
-    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="-1000px"
-         width="0" height="0"  >
-    <g id="nose">
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="49.176" r="4.513"/>
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="69.417" r="4.513"/>
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="40.15" r="4.513"/>
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="31.125" r="4.513"/>
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="22.1" r="4.513"/>
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="13.306" r="4.513"/>
-        <circle style="fill:#FFFFFF;" cx="18.249" cy="4.512" r="4.513"/>
-        <path style="fill:#FFFFFF;" d="M9.123,60.343c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.898,1.23-4.562
-            c0-5.038-4.085-9.123-9.126-9.123C4.084,51.219,0,55.304,0,60.342c0,1.664,0.452,3.219,1.23,4.562
-            C2.809,62.18,5.748,60.343,9.123,60.343z"/>
-        <path style="fill:#FFFFFF;" d="M27.372,60.343c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.898,1.23-4.562
-            c0-5.038-4.085-9.123-9.126-9.123c-5.039,0-9.123,4.085-9.123,9.123c0,1.664,0.452,3.219,1.23,4.562
-            C21.058,62.18,23.997,60.343,27.372,60.343z"/>
-    </g>
-    </svg>
     <canvas id="canvas" resize></canvas>
 </body>
 </html>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
+  "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
+ <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="-1000px"
+         width="0" height="0"  >
+    <g id="nose">
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="49.176" r="4.513"/>
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="69.417" r="4.513"/>
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="40.15" r="4.513"/>
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="31.125" r="4.513"/>
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="22.1" r="4.513"/>
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="13.306" r="4.513"/>
+        <circle style="fill:#FFFFFF;" cx="18.249" cy="4.512" r="4.513"/>
+        <path style="fill:#FFFFFF;" d="M9.123,60.343c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.898,1.23-4.562
+            c0-5.038-4.085-9.123-9.126-9.123C4.084,51.219,0,55.304,0,60.342c0,1.664,0.452,3.219,1.23,4.562
+            C2.809,62.18,5.748,60.343,9.123,60.343z"/>
+        <path style="fill:#FFFFFF;" d="M27.372,60.343c3.377,0,6.316,1.837,7.896,4.562c0.778-1.344,1.23-2.898,1.23-4.562
+            c0-5.038-4.085-9.123-9.126-9.123c-5.039,0-9.123,4.085-9.123,9.123c0,1.664,0.452,3.219,1.23,4.562
+            C21.058,62.18,23.997,60.343,27.372,60.343z"/>
+    </g>
+    </svg>
