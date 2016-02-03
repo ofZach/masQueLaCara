@@ -26,7 +26,7 @@ for (var i = 0; i < values.count; i++) {
             fontSize: 10,
             fillColor: 'blue'
     });
-    text.content = i;
+    text.content = i;   
 }
 // ------------------------------------------------------------- mouth eyes nose
 maskBase.setup();
@@ -54,6 +54,9 @@ function onFrame(event) {
     maskManager.update();
 
     frame++;
+}
+function onMouseDown(event) {
+    maskManager.nextMask();
 }
 function offsetValueX( value){
     return value+offsetX;

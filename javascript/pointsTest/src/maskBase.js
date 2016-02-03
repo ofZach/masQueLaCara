@@ -14,6 +14,7 @@ maskBase.setup = function(){
 // TODO: unsubscribe from a Group in case of changing mask. Maybe detach all before attaching
 // TODO: make one function to subscribe all elements
 maskBase.attachToLeftEye = function(obj){
+	this.leftEyeGroup.removeChildren();
 	this.leftEyeGroup.addChild(obj);
 }
 maskBase.detachAll = function(){

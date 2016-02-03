@@ -1,4 +1,4 @@
-var Eye = function(){
+var Eye = function(color){
 	var circle1 = new paper.Path.Circle(new paper.Point(0, 0), 30);
 	var circle2 = new paper.Path.Circle(new paper.Point(0, 0), 10);
 	var circle3 = new paper.Path.Circle(new paper.Point(0, 0), 5);
@@ -9,7 +9,7 @@ var Eye = function(){
 	this.eyeGroup.addChild(circle2);
 	this.eyeGroup.addChild(circle3);
 	
-	this.eyeGroup.children[0].fillColor = 'white';
+	this.eyeGroup.children[0].fillColor = color;
 	this.eyeGroup.children[1].fillColor = 'red';
 	this.eyeGroup.children[2].fillColor = 'blue';
 
