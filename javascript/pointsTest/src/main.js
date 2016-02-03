@@ -1,4 +1,8 @@
   // load the data in! 
+var gui = new DAT.GUI({
+    // height : buttonCount * 32 -1
+    height : 1 * 32 - 1
+});
 var offsetX = -300;
 var offsetY = -130;
 // global scale 
@@ -9,7 +13,6 @@ setup(data);
 var values = {
     count: 68
 };
-
 
 // ------------------------------------------------------------- make circles: 
 var layer = project.activeLayer;
@@ -32,8 +35,13 @@ for (var i = 0; i < values.count; i++) {
 maskBase.setup();
 maskManager.currentMask = "mask1";
 maskManager.setup();
-maskManager.getCurMask().setVisible(true);
 maskManager.attachMask();
+
+gui.add(maskManager, 'currentMaskNum')
+.min(0).max(1).step(1)
+.onFinishChange(function(){
+    maskManager.attachMask();
+});
 
 function onFrame(event) {
     
