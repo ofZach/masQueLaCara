@@ -9,18 +9,24 @@ maskBase.print = function(){
 }
 maskBase.setup = function(){
 	this.leftEyeGroup = new paper.Group();
+	this.rightEyeGroup = new paper.Group();
 }
 // subscribe any mask to Group, group will have a position, rotation and scale
-// TODO: unsubscribe from a Group in case of changing mask. Maybe detach all before attaching
-// TODO: make one function to subscribe all elements
 maskBase.attachToMask = function(groups){
-	this.leftEyeGroup.removeChildren();
-	this.leftEyeGroup.addChild(groups["eyeL"]);
+	this.detachAll();
+	if(groups["eyeL"] != null){
+		this.leftEyeGroup.addChild(groups["eyeL"]);
+	}
+	if(groups["eyeR"] != null){
+		this.rightEyeGroup.addChild(groups["eyeR"]);
+	}
 }
 maskBase.detachAll = function(){
-
+	this.leftEyeGroup.removeChildren();
+	this.rightEyeGroup.removeChildren();
 }
 maskBase.update = function (obj) {
 	this.counter++;
 	this.leftEyeGroup.position = obj['leftEye'];
+	this.rightEyeGroup.position = obj['rightEye'];
 }

@@ -6,6 +6,7 @@ mask1.setup = function () {
 	console.log("mask1 setup");
 	this.layer = new paper.Layer();
 	this.eyeL = new Eye("white");
+	this.eyeR = new Eye("white");
 	this.layer.visible = false;
 }
 mask1.setVisible = function (value) {
@@ -17,6 +18,7 @@ mask1.getGroup = function () {
 mask1.attachToMask  = function (){
 	var groups = {
 		"eyeL": this.eyeL.getGroup(),
+		"eyeR": this.eyeR.getGroup(),		
 	};
 	maskBase.attachToMask.call(this, groups);
 }

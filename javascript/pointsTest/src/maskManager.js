@@ -30,5 +30,5 @@ maskManager.nextMask = function(){
 		this.currentMaskNum = 0;
 	} 
 	this.attachMask();
-	console.log("currentMaskNum = " + this.currentMaskNum);
+	console.log("currentMaskNum = " + this.getCurMaskName());
 };
