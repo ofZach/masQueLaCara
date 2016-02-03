@@ -24,8 +24,8 @@ function computeAveragePosition(frameData, startPos, endPos){
 	// paper point is a little weird here, have to do this w/ x and y sep. 
 	var pt = new paper.Point(0, 0);
 	for (var i = startPos; i <= endPos; i++){
-	    pt.x += frameData[i][0] * viewScale;
-	    pt.y += frameData[i][1] * viewScale;
+	    pt.x += frameData[i][0] ;
+	    pt.y += frameData[i][1] ;
 	}
 	pt.x /= (endPos - startPos + 1);
 	pt.y /= (endPos - startPos + 1);
@@ -77,6 +77,5 @@ function computeStats(frameData){
 	obj["mouth"] = mouth;
 	obj["noseAngle"] = noseAngle;
 	obj["mouthAngle"] = mouthAngle;
-
 	return obj;
 }

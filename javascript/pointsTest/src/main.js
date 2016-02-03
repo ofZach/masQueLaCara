@@ -4,18 +4,19 @@ var offsetY = -130;
 // global scale 
 var viewScale = 1.7;
 var frame = 0;
+
 setup(data);  
 var values = {
     count: 68
 };
 
+
 // ------------------------------------------------------------- make circles: 
 var layer = project.activeLayer;
 for (var i = 0; i < values.count; i++) {
     var path = new Path.Circle(new Point(100, 100), 5);
-    project.activeLayer.children[i].fillColor = 'red';
+    project.activeLayer.children[i].fillColor = 'green';
 }
-
 // ------------------------------------------------------------- make typography in another layer (so we an see points) 
 var typeLayer = new Layer();
 for (var i = 0; i < values.count; i++) {
@@ -28,35 +29,11 @@ for (var i = 0; i < values.count; i++) {
     text.content = i;
 }
 // ------------------------------------------------------------- mouth eyes nose
-var faceParts = new Layer();
-var facePartsColor = (255, 255, 255, 100);
-
-eyeL = new Eye();
-eyeR = new Eye();
-// var copy = groupEyeL.clone();
-// var symbol = new Symbol(groupEyeL);
-// var groupEyeL;
-
-// var mouth;
-// project.importSVG('assets/mouth.svg', function(item){
-//     mouth = item;
-// });
-
-// project.importSVG('assets/nose.svg', function(item){
-//     console.log(item);
-// });
-
-// project.importSVG('assets/eye.svg', function(item){  
-//     //console.log(item);
-//     groupEyeL = new Group({
-//             children: [item],
-//             fillColor: facePartsColor, 
-//             position: view.center, 
-//             transformContent: false
-//         });
-// });
-
-//console.log(mouth);
+maskBase.setup();
+maskManager.currentMask = "mask1";
+maskManager.setup();
+maskManager.getCurMask().setVisible(true);
+maskManager.attachMask();
 
 function onFrame(event) {
     
@@ -64,24 +41,18 @@ function onFrame(event) {
 
     for (var i = 0; i < values.count; i++) {
        var item = layer.children[i];
-       item.position.x =  offsetValueX(frameData[i][0]* viewScale) ;
-       item.position.y =  offsetValueY(frameData[i][1]* viewScale) ;
+       item.position.x =  frameData[i][0] ;
+       item.position.y =  frameData[i][1] ;
        item = typeLayer.children[i];
-       item.position.x =  offsetValueX(frameData[i][0]* viewScale) ;
-       item.position.y =  offsetValueY(frameData[i][1]* viewScale ) + 10;
+       item.position.x =  frameData[i][0] ;
+       item.position.y =  frameData[i][1] + 10;
     }
 
     var obj = computeStats(frameData);
-    var eyeLX = offsetValueX(obj['leftEye'].x);
-    var eyeLY = offsetValueX(obj['leftEye'].y);
-    eyeL.update(eyeLX, eyeLY);
-    var eyeRX = offsetValueX(obj['rightEye'].x);
-    var eyeRY = offsetValueX(obj['rightEye'].y);
-    eyeR.update(eyeRX, eyeRY);
-    // if (typeof groupEyeL !== "undefined"){
-    //     groupEyeL.position.x = offsetValueX(obj['leftEye'].x);
-    //     groupEyeL.position.y = offsetValueY(obj['leftEye'].y);
-    // }
+    
+    maskBase.update(obj);
+    maskManager.update();
+
     frame++;
 }
 function offsetValueX( value){
