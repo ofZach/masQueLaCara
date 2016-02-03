@@ -41,7 +41,10 @@ mask2.getGroup = function () {
 	return this.eyeL.getGroup();
 }
 mask2.attachToMask  = function (){
-	maskBase.attachToLeftEye.call(this, this.eyeL.getGroup());
+	var groups = {
+		"eyeL": this.eyeL.getGroup(),
+	};
+	maskBase.attachToMask.call(this, groups);
 }
 mask2.update = function () {
 
