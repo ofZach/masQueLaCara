@@ -22,7 +22,7 @@ maskManager.getCurMaskName = function(){
 	return this.names[this.currentMaskNum];
 };
 maskManager.attachMask = function () {
-	this.masks[this.getCurMaskName()].attachToLeftEye();
+	this.masks[this.getCurMaskName()].attachToMask();
 };
 maskManager.nextMask = function(){
 	this.currentMaskNum++;
