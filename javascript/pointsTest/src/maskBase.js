@@ -9,7 +9,9 @@ maskBase.print = function(){
 }
 maskBase.setup = function(){
 	this.leftEyeGroup = new paper.Group();
+	this.leftEyeGroup.transformContent = false;
 	this.rightEyeGroup = new paper.Group();
+	this.rightEyeGroup.transformContent = false;
 }
 // subscribe any mask to Group, group will have a position, rotation and scale
 maskBase.attachToMask = function(groups){
