@@ -29,13 +29,16 @@ maskManager.setup();
 maskManager.nextMask();
 
 var settings = QuickSettings.create();
+var maskSettings = QuickSettings.create( 250, 20, "maskSettings");
+
 settings.setGlobalChangeHandler(onFrame);
-// settings.bindRange("currentMaskNum", 0, 1, 0, 1, maskManager);
 settings.addRange("currentMaskNum", 0, 1,  maskManager, 1, function(value) {
-    maskManager.hideMask();
-       maskManager["currentMaskNum"] = value;
-       maskManager.showMask();
+        maskManager.hideMask(maskSettings);
+        maskManager["currentMaskNum"] = value;
+        maskManager.showMask(maskSettings);
     });
+
+
 function onFrame(event) {    
     var frameData = getFrameData();     // grab frame data, update points. 
 

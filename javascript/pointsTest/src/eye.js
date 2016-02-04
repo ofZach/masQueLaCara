@@ -16,13 +16,22 @@ var Eye = function(color){
 	this.eyeGroup.pivot = new paper.Point(0,0);
 	this.eyeGroup.transformContent = false;
 
+	this.parameters = {
+		radius: 10,
+	};
 };
+Eye.prototype.getParameters = function(){
+	return this.parameters;
+}
+Eye.prototype.setParameter = function(name , value){
+	this.parameters[name] = value;
+}
 Eye.prototype.getGroup = function() {
 	return this.eyeGroup;
 };
 Eye.prototype.update = function(position) {
 	this.eyeGroup.position = position;
     this.eyeGroup.children[1].position.x = Math.cos(frame/6)*10;
-    this.eyeGroup.children[1].position.y = Math.sin(frame/7)*30;
+    this.eyeGroup.children[1].position.y = Math.sin(frame/7)*this.parameters["radius"];
     this.eyeGroup.children[2].scaling = Math.sin(frame/4)*1.9+2.5;
 };
