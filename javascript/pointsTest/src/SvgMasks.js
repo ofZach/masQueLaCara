@@ -8,7 +8,7 @@ StrokeFace.prototype.setup = function() {
 		nose: 'assets/StrokeFaceNose.svg'
 	};
 	this.setupGroup(data);
-	this.noseOffset.y = -50;
+	this.nose.pivot = new paper.Point(19, 232);
 };
 
 function StrokeFace2() {};
@@ -21,7 +21,7 @@ StrokeFace2.prototype.setup = function() {
 		nose: 'assets/StrokeFaceNose2.svg'
 	};
 	this.setupGroup(data);
-	this.noseOffset.y = -150;
+	this.nose.pivot = new paper.Point(135, 233);
 };
 
 function StrokeFace3() {};
@@ -34,7 +34,7 @@ StrokeFace3.prototype.setup = function() {
 		nose: 'assets/StrokeFaceNose3.svg'
 	};
 	this.setupGroup(data);
-	this.noseOffset.y = -150;
+	this.nose.pivot = new paper.Point(138, 204);
 };
 
 function CircleFace() {};
@@ -43,11 +43,11 @@ CircleFace.prototype.setup = function() {
 	var data = {
 		eyeL: 'assets/CircleFaceEye.svg',
 		eyeR:'assets/CircleFaceEye.svg',
-		mouth:'',
+		mouth:'assets/CircleFaceMouth.svg',
 		nose: 'assets/CircleFaceNose.svg'
 	};
 	this.setupGroup(data);
-	this.noseOffset.y = -80;
+	this.nose.pivot = new paper.Point(120, 156);
 };
 
 function SquareElephant() {};
@@ -56,11 +56,10 @@ SquareElephant.prototype.setup = function() {
 	var data = {
 		eyeL: 'assets/SquareElephantEye.svg',
 		eyeR:'assets/SquareElephantEye.svg',
-		mouth:'assets/SquareElephantMouth.svg',
 		nose: 'assets/SquareElephantNose.svg'
 	};
 	this.setupGroup(data);
-	this.noseOffset.y = -50;
+	this.nose.pivot = new paper.Point(171, 300);
 };
 
 function Egypt() {};
@@ -69,11 +68,23 @@ Egypt.prototype.setup = function() {
 	var data = {
 		eyeL: 'assets/EgyptEye.svg',
 		eyeR:'assets/EgyptEye.svg',
-		mouth:'',
 		nose: 'assets/EgyptNose.svg'
 	};
 	this.setupGroup(data);
-	this.noseOffset.y = -250;
+	this.nose.pivot = new paper.Point(397, 578);
+};
+
+function FadeFace() {};
+FadeFace.prototype = Object.create(SvgMask.prototype);
+FadeFace.prototype.setup = function() {
+	var data = {
+		eyeL: 'assets/FadeFaceEye.svg',
+		eyeR:'assets/FadeFaceEye.svg',
+		mouth:'assets/FadeFaceMouth.svg',
+		nose: 'assets/FadeFaceNose.svg'
+	};
+	this.setupGroup(data);
+	this.nose.pivot = new paper.Point(114, 295);
 };
 
 

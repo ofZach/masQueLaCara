@@ -17,6 +17,8 @@ SvgMask.prototype.setupGroup = function(data) {
 	this.nose.transformContent = false;
 
 	this.loadData(data);
+
+	this.nose.pivot = new paper.Point(0, 0);
 };
 SvgMask.prototype.loadData = function(data){
 	var self = this;
@@ -63,7 +65,15 @@ SvgMask.prototype.addParameters = function(parameters) {
 	parameters.addRange("noseOffsetY", -300, 300, this.noseOffset.y, 1, function(value) {
         self.noseOffset.y = value;
     });
+   	parameters.addRange("nosePivotX", -300, 1000, this.nose.pivot.x, 1, function(value) {
+        self.nose.pivot.x = value;
+    });
+   	parameters.addRange("nosePivotY", -300, 1000, this.nose.pivot.y, 1, function(value) {
+        self.nose.pivot.y = value;
+    });
 };
 SvgMask.prototype.clearParameters = function(parameters) {
 	parameters.removeControl("noseOffsetY");
+	parameters.removeControl("nosePivotX");
+	parameters.removeControl("nosePivotY");
 };

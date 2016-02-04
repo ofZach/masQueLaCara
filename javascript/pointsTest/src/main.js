@@ -24,9 +24,7 @@ for (var i = 0; i < values.count; i++) {
     text.content = i;   
 }
 // ------------------------------------------------------------- mouth eyes nose
-maskManager.currentMask = "mask1";
 maskManager.setup();
-// maskManager.nextMask();
 
 var settings = QuickSettings.create();
 var maskSettings = QuickSettings.create( project.view.size.width-200, 0, "maskSettings");
