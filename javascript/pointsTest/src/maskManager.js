@@ -20,6 +20,12 @@ maskManager.getCurMask = function () {
 maskManager.getCurMaskName = function(){
 	return this.names[this.currentMaskNum];
 };
+maskManager.hideMask = function(){
+	this.masks[this.getCurMaskName()].hide();
+}
+maskManager.showMask = function(){
+	this.masks[this.getCurMaskName()].show();
+}
 maskManager.nextMask = function(){
 	this.masks[this.getCurMaskName()].hide();
 

@@ -5,7 +5,6 @@ Mask1.prototype.setup = function() {
 	this.addLayer();
 	this.eyeL = new Eye("white");
 	this.eyeR = new Eye("magenta");
-	console.log(this.layer);
 };
 Mask1.prototype.update = function(obj) {
     this.eyeL.update(obj["leftEye"]);
@@ -18,7 +17,6 @@ Mask2.prototype.setup = function() {
 	this.addLayer();
 	this.eyeL = new Eye("blue");
 	this.eyeR = new Eye("white");
-	console.log(this.layer);
 };
 Mask2.prototype.update = function(obj) {
     this.eyeL.update(obj["leftEye"]);

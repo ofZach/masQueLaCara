@@ -1,12 +1,4 @@
-  // load the data in! 
-var gui = new DAT.GUI({
-    // height : buttonCount * 32 -1
-    height : 1 * 32 - 1
-});
-var offsetX = -300;
-var offsetY = -130;
-// global scale 
-var viewScale = 1.7;
+// ------------------------------------------------------------- gui
 var frame = 0;
 
 setup(data);  
@@ -36,12 +28,14 @@ maskManager.currentMask = "mask1";
 maskManager.setup();
 maskManager.nextMask();
 
-gui.add(maskManager, 'currentMaskNum')
-.min(0).max(1).step(1)
-.onFinishChange(function(){
-    maskManager.nextMask();
-});
-
+var settings = QuickSettings.create();
+settings.setGlobalChangeHandler(onFrame);
+// settings.bindRange("currentMaskNum", 0, 1, 0, 1, maskManager);
+settings.addRange("currentMaskNum", 0, 1,  maskManager, 1, function(value) {
+    maskManager.hideMask();
+       maskManager["currentMaskNum"] = value;
+       maskManager.showMask();
+    });
 function onFrame(event) {    
     var frameData = getFrameData();     // grab frame data, update points. 
 
