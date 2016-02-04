@@ -18,7 +18,9 @@ MaskBase.prototype.addLayer = function() {
 };
 MaskBase.prototype.show = function() {
 	this.layer.visible = true;
+	console.log(this.layer.visible );
 };
 MaskBase.prototype.hide = function() {
 	this.layer.visible = false;
+	console.log(this.layer.visible );
 };

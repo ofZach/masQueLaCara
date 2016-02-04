@@ -8,7 +8,7 @@ var maskManager = {
 // TODO: make function for creating new mask, because now this masks are global objects which is not useful
 maskManager.setup = function () {
 	this.masks[this.names[0]] = new Mask1();
-	this.masks[this.names[1]] = new Mask1();
+	this.masks[this.names[1]] = new Mask2();
 	this.masks[this.names[0]].addLayer();
 	this.masks[this.names[1]].addLayer();
 	this.masks[this.names[0]].setup();
