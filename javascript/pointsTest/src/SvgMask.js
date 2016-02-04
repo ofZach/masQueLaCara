@@ -1,0 +1,69 @@
+function SvgMask() {}
+SvgMask.prototype = Object.create(MaskBase.prototype);
+
+SvgMask.prototype.setupGroup = function(data) {
+	this.addLayer();
+	this.color = "white";
+	this.mouth = new paper.Group();
+	this.eyeL = new paper.Group();
+	this.eyeR = new paper.Group();
+	this.nose = new paper.Group();
+	
+	this.noseOffset = new paper.Point(0, 0);
+
+	this.eyeL.transformContent = false;
+	this.eyeR.transformContent = false;
+	this.mouth.transformContent = false;
+	this.nose.transformContent = false;
+
+	this.loadData(data);
+};
+SvgMask.prototype.loadData = function(data){
+	var self = this;
+
+	paper.project.importSVG(data['eyeL'], function(item){
+		item.fillColor = self.color;
+		self.eyeL.addChild(item);
+	});
+
+	paper.project.importSVG(data['eyeR'], function(item){
+		item.fillColor = self.color;
+		self.eyeR.addChild(item);
+	});
+	paper.project.importSVG(data['mouth'], function(item){
+		item.fillColor = self.color;
+		self.mouth.addChild(item);
+	});
+	paper.project.importSVG(data['nose'], function(item){
+		item.fillColor = self.color;
+		self.nose.addChild(item);
+	});
+} 
+SvgMask.prototype.update = function(obj) {
+	if (typeof this.eyeL !== "undefined"){
+        this.eyeL.position = obj["leftEye"];
+        this.eyeL.rotation = obj["leftEyeAngle"]* (180.0 / Math.PI);
+    }
+   	if (typeof this.eyeR !== "undefined"){
+        this.eyeR.position = obj["rightEye"];
+        this.eyeR.rotation = obj["rightEyeAngle"]* (180.0 / Math.PI);
+    }
+   	if (typeof this.nose !== "undefined"){
+   		var pos = new paper.Point(obj["nose"].x+this.noseOffset.x, obj["nose"].y+this.noseOffset.y);
+        this.nose.position = pos;
+   		this.nose.rotation = obj["noseAngle"]* (180.0 / Math.PI);
+    }
+   	if (typeof this.mouth !== "undefined"){
+        this.mouth.position = obj["mouth"];
+   		this.mouth.rotation = obj["mouthAngle"]* (180.0 / Math.PI);
+    }
+};
+SvgMask.prototype.addParameters = function(parameters) {
+	var self = this;
+	parameters.addRange("noseOffsetY", -300, 300, this.noseOffset.y, 1, function(value) {
+        self.noseOffset.y = value;
+    });
+};
+SvgMask.prototype.clearParameters = function(parameters) {
+	parameters.removeControl("noseOffsetY");
+};

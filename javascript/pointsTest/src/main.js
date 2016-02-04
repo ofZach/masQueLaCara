@@ -26,26 +26,20 @@ for (var i = 0; i < values.count; i++) {
 // ------------------------------------------------------------- mouth eyes nose
 maskManager.currentMask = "mask1";
 maskManager.setup();
-maskManager.nextMask();
+// maskManager.nextMask();
 
 var settings = QuickSettings.create();
-var maskSettings = QuickSettings.create( 800, 0, "maskSettings");
+var maskSettings = QuickSettings.create( project.view.size.width-200, 0, "maskSettings");
 
 settings.setGlobalChangeHandler(onFrame);
+
 settings.addDropDown("whichMask", maskManager.names, function(value) {
         maskManager.hideMask(maskSettings);
         maskManager.setMaskByName(value);
         maskManager.showMask(maskSettings);
     });
 
-// replaced by above
-// settings.addRange("currentMaskNum", 0, 1,  maskManager, 1, function(value) {
-//         maskManager.hideMask(maskSettings);
-//         maskManager["currentMaskNum"] = value;
-//         maskManager.showMask(maskSettings);
-//     });
-
-
+maskManager.showMask(maskSettings);
 function onFrame(event) {    
     var frameData = getFrameData();     // grab frame data, update points. 
 

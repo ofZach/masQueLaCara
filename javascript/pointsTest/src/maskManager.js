@@ -1,18 +1,32 @@
 var maskManager = {
 	masks: {},
-	currentMask: "mask1",
+	currentMask: "StrokeFace",
 	currentMaskNum: 0,
-	names: ["mask1", "mask2"]
+	names: ["StrokeFace", 
+			"StrokeFace2", 
+			"StrokeFace3",
+			"CircleFace",
+			"SquareElephant",
+			"Egypt",
+			]
 };
 // add all existing masks to `masks`
 
 
 
 maskManager.setup = function () {
-	this.masks[this.names[0]] = new Mask1();
+	this.masks[this.names[0]] = new StrokeFace();
 	this.masks[this.names[0]].setup();
-	this.masks[this.names[1]] = new Mask2();
+	this.masks[this.names[1]] = new StrokeFace2();
 	this.masks[this.names[1]].setup();
+	this.masks[this.names[2]] = new StrokeFace3();
+	this.masks[this.names[2]].setup();
+	this.masks[this.names[3]] = new CircleFace();
+	this.masks[this.names[3]].setup();
+	this.masks[this.names[4]] = new SquareElephant();
+	this.masks[this.names[4]].setup();
+	this.masks[this.names[5]] = new Egypt();
+	this.masks[this.names[5]].setup();
 };
 maskManager.update = function (obj) {
 	this.masks[this.getCurMaskName()].update(obj);

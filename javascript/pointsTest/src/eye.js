@@ -18,22 +18,24 @@ var Eye = function(color){
 
 	this.parameters = {
 		radius: 10,
+		circleSpeedX: 6,
+		circleSpeedY: 6,
+		circleDistance: 10
 	};
 };
 Eye.prototype.getParameters = function(){
 	return this.parameters;
 }
 Eye.prototype.setParameter = function(name , value){
-	console.log("setParameter");
 	this.parameters[name] = value;
-	this.eyeGroup.children[1].position.y = value;
 }
 Eye.prototype.getGroup = function() {
 	return this.eyeGroup;
 };
 Eye.prototype.update = function(position) {
 	this.eyeGroup.position = position;
-    this.eyeGroup.children[1].position.x = Math.cos(frame/6)*10;
+    this.eyeGroup.children[1].position.x = Math.cos(frame/this.parameters["circleSpeedX"])*this.parameters["circleDistance"];
+    this.eyeGroup.children[1].position.y = Math.sin(frame/this.parameters["circleSpeedY"])*this.parameters["circleDistance"];
     // this.eyeGroup.children[1].position.y = Math.sin(frame/7)*this.parameters["radius"];
     this.eyeGroup.children[2].scaling = Math.sin(frame/4)*1.9+2.5;
 };
