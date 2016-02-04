@@ -22,8 +22,8 @@ var Eye = function(color){
 Eye.prototype.getGroup = function() {
 	return this.eyeGroup;
 };
-Eye.prototype.update = function() {
-    // this.eyeGroup.scaling = 1.5;
+Eye.prototype.update = function(position) {
+	this.eyeGroup.position = position;
     this.eyeGroup.children[1].position.x = Math.cos(frame/6)*10;
     this.eyeGroup.children[1].position.y = Math.sin(frame/7)*30;
     this.eyeGroup.children[2].scaling = Math.sin(frame/4)*1.9+2.5;

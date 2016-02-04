@@ -1,53 +1,32 @@
-var mask1 = Object.create(maskBase);
-mask1.print = function () {
-	maskBase.print.call(this);
-}
-mask1.setup = function () {
-	console.log("mask1 setup");
-	this.layer = new paper.Layer();
+function Mask1() {}
+Mask1.prototype = Object.create(MaskBase.prototype);
+Mask1.prototype.setup = function() {
 	this.eyeL = new Eye("white");
 	this.eyeR = new Eye("magenta");
-	this.layer.visible = false;
-}
-mask1.setVisible = function (value) {
-	this.layer.visible = value;
-}
-mask1.getGroup = function () {
-	return this.eyeL.getGroup();
-}
-mask1.attachToMask  = function (){
-	var groups = {
-		"eyeL": this.eyeL.getGroup(),
-		"eyeR": this.eyeR.getGroup(),		
-	};
-	maskBase.attachToMask.call(this, groups);
-}
-mask1.update = function () {
-    this.eyeL.update();
-}
+};
+Mask1.prototype.update = function(obj) {
+    this.eyeL.update(obj["leftEye"]);
+    this.eyeR.update(obj["rightEye"]);
+};
+// var mask1 = Object.create(maskBase);
+// mask1.setup = function () {
+// 	this.eyeL = new Eye("white");
+// 	this.eyeR = new Eye("magenta");
+// }
+// mask1.update = function (obj) {
+//     this.eyeL.update(obj["leftEye"]);
+//     this.eyeR.update(obj["rightEye"]);
+// }
 
-var mask2 = Object.create(maskBase);
-mask2.print = function () {
-	maskBase.print.call(this);
-}
-mask2.setup = function () {
-	console.log("mask2 setup");
-	this.layer = new paper.Layer();
-	this.eyeL = new Eye("green");
-	this.layer.visible = false;
-}
-mask2.setVisible = function (value) {
-	this.layer.visible = value;
-}
-mask2.getGroup = function () {
-	return this.eyeL.getGroup();
-}
-mask2.attachToMask  = function (){
-	var groups = {
-		"eyeL": this.eyeL.getGroup(),
-	};
-	maskBase.attachToMask.call(this, groups);
-}
-mask2.update = function () {
-
-}
+// var mask2 = makeMask();
+// mask2.setup = function () {
+// 	this.eyeL = new Eye("red");
+// 	this.eyeR = new Eye("white");
+// }
+// mask2.getGroup = function () {
+// 	return this.eyeL.getGroup();
+// }
+// mask2.update = function (obj) {
+//     this.eyeL.update(obj["leftEye"]);
+//     this.eyeR.update(obj["rightEye"]);
+// }

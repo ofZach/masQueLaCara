@@ -32,19 +32,18 @@ for (var i = 0; i < values.count; i++) {
     text.content = i;   
 }
 // ------------------------------------------------------------- mouth eyes nose
-maskBase.setup();
-maskManager.currentMask = "mask1";
+// maskManager.currentMask = "mask1";
 maskManager.setup();
-maskManager.attachMask();
+maskManager.nextMask();
+// maskManager.getCurMask().hide();
 
 gui.add(maskManager, 'currentMaskNum')
 .min(0).max(1).step(1)
 .onFinishChange(function(){
-    maskManager.attachMask();
+    maskManager.nextMask();
 });
 
-function onFrame(event) {
-    
+function onFrame(event) {    
     var frameData = getFrameData();     // grab frame data, update points. 
 
     for (var i = 0; i < values.count; i++) {
@@ -58,8 +57,7 @@ function onFrame(event) {
 
     var obj = computeStats(frameData);
     
-    maskBase.update(obj);
-    maskManager.update();
+    maskManager.update(obj);
 
     frame++;
 }
