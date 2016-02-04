@@ -9,6 +9,9 @@ console.log(paper);
 //--------------------------------------------------------------------
 function setup(jsonData){
 	dataObject = JSON.parse(jsonData);
+
+
+
 	frame = 0;
 }
 
@@ -16,16 +19,21 @@ function setup(jsonData){
 function getFrameData(){
 	frame++;
 
-	var result = dataObject[frame % dataObject.length];
+	var frameDataCopy = [];
+
+	var frameData = dataObject[frame % dataObject.length];
+
 	for (i = 0; i < 68; i++){
 		
-		result[i][0] *= viewScale;
-		result[i][1] *= viewScale;
+		var point = [];
+		point.push(frameData[i][0] * viewScale);
+		point.push(frameData[i][1] * viewScale);
 
+		frameDataCopy.push(point);
 
 	}
 
-    return result;
+    return frameDataCopy;
 }
 
 // startPos to endPos inclusive
