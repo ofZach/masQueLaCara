@@ -32,11 +32,18 @@ var settings = QuickSettings.create();
 var maskSettings = QuickSettings.create( 800, 0, "maskSettings");
 
 settings.setGlobalChangeHandler(onFrame);
-settings.addRange("currentMaskNum", 0, 1,  maskManager, 1, function(value) {
+settings.addDropDown("whichMask", maskManager.names, function(value) {
         maskManager.hideMask(maskSettings);
-        maskManager["currentMaskNum"] = value;
+        maskManager.setMaskByName(value);
         maskManager.showMask(maskSettings);
     });
+
+// replaced by above
+// settings.addRange("currentMaskNum", 0, 1,  maskManager, 1, function(value) {
+//         maskManager.hideMask(maskSettings);
+//         maskManager["currentMaskNum"] = value;
+//         maskManager.showMask(maskSettings);
+//     });
 
 
 function onFrame(event) {    
@@ -58,7 +65,7 @@ function onFrame(event) {
     frame++;
 }
 function onMouseDown(event) {
-    maskManager.nextMask();
+    //maskManager.nextMask();
 }
 // Reposition the paths whenever the window is resized:
 function onResize(event) {

@@ -5,6 +5,9 @@ var maskManager = {
 	names: ["mask1", "mask2"]
 };
 // add all existing masks to `masks`
+
+
+
 maskManager.setup = function () {
 	this.masks[this.names[0]] = new Mask1();
 	this.masks[this.names[0]].setup();
@@ -17,6 +20,14 @@ maskManager.update = function (obj) {
 maskManager.getCurMask = function () {
 	return this.masks[this.getCurMaskName()];
 };
+
+maskManager.setMaskByName = function (name) {
+	index = this.names.indexOf(name.value);
+	if (index >= 0){
+		this.currentMaskNum = index;
+	}
+};
+
 maskManager.getCurMaskName = function(){
 	return this.names[this.currentMaskNum];
 };

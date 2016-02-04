@@ -9,9 +9,6 @@ console.log(paper);
 //--------------------------------------------------------------------
 function setup(jsonData){
 	dataObject = JSON.parse(jsonData);
-
-
-
 	frame = 0;
 }
 
