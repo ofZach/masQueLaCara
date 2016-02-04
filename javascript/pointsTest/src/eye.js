@@ -13,11 +13,9 @@ var Eye = function(color){
 	this.eyeGroup.children[1].fillColor = 'red';
 	this.eyeGroup.children[2].fillColor = 'blue';
 
-	
 	this.eyeGroup.pivot = new paper.Point(0,0);
 	this.eyeGroup.transformContent = false;
-//	this.eyeGroup.pivot.x = 100;/
-//	this.eyeGroup.pivot.y = 100;
+
 };
 Eye.prototype.getGroup = function() {
 	return this.eyeGroup;

@@ -32,10 +32,9 @@ for (var i = 0; i < values.count; i++) {
     text.content = i;   
 }
 // ------------------------------------------------------------- mouth eyes nose
-// maskManager.currentMask = "mask1";
+maskManager.currentMask = "mask1";
 maskManager.setup();
 maskManager.nextMask();
-// maskManager.getCurMask().hide();
 
 gui.add(maskManager, 'currentMaskNum')
 .min(0).max(1).step(1)
@@ -63,12 +62,6 @@ function onFrame(event) {
 }
 function onMouseDown(event) {
     maskManager.nextMask();
-}
-function offsetValueX( value){
-    return value+offsetX;
-}
-function offsetValueY( value){
-    return value+offsetY;
 }
 // Reposition the paths whenever the window is resized:
 function onResize(event) {
