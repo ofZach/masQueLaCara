@@ -15,7 +15,17 @@ function setup(jsonData){
 //--------------------------------------------------------------------
 function getFrameData(){
 	frame++;
-    return dataObject[frame % dataObject.length];
+
+	var result = dataObject[frame % dataObject.length];
+	for (i = 0; i < 68; i++){
+		
+		result[i][0] *= viewScale;
+		result[i][1] *= viewScale;
+
+
+	}
+
+    return result;
 }
 
 // startPos to endPos inclusive

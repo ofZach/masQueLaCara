@@ -29,7 +29,7 @@ maskManager.setup();
 maskManager.nextMask();
 
 var settings = QuickSettings.create();
-var maskSettings = QuickSettings.create( 250, 20, "maskSettings");
+var maskSettings = QuickSettings.create( 800, 0, "maskSettings");
 
 settings.setGlobalChangeHandler(onFrame);
 settings.addRange("currentMaskNum", 0, 1,  maskManager, 1, function(value) {
