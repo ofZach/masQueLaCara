@@ -69,7 +69,7 @@ function computeStats(frameData){
 	var diff2 = new paper.Point(frameData[45][0] - frameData[42][0], frameData[45][1] - frameData[42][1]);
 	 rightEyeAngle = Math.atan2(diff2.y, diff2.x);
 
-	var diff3 = new paper.Point(frameData[35][0] - frameData[31][0], frameData[35][1] - frameData[31][1]);
+	var diff3 = new paper.Point(frameData[16][0] - frameData[0][0], frameData[16][1] - frameData[0][1]);
 	 noseAngle = Math.atan2(diff3.y, diff3.x);
 
 	var diff4 = new paper.Point(frameData[54][0] - frameData[48][0], frameData[54][1] - frameData[48][1]);
