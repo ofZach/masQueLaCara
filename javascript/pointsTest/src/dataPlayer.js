@@ -15,11 +15,8 @@ function setup(jsonData){
 //--------------------------------------------------------------------
 function getFrameData(){
 	frame++;
-
 	var frameDataCopy = [];
-
 	var frameData = dataObject[frame % dataObject.length];
-
 	for (i = 0; i < 68; i++){
 		
 		var point = [];
@@ -29,13 +26,10 @@ function getFrameData(){
 		frameDataCopy.push(point);
 
 	}
-
     return frameDataCopy;
 }
-
 // startPos to endPos inclusive
 function computeAveragePosition(frameData, startPos, endPos){
-
 	// paper point is a little weird here, have to do this w/ x and y sep. 
 	var pt = new paper.Point(0, 0);
 	for (var i = startPos; i <= endPos; i++){
@@ -44,15 +38,15 @@ function computeAveragePosition(frameData, startPos, endPos){
 	}
 	pt.x /= (endPos - startPos + 1);
 	pt.y /= (endPos - startPos + 1);
-
 	return pt;
 }
-
+function computeAngle(frameData, indexL, indexR){
+	var diff = new paper.Point(frameData[indexR][0] - frameData[indexL][0], frameData[indexR][1] - frameData[indexL][1]);
+	return Math.atan2(diff.y, diff.x);
+}
 //--------------------------------------------------------------------
 function computeStats(frameData){
-	
 	// we use paper.Point here since we are in javascript mode not paperscript mode
-
 	var leftEye = new paper.Point(0, 0);
 	var rightEye = new paper.Point(0, 0);
 	var mouth = new paper.Point(0, 0);
@@ -63,20 +57,10 @@ function computeStats(frameData){
 	var noseAngle;
 	var averageScale;
 	
-	var diff = new paper.Point(frameData[39][0] - frameData[36][0], frameData[39][1] - frameData[36][1]);
-	 leftEyeAngle = Math.atan2(diff.y, diff.x);
-
-	var diff2 = new paper.Point(frameData[45][0] - frameData[42][0], frameData[45][1] - frameData[42][1]);
-	 rightEyeAngle = Math.atan2(diff2.y, diff2.x);
-
-	var diff3 = new paper.Point(frameData[16][0] - frameData[0][0], frameData[16][1] - frameData[0][1]);
-	 noseAngle = Math.atan2(diff3.y, diff3.x);
-
-	var diff4 = new paper.Point(frameData[54][0] - frameData[48][0], frameData[54][1] - frameData[48][1]);
-	 mouthAngle = Math.atan2(diff4.y, diff4.x);
-
-	var p0 = new paper.Point(frameData[0][0], frameData[0][1]);
-	var p16 = new paper.Point(frameData[16][0], frameData[16][1]);
+	leftEyeAngle = computeAngle(frameData, 36, 39);
+	rightEyeAngle = computeAngle(frameData, 42, 45);
+	noseAngle = computeAngle(frameData, 0, 16);
+	mouthAngle = computeAngle(frameData, 48, 54);
 
 	leftEye = computeAveragePosition(frameData, 36,41);
 	rightEye = computeAveragePosition(frameData, 42,47);
