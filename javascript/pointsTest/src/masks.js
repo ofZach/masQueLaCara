@@ -32,7 +32,7 @@ Mask2.prototype.update = function(obj) {
     this.eyeR.update(obj["rightEye"]);
 };
 Mask2.prototype.addParameters = function(parameters) {
-	var self = this;
+	this.a = 10;
 	parameters.addRange("radius", 0, 200,  this.eyeL.getParameters()["radius"], 1, function(value) {
         self.eyeL.setParameter("radius", value);
     });

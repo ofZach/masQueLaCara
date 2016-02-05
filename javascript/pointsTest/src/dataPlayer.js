@@ -45,14 +45,14 @@ function computeAngle(frameData, indexL, indexR){
 //--------------------------------------------------------------------
 function computeStats(frameData){
 	var obj = {};
-	obj["leftEye"] = computeAveragePosition(frameData, 36,41);
-	obj["rightEye"] = computeAveragePosition(frameData, 42,47);
-	obj["nose"] = computeAveragePosition(frameData, 29,35);
-	obj["mouth"] = computeAveragePosition(frameData, 48,59);
-	obj["head"] = computeAveragePosition(frameData, 0,16);
+	obj["eyeLPos"] = computeAveragePosition(frameData, 36,41);
+	obj["eyeRPos"] = computeAveragePosition(frameData, 42,47);
+	obj["nosePos"] = computeAveragePosition(frameData, 29,35);
+	obj["mouthPos"] = computeAveragePosition(frameData, 48,59);
+	obj["headPos"] = computeAveragePosition(frameData, 0,16);
 
-	obj["leftEyeAngle"] = computeAngle(frameData, 36, 39);
-	obj["rightEyeAngle"] = computeAngle(frameData, 42, 45);
+	obj["eyeLAngle"] = computeAngle(frameData, 36, 39);
+	obj["eyeRAngle"] = computeAngle(frameData, 42, 45);
 	obj["noseAngle"] = computeAngle(frameData, 0, 16); 
 	obj["mouthAngle"] = computeAngle(frameData, 48, 54);
 	return obj;

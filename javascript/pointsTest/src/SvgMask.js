@@ -24,20 +24,20 @@ SvgMask.prototype.loadData = function(data){
 	var self = this;
 
 	paper.project.importSVG(data['eyeL'], function(item){
-		item.fillColor = self.color;
+		
 		self.eyeL.addChild(item);
 	});
 
 	paper.project.importSVG(data['eyeR'], function(item){
-		item.fillColor = self.color;
+		
 		self.eyeR.addChild(item);
 	});
 	paper.project.importSVG(data['mouth'], function(item){
-		item.fillColor = self.color;
+		
 		self.mouth.addChild(item);
 	});
 	paper.project.importSVG(data['nose'], function(item){
-		item.fillColor = self.color;
+		
 		self.nose.addChild(item);
 	});
 } 

@@ -5,17 +5,29 @@
 	 width="31.451px" height="107.633px" viewBox="0 0 31.451 107.633" style="enable-background:new 0 0 31.451 107.633;"
 	 xml:space="preserve">
 <g id="StrokeFaceNose">
-	<rect y="100" style="fill:#10FF18;" width="31.451" height="107.633"/>
+	<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="153.8164" x2="31.4512" y2="153.8164">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect y="100" style="fill:url(#SVGID_1_);" width="31.451" height="107.633"/>
 </g>
 <g id="Layer_1_1_">
 </g>
 <g id="StrokeFaceNose_1_">
-	<rect x="-136.774" y="100" style="fill:#10FF18;" width="31.451" height="197.316"/>
+	<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-136.7744" y1="198.6582" x2="-105.3232" y2="198.6582">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect x="-136.774" y="100" style="fill:url(#SVGID_2_);" width="31.451" height="197.316"/>
 </g>
 <g id="Layer_1_2_">
 </g>
 <g id="StrokeFaceNose_2_">
-	<rect x="137.226" y="100" style="fill:#10FF18;" width="31.451" height="197.316"/>
+	<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="137.2256" y1="198.6582" x2="168.6768" y2="198.6582">
+		<stop  offset="0" style="stop-color:#FFFFFF"/>
+		<stop  offset="1" style="stop-color:#000000"/>
+	</linearGradient>
+	<rect x="137.226" y="100" style="fill:url(#SVGID_3_);" width="31.451" height="197.316"/>
 </g>
 <g id="Layer_1_3_">
 </g>
