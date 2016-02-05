@@ -1,14 +1,13 @@
-function MaskBase() {
-	
-};
-
-MaskBase.prototype.addLayer = function() {
-	this.layer = new paper.Layer();
-	this.layer.visible = false;
-};
-MaskBase.prototype.show = function() {
-	this.layer.visible = true;
-};
-MaskBase.prototype.hide = function() {
-	this.layer.visible = false;
-};
+'use strict';
+class MaskBase {
+	addLayer () {
+		this.layer = new paper.Layer();
+		this.layer.visible = false;
+	}
+	show () {
+		this.layer.visible = true;
+	}
+	hide () {
+		this.layer.visible = false;
+	}
+}
