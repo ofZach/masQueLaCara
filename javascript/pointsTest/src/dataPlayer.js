@@ -1,5 +1,5 @@
 // global scale 
-var viewScale = 1.3;
+var viewScale = 1.7;
 
 // I load and parse data: 
 var dataObject;
