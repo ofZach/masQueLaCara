@@ -53,7 +53,9 @@ function computeStats(frameData){
 
 	obj["eyeLAngle"] = computeAngle(frameData, 36, 39);
 	obj["eyeRAngle"] = computeAngle(frameData, 42, 45);
-	obj["noseAngle"] = computeAngle(frameData, 0, 16); 
+	obj["headAngle"] = computeAngle(frameData, 48, 54);
+	obj["noseAngle"] = obj["headAngle"];
 	obj["mouthAngle"] = computeAngle(frameData, 48, 54);
+
 	return obj;
 }
