@@ -4,14 +4,11 @@ var viewScale = 1.3;
 // I load and parse data: 
 var dataObject;
 var frame;
-
-console.log(paper);
 //--------------------------------------------------------------------
 function setup(jsonData){
 	dataObject = JSON.parse(jsonData);
 	frame = 0;
 }
-
 //--------------------------------------------------------------------
 function getFrameData(){
 	frame++;
@@ -30,6 +27,7 @@ function getFrameData(){
 }
 // startPos to endPos inclusive
 function computeAveragePosition(frameData, startPos, endPos){
+	// we use paper.Point here since we are in javascript mode not paperscript mode
 	// paper point is a little weird here, have to do this w/ x and y sep. 
 	var pt = new paper.Point(0, 0);
 	for (var i = startPos; i <= endPos; i++){
@@ -46,35 +44,16 @@ function computeAngle(frameData, indexL, indexR){
 }
 //--------------------------------------------------------------------
 function computeStats(frameData){
-	// we use paper.Point here since we are in javascript mode not paperscript mode
-	var leftEye = new paper.Point(0, 0);
-	var rightEye = new paper.Point(0, 0);
-	var mouth = new paper.Point(0, 0);
-	var nose = new paper.Point(0, 0);
-	var leftEyeAngle;
-	var rightEyeAngle;
-	var mouthAngle;
-	var noseAngle;
-	var averageScale;
-	
-	leftEyeAngle = computeAngle(frameData, 36, 39);
-	rightEyeAngle = computeAngle(frameData, 42, 45);
-	noseAngle = computeAngle(frameData, 0, 16);
-	mouthAngle = computeAngle(frameData, 48, 54);
-
-	leftEye = computeAveragePosition(frameData, 36,41);
-	rightEye = computeAveragePosition(frameData, 42,47);
-	nose = computeAveragePosition(frameData, 29,35);
-	mouth = computeAveragePosition(frameData, 48,59);
-	
 	var obj = {};
-	obj["leftEye"] = leftEye;
-	obj["rightEye"] = rightEye;
-	obj["leftEyeAngle"] = leftEyeAngle;
-	obj["rightEyeAngle"] = rightEyeAngle;
-	obj["nose"] = nose;
-	obj["mouth"] = mouth;
-	obj["noseAngle"] = noseAngle;
-	obj["mouthAngle"] = mouthAngle;
+	obj["leftEye"] = computeAveragePosition(frameData, 36,41);
+	obj["rightEye"] = computeAveragePosition(frameData, 42,47);
+	obj["nose"] = computeAveragePosition(frameData, 29,35);
+	obj["mouth"] = computeAveragePosition(frameData, 48,59);
+	obj["head"] = computeAveragePosition(frameData, 0,16);
+
+	obj["leftEyeAngle"] = computeAngle(frameData, 36, 39);
+	obj["rightEyeAngle"] = computeAngle(frameData, 42, 45);
+	obj["noseAngle"] = computeAngle(frameData, 0, 16); 
+	obj["mouthAngle"] = computeAngle(frameData, 48, 54);
 	return obj;
 }

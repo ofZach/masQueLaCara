@@ -1,6 +1,13 @@
 var maskManager = {
-	masks: {},
-	currentMask: "StrokeFace",
+	masks: [
+			new StrokeFace(),
+			new StrokeFace2(),
+			new StrokeFace3(),
+			new CircleFace(),
+			new SquareElephant(),
+			new Egypt(),
+			new FadeFace(),
+		],
 	currentMaskNum: 0,
 	names: ["StrokeFace", 
 			"StrokeFace2", 
@@ -12,26 +19,15 @@ var maskManager = {
 			]
 };
 maskManager.setup = function () {
-	this.masks[this.names[0]] = new StrokeFace();
-	this.masks[this.names[0]].setup();
-	this.masks[this.names[1]] = new StrokeFace2();
-	this.masks[this.names[1]].setup();
-	this.masks[this.names[2]] = new StrokeFace3();
-	this.masks[this.names[2]].setup();
-	this.masks[this.names[3]] = new CircleFace();
-	this.masks[this.names[3]].setup();
-	this.masks[this.names[4]] = new SquareElephant();
-	this.masks[this.names[4]].setup();
-	this.masks[this.names[5]] = new Egypt();
-	this.masks[this.names[5]].setup();
-	this.masks[this.names[6]] = new FadeFace();
-	this.masks[this.names[6]].setup();
+	for(var i = 0 ; i < this.masks.length; i++){
+		this.masks[i].setup();
+	}
 };
 maskManager.update = function (obj) {
-	this.masks[this.getCurMaskName()].update(obj);
+	this.masks[this.currentMaskNum].update(obj);
 };
 maskManager.getCurMask = function () {
-	return this.masks[this.getCurMaskName()];
+	return this.masks[this.currentMaskNum];
 };
 maskManager.setMaskByName = function (name) {
 	index = this.names.indexOf(name.value);
@@ -43,22 +39,22 @@ maskManager.getCurMaskName = function(){
 	return this.names[this.currentMaskNum];
 };
 maskManager.hideMask = function(settings){
-	this.masks[this.getCurMaskName()].hide();
-	this.masks[this.getCurMaskName()].clearParameters(settings);
+	this.masks[this.currentMaskNum].hide();
+	this.masks[this.currentMaskNum].clearParameters(settings);
 }
 maskManager.showMask = function(settings){
-	this.masks[this.getCurMaskName()].show();
-	this.masks[this.getCurMaskName()].addParameters(settings);
+	this.masks[this.currentMaskNum].show();
+	this.masks[this.currentMaskNum].addParameters(settings);
 }
 maskManager.nextMask = function(){
-	this.masks[this.getCurMaskName()].hide();
+	this.masks[this.currentMaskNum].hide();
 
 	this.currentMaskNum++;
 	if(this.currentMaskNum > this.names.length-1){
 		this.currentMaskNum = 0;
 	} 
 
-	this.masks[this.getCurMaskName()].show();
+	this.masks[this.currentMaskNum].show();
 
-	console.log("currentMaskNum = " + this.getCurMaskName());
+	console.log("currentMaskNum = " + this.currentMaskNum);
 };
