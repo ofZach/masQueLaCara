@@ -24,7 +24,6 @@ class PyramidMask extends MaskBase {
 
 		this.parameters = {};
 
-
 		this.offsetPos = {
 			eyeL: [0, 0],
 			eyeR: [0, 0],
@@ -100,14 +99,11 @@ class PyramidMask extends MaskBase {
 
 	}
 	clearParameters(settings){
-		this.removeParametersXY(settings, this.offsetPos);
+		for(var key in this.parameters){
+      		settings.removeControl(key);
+   		}
 	}
-	removeParametersXY(settings, param){
-		for(var prop in param){
-			settings.removeControl(prop +" X");
-			settings.removeControl(prop +" Y");
-		}
-	}
+	
 
 }
 class CircleMask extends MaskBase {
