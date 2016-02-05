@@ -3,11 +3,20 @@
 
 //----------------------------------------
 function addParam( settings, valueToChange, name, startVal, min, max){
-	valueToChange[name] = {};
-	valueToChange[name].value = startVal;
-	settings.addRange(name, min, max, startVal, 1, function(value){
-		valueToChange[name].value = value;
-	});
+	
+	if (typeof valueToChange[name] != 'undefined'){
+		settings.addRange(name, min, max, valueToChange[name].value, 1, function(value){
+			valueToChange[name].value = value;
+		});
+	} else {
+		valueToChange[name] = {};
+		valueToChange[name].value = startVal;
+		settings.addRange(name, min, max, startVal, 1, function(value){
+			valueToChange[name].value = value;
+		});
+	}
+	
+	
 }
 
 
