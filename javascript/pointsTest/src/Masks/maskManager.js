@@ -2,11 +2,11 @@
 class MaskManager {
 	setup(){
 		this.masks = [
-			new PyramidMask(),
-			new CircleMask(),
+			new GridMask(),
+			new CloudMask(),
 			];
 		this.names = [
-			"PyramidMask", 
+			"GridMask", 
 			"CircleMask"
 			];
 		this.curMaskNum = 0;

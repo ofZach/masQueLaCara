@@ -12,6 +12,9 @@ class SvgLoader {
     setPosition(position){
     	this.group.position = position;
     }
+    setPivot(position){
+        this.group.pivot = position;
+    }
     setAngle(angle){
 		this.group.rotation = angle * (180.0 / Math.PI);
     }
@@ -22,3 +25,4 @@ class SvgLoader {
     	
     }
 };
+
