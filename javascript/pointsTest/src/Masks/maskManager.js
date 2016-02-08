@@ -13,6 +13,11 @@ class MaskManager {
 			new Weird(),
 			new RoundEyes(),
 			new Crow(),
+			new HandHair(),
+			new HandArrow(),
+			new PixelEye(),
+			new Architect(),
+			new Spaghetti(),
 			];
 		this.names = [
 			"GridMask", 
@@ -26,6 +31,11 @@ class MaskManager {
 			"Weird",
 			"RoundEyes",
 			"Crow",
+			"HandHair",
+			"HandArrow",
+			"PixelEye",
+			"Architect",
+			"Spaghetti",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){

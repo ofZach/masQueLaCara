@@ -358,6 +358,108 @@ class Crow extends SvgFaceRig {
 		this.parameters['browLY'].value = 56;
 	}
 }
+class HandHair extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/HandHair/eyeL.svg',
+			eyeR: 'assets/svg/HandHair/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/HandHair/mouth.svg',
+			head: 'assets/svg/HandHair/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: '',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -186;
+	}
+}
+class HandArrow extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/HandArrow/eyeL.svg',
+			eyeR: 'assets/svg/HandArrow/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/HandArrow/mouth.svg',
+			head: 'assets/svg/HandArrow/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: '',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -186;
+		this.parameters['headX'].value = -79;
+	}
+}
+class PixelEye extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/PixelEye/eyeL.svg',
+			eyeR: 'assets/svg/PixelEye/eyeR.svg',
+			nose: 'assets/svg/PixelEye/nose.svg',
+			mouth: 'assets/svg/PixelEye/mouth.svg',
+			head: 'assets/svg/PixelEye/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: 'assets/svg/PixelEye/browL.svg',
+			browR: 'assets/svg/PixelEye/browL.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -90;
+		this.parameters['headX'].value = 186;
+	}
+}
+class Architect extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/Architect/eyeL.svg',
+			eyeR: 'assets/svg/Architect/eyeL.svg',
+			nose: '',
+			mouth: '',
+			head: 'assets/svg/Architect/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: '',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -90;
+	}
+}
+class Spaghetti extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: '',
+			eyeR: '',
+			nose: '',
+			mouth: '',
+			head: 'assets/svg/Spagetti/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: '',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -186;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){
