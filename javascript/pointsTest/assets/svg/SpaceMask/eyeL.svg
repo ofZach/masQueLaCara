@@ -2,13 +2,11 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="97.993px" height="24.971px" viewBox="0 0 97.993 24.971" style="enable-background:new 0 0 97.993 24.971;"
+	 width="54.297px" height="51.641px" viewBox="0 0 54.297 51.641" style="enable-background:new 0 0 54.297 51.641;"
 	 xml:space="preserve">
-<g id="eye">
-	<rect style="fill:#FCEE21;" width="97.994" height="1.914"/>
-	<rect y="7.686" style="fill:#FCEE21;" width="97.994" height="1.914"/>
-	<rect y="15.371" style="fill:#FCEE21;" width="97.994" height="1.914"/>
-	<rect y="23.057" style="fill:#FCEE21;" width="97.994" height="1.914"/>
+<g id="eyeL">
+	<polygon style="fill:#FFFFFF;" points="27.146,0 35.538,16.997 54.297,19.724 40.721,32.957 43.926,51.641 27.146,42.818 
+		10.368,51.641 13.572,32.957 0,19.724 18.759,16.997 	"/>
 </g>
 <g id="Layer_1">
 </g>

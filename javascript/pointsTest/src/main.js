@@ -17,7 +17,7 @@ function getRand(min, max) {
 var layer = project.activeLayer;
 for (var i = 0; i < values.count; i++) {
     var path = new Path.Circle(new Point(100, 100), 5);
-    project.activeLayer.children[i].fillColor = 'green';
+    project.activeLayer.children[i].fillColor = (255, 255, 0, 0.3);
 }
 // ------------------------------------------------------------- make typography in another layer (so we an see points) 
 var typeLayer = new Layer();
@@ -26,7 +26,7 @@ for (var i = 0; i < values.count; i++) {
         point: view.center,
         justification: 'center',
         fontSize: 10,
-        fillColor: 'blue'
+        fillColor: (255, 255, 0, 0.3)
     });
     text.content = i;
 }

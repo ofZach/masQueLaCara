@@ -33,13 +33,13 @@ class SvgFaceRig extends MaskBase {
 			browR: new SvgLoader(),
 		}
 		this.parameters = {};
+		this.faceParts['head'].setup('head', data['head']  );
+		this.faceParts['cheekL'].setup('cheekL', data['cheekL']  );
+		this.faceParts['cheekR'].setup('cheekR', data['cheekR']  );
 		this.faceParts['eyeL'].setup('eyeL', data['eyeL']  );
 		this.faceParts['eyeR'].setup('eyeR', data['eyeR'] );
 		this.faceParts['mouth'].setup('mouth', data['mouth'] );
 		this.faceParts['nose'].setup('nose', data['nose']  );
-		this.faceParts['head'].setup('head', data['head']  );
-		this.faceParts['cheekL'].setup('cheekL', data['cheekL']  );
-		this.faceParts['cheekR'].setup('cheekR', data['cheekR']  );
 		this.faceParts['browL'].setup('browL', data['browL']  );
 		this.faceParts['browR'].setup('browR', data['browR']  );
 	}
@@ -84,8 +84,8 @@ class SvgFaceRig extends MaskBase {
 		this.faceParts['browR'].setScale(this.parameters['browRScale'].value);
 	}
 	addParameters(settings){
-		var min = -100;
-		var max = 100;
+		var min = -500;
+		var max = 500;
 		var scaleMin = 0.2;
 		var scaleMax = 5.0;
 		var self = this;
@@ -127,35 +127,106 @@ class SvgFaceRig extends MaskBase {
 class GridMask extends SvgFaceRig {
 	setup(){
 		this.faceParts = {
-			eyeL: 'assets/svg/GridFace/eye',
-			eyeR: 'assets/svg/GridFace/eye',
-			nose: 'assets/svg/GridFace/nose',
-			mouth: 'assets/svg/GridFace/mouth',
-			head: 'assets/svg/GridFace/head',
-			cheekL: 'assets/svg/GridFace/cheek',
-			cheekR: 'assets/svg/GridFace/cheek',
-			browL: 'assets/svg/GridFace/brow',
-			browR: 'assets/svg/GridFace/brow',
+			eyeL: 'assets/svg/GridFace/eye.svg',
+			eyeR: 'assets/svg/GridFace/eye.svg',
+			nose: 'assets/svg/GridFace/nose.svg',
+			mouth: 'assets/svg/GridFace/mouth.svg',
+			head: 'assets/svg/GridFace/head.svg',
+			cheekL: 'assets/svg/GridFace/cheek.svg',
+			cheekR: 'assets/svg/GridFace/cheek.svg',
+			browL: 'assets/svg/GridFace/brow.svg',
+			browR: 'assets/svg/GridFace/brow.svg',
 		}
 		this.setupData(this.faceParts);
+		
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
 	}
 }
 class CloudMask extends SvgFaceRig {
 	setup(){
 		this.faceParts = {
-			eyeL: 'assets/svg/CloudFace/eye',
-			eyeR: 'assets/svg/CloudFace/eye',
-			nose: 'assets/svg/CloudFace/nose',
-			mouth: 'assets/svg/CloudFace/mouth',
-			head: 'assets/svg/CloudFace/head',
-			cheekL: 'assets/svg/CloudFace/cheek',
-			cheekR: 'assets/svg/CloudFace/cheek',
-			browL: 'assets/svg/CloudFace/brow',
-			browR: 'assets/svg/CloudFace/brow',
+			eyeL: 'assets/svg/CloudFace/eye.svg',
+			eyeR: 'assets/svg/CloudFace/eye.svg',
+			nose: 'assets/svg/CloudFace/nose.svg',
+			mouth: 'assets/svg/CloudFace/mouth.svg',
+			head: 'assets/svg/CloudFace/head.svg',
+			cheekL: 'assets/svg/CloudFace/cheek.svg',
+			cheekR: 'assets/svg/CloudFace/cheek.svg',
+			browL: 'assets/svg/CloudFace/brow.svg',
+			browR: 'assets/svg/CloudFace/brow.svg',
 		}
 		this.setupData(this.faceParts);
 	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+	}
 }
+class GradGeo extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/GradGeo/eye.svg',
+			eyeR: 'assets/svg/GradGeo/eye.svg',
+			nose: 'assets/svg/GradGeo/nose.svg',
+			mouth: 'assets/svg/GradGeo/mouth.svg',
+			head: 'assets/svg/GradGeo/head.svg',
+			cheekL: 'assets/svg/GradGeo/cheek.svg',
+			cheekR: 'assets/svg/GradGeo/cheek.svg',
+			browL: 'assets/svg/GradGeo/brow.svg',
+			browR: 'assets/svg/GradGeo/brow.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+	}
+}
+
+class Neon extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/Neon/eye.svg',
+			eyeR: 'assets/svg/Neon/eye.svg',
+			nose: 'assets/svg/Neon/nose.svg',
+			mouth: 'assets/svg/Neon/mouth.svg',
+			head: 'assets/svg/Neon/head.svg',
+			cheekL: 'assets/svg/Neon/cheek.svg',
+			cheekR: 'assets/svg/Neon/cheek.svg',
+			browL: 'assets/svg/Neon/brow.svg',
+			browR: 'assets/svg/Neon/brow.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+	}
+}
+class SpaceMask extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/SpaceMask/eyeL.svg',
+			eyeR: 'assets/svg/SpaceMask/eyeR.svg',
+			nose: 'assets/svg/SpaceMask/nose.svg',
+			mouth: 'assets/svg/SpaceMask/mouth.svg',
+			head: 'assets/svg/SpaceMask/head.svg',
+			cheekL: 'assets/svg/SpaceMask/cheekL.svg',
+			cheekR: 'assets/svg/SpaceMask/cheekR.svg',
+			browL: 'assets/svg/SpaceMask/browL.svg',
+			browR: 'assets/svg/SpaceMask/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+	}
+}
+
 
 class CircleMask extends MaskBase {
 	setup(){

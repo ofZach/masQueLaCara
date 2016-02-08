@@ -4,10 +4,16 @@ class MaskManager {
 		this.masks = [
 			new GridMask(),
 			new CloudMask(),
+			new GradGeo(),
+			new Neon(),
+			new SpaceMask(),
 			];
 		this.names = [
 			"GridMask", 
-			"CircleMask"
+			"CircleMask", 
+			"GradGeo",
+			"Neon",
+			"SpaceMask",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){

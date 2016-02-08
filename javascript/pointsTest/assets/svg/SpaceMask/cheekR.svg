@@ -2,13 +2,11 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="97.993px" height="24.971px" viewBox="0 0 97.993 24.971" style="enable-background:new 0 0 97.993 24.971;"
+	 width="62.204px" height="62.205px" viewBox="0 0 62.204 62.205" style="enable-background:new 0 0 62.204 62.205;"
 	 xml:space="preserve">
-<g id="eye">
-	<rect style="fill:#FCEE21;" width="97.994" height="1.914"/>
-	<rect y="7.686" style="fill:#FCEE21;" width="97.994" height="1.914"/>
-	<rect y="15.371" style="fill:#FCEE21;" width="97.994" height="1.914"/>
-	<rect y="23.057" style="fill:#FCEE21;" width="97.994" height="1.914"/>
+<g id="cheekR">
+	<path style="fill:#FFFFFF;" d="M62.204,31.102c0,17.178-13.923,31.104-31.104,31.104C13.928,62.205,0,48.279,0,31.102
+		C0,13.926,13.928,0,31.101,0C48.281,0,62.204,13.926,62.204,31.102z"/>
 </g>
 <g id="Layer_1">
 </g>
