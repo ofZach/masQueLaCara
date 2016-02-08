@@ -479,6 +479,27 @@ class Broken extends SvgFaceRig {
 		super.addParameters(settings);
 		this.parameters['eyeLX'].value = -85;
 		this.parameters['eyeLY'].value = -153;
+		this.parameters['eyeRX'].value = 79;
+	}
+}
+class Block extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: '',
+			eyeR: '',
+			nose: '',
+			mouth: '',
+			head: 'assets/svg/Block/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: '',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -186;
 	}
 }
 

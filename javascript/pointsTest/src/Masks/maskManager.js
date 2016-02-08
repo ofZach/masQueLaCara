@@ -19,6 +19,7 @@ class MaskManager {
 			new Architect(),
 			new Spaghetti(),
 			new Broken(),
+			new Block(),
 			];
 		this.names = [
 			"GridMask", 
@@ -38,6 +39,7 @@ class MaskManager {
 			"Architect",
 			"Spaghetti",
 			"Broken",
+			"Block",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){
