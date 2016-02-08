@@ -4,8 +4,13 @@ var viewScale = 1.7;
 var dataObject;
 var frame;
 var obj = {};
-var angleSmoothing = 0.8;
+var angleSmoothing = 0.10;
 var firstFrame = true;
+
+
+// todo a more general face part computation -- define face regions, compute mid points, bouning boxes, smooth angles, etc. 
+
+
 //--------------------------------------------------------------------
 function setup(jsonData){
 	dataObject = JSON.parse(jsonData);
@@ -62,9 +67,9 @@ function computeAngle(frameData, indexL, indexR){
 	return Math.atan2(diff.y, diff.x);
 }
 
-function smoothAngle(curValue, frameData, indexL, indexL, smoothAmount){
+function smoothAngle(curValue, frameData, indexL, indexR, smoothAmount){
 
-	var newAngle = computeAngle(frameData, indexL, indexL);
+	var newAngle = computeAngle(frameData, indexL, indexR);
 	var oldAngle = curValue;
 	var diff = newAngle - oldAngle;
 	if (diff < -Math.PI) diff += Math.PI*2;
