@@ -460,6 +460,27 @@ class Spaghetti extends SvgFaceRig {
 		this.parameters['headY'].value = -186;
 	}
 }
+class Broken extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/Broken/eyeL.svg',
+			eyeR: 'assets/svg/Broken/eyeR.svg',
+			nose: '',
+			mouth: '',
+			head: '',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: '',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['eyeLX'].value = -85;
+		this.parameters['eyeLY'].value = -153;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){

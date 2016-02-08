@@ -18,6 +18,7 @@ class MaskManager {
 			new PixelEye(),
 			new Architect(),
 			new Spaghetti(),
+			new Broken(),
 			];
 		this.names = [
 			"GridMask", 
@@ -36,6 +37,7 @@ class MaskManager {
 			"PixelEye",
 			"Architect",
 			"Spaghetti",
+			"Broken",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){
