@@ -3,10 +3,15 @@ var viewScale = 1.7;
 // I load and parse data: 
 var dataObject;
 var frame;
+var obj = {};
+var angleSmoothing = 0.8;
+var firstFrame = true;
 //--------------------------------------------------------------------
 function setup(jsonData){
 	dataObject = JSON.parse(jsonData);
 	frame = 0;
+	firstFrame = true;
+
 }
 //--------------------------------------------------------------------
 function getFrameData(){
@@ -56,9 +61,24 @@ function computeAngle(frameData, indexL, indexR){
 	var diff = new paper.Point(frameData[indexR][0] - frameData[indexL][0], frameData[indexR][1] - frameData[indexL][1]);
 	return Math.atan2(diff.y, diff.x);
 }
+
+function smoothAngle(curValue, frameData, indexL, indexL, smoothAmount){
+
+	var newAngle = computeAngle(frameData, indexL, indexL);
+	var oldAngle = curValue;
+	var diff = newAngle - oldAngle;
+	if (diff < -Math.PI) diff += Math.PI*2;
+	if (diff > Math.PI) diff -= Math.PI*2;
+	
+	var smoothAngle = oldAngle + smoothAmount * diff;
+	return smoothAngle;
+
+}
 //--------------------------------------------------------------------
 function computeStats(frameData){
-	var obj = {};
+	
+
+
 	obj["eyeLPos"] = computeAveragePosition(frameData, 36,41);
 	obj["eyeRPos"] = computeAveragePosition(frameData, 42,47);
 	obj["nosePos"] = computeAveragePosition(frameData, 29,35);
@@ -72,11 +92,24 @@ function computeStats(frameData){
 	obj["leapBottomPos"] = computeMidPosition(frameData, 58,56);
 	obj["chinPos"] = computeMidPosition(frameData, 57,8);
 
-	obj["eyeLAngle"] = computeAngle(frameData, 36, 39);
-	obj["eyeRAngle"] = computeAngle(frameData, 42, 45);
-	obj["headAngle"] = computeAngle(frameData, 48, 54);
-	obj["noseAngle"] = obj["headAngle"];
-	obj["mouthAngle"] = computeAngle(frameData, 48, 54);
+	if (firstFrame){
+		firstFrame = false;
+		obj["eyeLAngle"] = computeAngle(frameData, 36, 39);
+		obj["eyeRAngle"] = computeAngle(frameData, 42, 45);
+		obj["headAngle"] = computeAngle(frameData, 48, 54);
+		obj["noseAngle"] = obj["headAngle"];
+		obj["mouthAngle"] = computeAngle(frameData, 48, 54);
+	} else {
+		obj["eyeLAngle"] =  smoothAngle(obj["eyeLAngle"], frameData, 36, 39, angleSmoothing);
+		obj["eyeRAngle"] =  smoothAngle(obj["eyeRAngle"], frameData, 42, 45, angleSmoothing);
+		obj["headAngle"] =  smoothAngle(obj["headAngle"], frameData, 48, 54, angleSmoothing);
+		obj["noseAngle"] =   obj["headAngle"];
+		obj["mouthAngle"] =  smoothAngle(obj["mouthAngle"], frameData, 48, 54, angleSmoothing);
+	}
+	
+
+	//console.log(obj["eyeLAngle"]);
+
 
 	return obj;
 }
