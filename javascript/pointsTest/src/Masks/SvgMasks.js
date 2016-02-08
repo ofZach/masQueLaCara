@@ -289,6 +289,29 @@ class SquareElephant extends SvgFaceRig {
 		this.parameters['noseY'].value = -50;
 	}
 }
+class Weird extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/Weird/eyeL.svg',
+			eyeR: 'assets/svg/Weird/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/Weird/mouth.svg',
+			head: 'assets/svg/Weird/head.svg',
+			cheekL: '',
+			cheekR: 'assets/svg/Weird/cheekR.svg',
+			browL: 'assets/svg/Weird/browL.svg',
+			browR: 'assets/svg/Weird/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+		this.parameters['headX'].value = -367;
+		this.parameters['headY'].value = -192;
+		this.parameters['eyeLX'].value = -113;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){

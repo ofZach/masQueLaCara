@@ -10,6 +10,7 @@ class MaskManager {
 			new FishMask(),
 			new Coala(),
 			new SquareElephant(),
+			new Weird(),
 			];
 		this.names = [
 			"GridMask", 
@@ -20,6 +21,7 @@ class MaskManager {
 			"FishMask",
 			"Coala",
 			"SquareElephant",
+			"Weird",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){
