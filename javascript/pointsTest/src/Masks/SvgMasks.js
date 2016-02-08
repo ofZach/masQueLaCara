@@ -502,6 +502,28 @@ class Block extends SvgFaceRig {
 		this.parameters['headY'].value = -186;
 	}
 }
+class Cup extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/Cup/eyeL.svg',
+			eyeR: 'assets/svg/Cup/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/Cup/mouth.svg',
+			head: 'assets/svg/Cup/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: 'assets/svg/Cup/browL.svg',
+			browR: 'assets/svg/Cup/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -169;
+		this.parameters['browLY'].value = -124;
+		this.parameters['browRY'].value = -124;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){
