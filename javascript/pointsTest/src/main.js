@@ -56,7 +56,7 @@ settings.addDropDown("whichMask", maskManager.names, function(value) {
     maskManager.setMaskByName(value);
     maskManager.showMask(maskSettings);
 });
-
+maskManager.curMaskNum = maskManager.names.length-1;
 maskManager.showMask(maskSettings);
 
 function onFrame(event) {

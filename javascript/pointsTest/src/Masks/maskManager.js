@@ -7,6 +7,9 @@ class MaskManager {
 			new GradGeo(),
 			new Neon(),
 			new SpaceMask(),
+			new FishMask(),
+			new Coala(),
+			new SquareElephant(),
 			];
 		this.names = [
 			"GridMask", 
@@ -14,6 +17,9 @@ class MaskManager {
 			"GradGeo",
 			"Neon",
 			"SpaceMask",
+			"FishMask",
+			"Coala",
+			"SquareElephant",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){

@@ -226,7 +226,69 @@ class SpaceMask extends SvgFaceRig {
 		this.parameters['noseY'].value = -50;
 	}
 }
+class FishMask extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/FishMask/eyeR.svg',
+			eyeR: 'assets/svg/FishMask/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/FishMask/mouth.svg',
+			head: 'assets/svg/FishMask/head.svg',
+			cheekL: 'assets/svg/FishMask/cheekL.svg',
+			cheekR: 'assets/svg/FishMask/cheekR.svg',
+			browL: 'assets/svg/FishMask/browL.svg',
+			browR: 'assets/svg/FishMask/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+		this.parameters['headY'].value = -147;
+	}
+}
 
+class Coala extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/FishMask2/eyeR.svg',
+			eyeR: 'assets/svg/FishMask2/eyeR.svg',
+			nose: 'assets/svg/FishMask2/nose.svg',
+			mouth: 'assets/svg/FishMask2/mouth.svg',
+			head: 'assets/svg/FishMask2/head.svg',
+			cheekL: 'assets/svg/FishMask2/cheekL.svg',
+			cheekR: 'assets/svg/FishMask2/cheekR.svg',
+			browL: 'assets/svg/FishMask2/browL.svg',
+			browR: 'assets/svg/FishMask2/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+		this.parameters['headY'].value = -147;
+	}
+}
+class SquareElephant extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/SquareElephant/eyeL.svg',
+			eyeR: 'assets/svg/SquareElephant/eyeR.svg',
+			nose: 'assets/svg/SquareElephant/nose.svg',
+			mouth: 'assets/svg/SquareElephant/mouth.svg',
+			head: 'assets/svg/SquareElephant/head.svg',
+			cheekL: 'assets/svg/SquareElephant/cheekL.svg',
+			cheekR: 'assets/svg/SquareElephant/cheekR.svg',
+			browL: 'assets/svg/SquareElephant/browL.svg',
+			browR: 'assets/svg/SquareElephant/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['noseY'].value = -50;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){
