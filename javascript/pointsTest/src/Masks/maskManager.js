@@ -21,6 +21,9 @@ class MaskManager {
 			new Broken(),
 			new Block(),
 			new Cup(),
+			new CardMask(),
+			new BrowScarf(),
+			new RGBMask(),
 			];
 		this.names = [
 			"GridMask", 
@@ -42,6 +45,9 @@ class MaskManager {
 			"Broken",
 			"Block",
 			"Cup",
+			"CardMask",
+			"BrowScarf",
+			"RGBMask",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){

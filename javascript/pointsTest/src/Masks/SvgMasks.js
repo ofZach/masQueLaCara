@@ -524,6 +524,78 @@ class Cup extends SvgFaceRig {
 		this.parameters['browRY'].value = -124;
 	}
 }
+class CardMask extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/CardMask/eyeL.svg',
+			eyeR: 'assets/svg/CardMask/eyeR.svg',
+			nose: '',
+			mouth: '',
+			head: 'assets/svg/CardMask/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: 'assets/svg/CardMask/browL.svg',
+			browR: 'assets/svg/CardMask/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -169;
+		this.parameters['browLX'].value = -62;
+		this.parameters['browLY'].value = -45;
+		this.parameters['browRX'].value = 45;
+		this.parameters['browRY'].value = -119;
+	}
+}
+class BrowScarf extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/BrowScarf/eyeL.svg',
+			eyeR: 'assets/svg/BrowScarf/eyeR.svg',
+			nose: 'assets/svg/BrowScarf/nose.svg',
+			mouth: '',
+			head: '',
+			cheekL: '',
+			cheekR: '',
+			browL: 'assets/svg/BrowScarf/browL.svg',
+			browR: 'assets/svg/BrowScarf/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -169;
+		this.parameters['browLX'].value = -96;
+		this.parameters['browLY'].value = 107;
+		this.parameters['browRX'].value = 107;
+		this.parameters['browRY'].value = 192;
+	}
+}
+class RGBMask extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/RGBMask/eyeL.svg',
+			eyeR: 'assets/svg/RGBMask/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/RGBMask/mouth.svg',
+			head: '',
+			cheekL: '',
+			cheekR: '',
+			browL: '',
+			browR: 'assets/svg/RGBMask/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['headY'].value = -169;
+		this.parameters['browLX'].value = -96;
+		this.parameters['browLY'].value = 107;
+		this.parameters['browRX'].value = -96;
+		this.parameters['browRY'].value = 113;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){
