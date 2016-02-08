@@ -312,6 +312,52 @@ class Weird extends SvgFaceRig {
 		this.parameters['eyeLX'].value = -113;
 	}
 }
+class RoundEyes extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/RoundEyes/eyeL.svg',
+			eyeR: 'assets/svg/RoundEyes/eyeR.svg',
+			nose: '',
+			mouth: 'assets/svg/RoundEyes/mouth.svg',
+			head: 'assets/svg/RoundEyes/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: 'assets/svg/RoundEyes/browL.svg',
+			browR: 'assets/svg/RoundEyes/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['eyeLX'].value = -90;
+		this.parameters['eyeRX'].value = 130;
+		this.parameters['browRY'].value = 56;
+		this.parameters['browLY'].value = 56;
+	}
+}
+class Crow extends SvgFaceRig {
+	setup(){
+		this.faceParts = {
+			eyeL: 'assets/svg/Crow/eyeL.svg',
+			eyeR: 'assets/svg/Crow/eyeR.svg',
+			nose: '',
+			mouth: '',
+			head: 'assets/svg/Crow/head.svg',
+			cheekL: '',
+			cheekR: '',
+			browL: 'assets/svg/Crow/browL.svg',
+			browR: 'assets/svg/Crow/browR.svg',
+		}
+		this.setupData(this.faceParts);
+	}
+	addParameters(settings){
+		super.addParameters(settings);
+		this.parameters['eyeLX'].value = -226;
+		this.parameters['eyeRX'].value = 237;
+		this.parameters['browRY'].value = 56;
+		this.parameters['browLY'].value = 56;
+	}
+}
 
 class CircleMask extends MaskBase {
 	setup(){

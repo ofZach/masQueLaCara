@@ -11,6 +11,8 @@ class MaskManager {
 			new Coala(),
 			new SquareElephant(),
 			new Weird(),
+			new RoundEyes(),
+			new Crow(),
 			];
 		this.names = [
 			"GridMask", 
@@ -22,6 +24,8 @@ class MaskManager {
 			"Coala",
 			"SquareElephant",
 			"Weird",
+			"RoundEyes",
+			"Crow",
 			];
 		this.curMaskNum = 0;
 		for(var i = 0 ; i < this.masks.length; i++){
