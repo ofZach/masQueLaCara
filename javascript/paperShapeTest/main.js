@@ -31,20 +31,46 @@ var angle = 90;
 path.rotate(angle);
 path.translate([500, 100]);
 
-var fx = new Fx.Spring({
+var fxX = new Fx.Spring({
+            'stiffness': 100,
+            'friction': 5,
+            // 'onMotion': function(t){console.log("t = " + t);}
+          });
+var fxY = new Fx.Spring({
             'stiffness': 100,
             'friction': 5,
             // 'onMotion': function(t){console.log("t = " + t);}
           });
 
-          fx.start(0, 300);
+          fxX.start(0, 300);
+var spiral = new Path();
+spiral.strokeColor = 'white';
+
+// Add the first segment at {x: 50, y: 50}
+// spiral.add([0,0]);
+var spiralPoints = [];
+var pointZero = new Point(0,0);
+// Loop 500 times:
+for (var i = 0; i < 50; i++) {
+
+    spiralPoints.push(pointZero);
+    // Add the vector relatively to the last segment point:
+    spiral.add(pointZero);
+};
+
 
 function onFrame() {
     var offset = 100;
-    path.segments[0].handleIn.angle = fx.get()/5;
-    path.segments[0].handleOut.angle = fx.get()/5+90;
-    path.segments[1].handleIn.angle = fx.get()/2;
-    path.segments[1].handleOut.angle = fx.get()/2+180;
+    path.segments[0].handleIn.angle = fxX.get()/5;
+    path.segments[0].handleOut.angle = fxX.get()/5+90;
+    path.segments[1].handleIn.angle = fxX.get()/2;
+    path.segments[1].handleOut.angle = fxX.get()/2+180;
+    for (var i = 0; i < 50; i++) {
+        spiralPoints[i].angle =  (i%10) * fxX.get()/5-100;
+        spiralPoints[i].length =  Math.cos(frame/2 -i/2) - i/2+fxY.get();
+        spiral.segments[i].point = spiralPoints[i]+[fxX.get(), fxY.get()];
+    }
+    spiral.smooth();
     frame++;
 }
 function easeOutElastic(t) {
@@ -54,8 +80,8 @@ function easeOutElastic(t) {
 function onMouseMove(event) {
     mouse.x = event.event.clientX;
     mouse.y = event.event.clientY;
-    fx.start(fx.get(), mouse.x);
-
+    fxX.start(fxX.get(), mouse.x);
+    fxY.start(fxY.get(), mouse.y);
     // fx.step();
     
 }
