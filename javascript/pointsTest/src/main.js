@@ -32,6 +32,7 @@ gui.add(text, 'displayDebug').onChange(function(value) {
     DP.setDebugView(value);
 });
 gui.add(text, 'maskName', MM.names).onChange(function(value) {
+    console.log("value = " + value)
     MM.setMaskByName(value);
 });
 

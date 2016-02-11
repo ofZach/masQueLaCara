@@ -2,7 +2,8 @@
 class MaskManager {
 	setup() {
 		this.masks = [
-			new demoMask()
+			new demoMask(), 
+			new crowMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
@@ -22,10 +23,12 @@ class MaskManager {
 	}
 
 	setMaskByName(name) {
+		this.hideMask();
 		var index = this.names.indexOf(name.value);
 		if (index >= 0) {
 			this.curMaskNum = index;
 		}
+		this.showMask();
 	};
 
 	// guis will come back..
