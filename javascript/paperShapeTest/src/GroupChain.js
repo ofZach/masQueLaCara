@@ -22,16 +22,17 @@ var group3 = new Group();
 group3.addChild(rect3);
 group3.transformContent = false;
 
-group3.pivot = new Point(0, group3.bounds.height/2);
-group3.position = new Point(group2.bounds.width, group2.bounds.height/2);
+group1.pivot = new Point(0, rect1.bounds.height/2);
+group1.position = new Point(250, 250);
 
 group2.pivot = new Point(0, group2.bounds.height/2);
 group2.position = new Point(group1.bounds.width, group1.bounds.height/2);
 
-group1.pivot = new Point(0, rect1.bounds.height/2);
-group1.position = new Point(250, 250);
-group2.addChild(group3);
+group3.pivot = new Point(0, group3.bounds.height/2);
+group3.position = new Point(group2.bounds.width, group2.bounds.height/2);
+
 group1.addChild(group2);
+group2.addChild(group3);
 
 var frame = 0;
 function onFrame () {
