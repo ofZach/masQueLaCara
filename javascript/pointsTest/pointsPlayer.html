@@ -1,25 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="UTF-8">
-    <title>point player</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/quicksettings.css">
-    <script type="text/javascript" src="addons/quicksettings.js"></script>
-     <script type="text/javascript" src="vendor/matter.js"></script>
-    <script type="text/javascript" src="src/physicsManager.js"></script>
-    <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
-    <script type="text/javascript" src="frameData.json"></script>
-    <script type="text/javascript" src="vendor/paper-full.js"></script>
-    <script type="text/javascript" src="src/Data/dataPlayer.js"></script>
-    <script type="text/javascript" src="src/Masks/GenerativeParts/eye.js"></script>
-    <script type="text/javascript" src="src/Masks/maskBase.js"></script>
-    <script type="text/javascript" src="src/Svg/SvgLoader.js"></script>
-    <script type="text/javascript" src="src/Masks/SvgMasks.js"></script>
-    <script type="text/javascript" src="src/Masks/masks.js"></script>
-    <script type="text/javascript" src="src/Masks/maskManager.js"></script>
-</head>
-<body>
-    <canvas id="myCanvas" resize></canvas>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>point player</title>
+        <link rel="stylesheet" href="css/style.css">
+
+        <script type="text/javascript" src="vendor/matter.js"></script>
+        <script type="text/javascript" src="vendor/dat.color.min.js"></script>
+        <script type="text/javascript" src="vendor/dat.gui.min.js"></script>
+        <script type="text/javascript" src="vendor/guiGlue.js"></script>
+        
+        <script type="text/javascript" src="src/physicsManager.js"></script>
+        <script type="text/paperscript" src="src/main.js" canvas="myCanvas"></script>
+        <script type="text/javascript" src="src/data/frameData.json"></script>
+        <script type="text/javascript" src="vendor/paper-full.js"></script>
+
+        <!-- data -->
+
+        <script type="text/javascript" src="src/data/smallestenclosingcircle.js"></script>
+        <script type="text/javascript" src="src/data/dataPlayer.js"></script>
+        
+        <!-- masks -->
+        
+        <script type="text/javascript" src="src/masks/maskBase.js"></script>
+        <script type="text/javascript" src="src/svg/svgLoader.js"></script>
+        <script type="text/javascript" src="src/masks/maskManager.js"></script>
+        <script type="text/javascript" src="src/masks/demoMask/demoMask.js"></script>
+
+        <script src="vendor/stats.min.js"></script>
+
+       
+    </head>
+    <body>
+        <canvas id="myCanvas" resize></canvas>
+    </body>
 </html>

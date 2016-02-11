@@ -1,13 +1,16 @@
 'use strict';
 class MaskBase {
-	addLayer () {
+	setup() {
+		this.name = "";
+	}
+	addLayer() {
 		this.layer = new paper.Layer();
 		this.layer.visible = false;
 	}
-	show () {
+	show() {
 		this.layer.visible = true;
 	}
-	hide () {
+	hide() {
 		this.layer.visible = false;
 	}
 }
