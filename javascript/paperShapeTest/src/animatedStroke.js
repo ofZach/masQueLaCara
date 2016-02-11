@@ -7,8 +7,13 @@ for (var i = 0; i < 10; i++) {
 myPath.smooth();
 
 var follower = new PathFollower();
-follower.setup(4);
+follower.setup(6);
+var _totalDistance = 0;
+for (var i = 0; i < myPath.curves.length; i++) {
+	_totalDistance += myPath.curves[i].length;
+};
+console.log("_totalDistance = " + _totalDistance)
 
 function onFrame () {
-	follower.update(myPath);
+	follower.update(myPath, _totalDistance);
 }
