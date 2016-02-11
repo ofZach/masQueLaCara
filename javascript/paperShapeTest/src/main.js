@@ -44,7 +44,10 @@ var fxY = new Fx.Spring({
 
           fxX.start(0, 300);
 var spiral = new Path();
+var spiral2 = new Path();
+
 spiral.strokeColor = 'white';
+spiral2.strokeColor = 'white';
 
 // Add the first segment at {x: 50, y: 50}
 // spiral.add([0,0]);
@@ -52,10 +55,10 @@ var spiralPoints = [];
 var pointZero = new Point(0,0);
 // Loop 500 times:
 for (var i = 0; i < 50; i++) {
-
     spiralPoints.push(pointZero);
     // Add the vector relatively to the last segment point:
     spiral.add(pointZero);
+    spiral2.add(pointZero);
 };
 
 
@@ -70,6 +73,10 @@ function onFrame() {
         spiralPoints[i].length =  Math.cos(frame/2 -i/2) - i/2+fxY.get();
         spiral.segments[i].point = spiralPoints[i]+[fxX.get(), fxY.get()];
     }
+    for (var i = 0; i < 50; i++) {
+        spiral2.segments[i].point = spiralPoints[i]+[fxX.get()+100, fxY.get()];
+    }
+    spiral2.smooth();
     spiral.smooth();
     frame++;
 }
