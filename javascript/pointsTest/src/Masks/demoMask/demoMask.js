@@ -33,7 +33,8 @@ class demoMask extends MaskBase {
 		this.circ.position.y = data['faceParts']['eyeL']['position'].y;
 		this.circ.position.rotation = data['faceParts']['eyeL']['angle'] * (180 / Math.PI);
 
-		//this.circ.children[0].strokeWidth = Math.pow(data['faceParts']['eyeL']['scale'], 3.0) * 10.0;
+		this.circ.children[0].strokeWidth = 0.9 * this.circ.children[0].strokeWidth +
+			0.1 * (data['faceParts']['eyeL']['velocity'].length * 5 + 20);
 		//this.circ.children[0].dashArray = [10, 10 * data['faceParts']['eyeL']['scale']];
 	}
 }
