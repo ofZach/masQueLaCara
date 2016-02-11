@@ -37,4 +37,12 @@ class demoMask extends MaskBase {
 			0.1 * (data['faceParts']['eyeL']['velocity'].length * 5 + 20);
 		//this.circ.children[0].dashArray = [10, 10 * data['faceParts']['eyeL']['scale']];
 	}
+
+	show() {
+		this.showLayer();
+	}
+
+	hide() {
+		this.hideLayer();
+	}
 }

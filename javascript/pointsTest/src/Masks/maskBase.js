@@ -7,10 +7,10 @@ class MaskBase {
 		this.layer = new paper.Layer();
 		this.layer.visible = false;
 	}
-	show() {
+	showLayer() {
 		this.layer.visible = true;
 	}
-	hide() {
+	hideLayer() {
 		this.layer.visible = false;
 	}
 }

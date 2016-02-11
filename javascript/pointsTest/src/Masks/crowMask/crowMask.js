@@ -13,4 +13,12 @@ class crowMask extends MaskBase {
 	update(data) {
 		this.faceParts['eyeL'].setPosition(data['faceParts']['eyeL']['position']);
 	}
+
+	show() {
+		this.showLayer();
+	}
+
+	hide() {
+		this.hideLayer();
+	}
 }
