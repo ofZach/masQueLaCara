@@ -2,7 +2,7 @@
 class MaskManager {
 	setup() {
 		this.masks = [
-			new demoMask(), 
+			new demoMask(),
 			new crowMask(),
 		];
 		this.curMaskNum = 0;
@@ -23,8 +23,10 @@ class MaskManager {
 	}
 
 	setMaskByName(name) {
+
 		this.hideMask();
-		var index = this.names.indexOf(name.value);
+		var index = this.names.indexOf(name);
+
 		if (index >= 0) {
 			this.curMaskNum = index;
 		}
