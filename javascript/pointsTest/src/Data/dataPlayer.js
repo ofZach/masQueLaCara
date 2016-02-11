@@ -23,6 +23,8 @@ class dataPlayer {
 		this.nPts = 68;
 
 		this.ptsForCircleTest = [];
+		this.prevFrameData = []; // for velocity calculation
+		this.velocity = []; // for velocity calculation
 
 
 		this.referenceSizes = {};
@@ -145,6 +147,10 @@ class dataPlayer {
 				y: 0
 			};
 			this.ptsForCircleTest.push(ptObj);
+
+			this.prevFrameData.push(new paper.Point(0, 0));
+
+			this.velocity.push(0.0);
 		}
 		//console.log(this.ptsForCircleTest);
 
@@ -155,6 +161,7 @@ class dataPlayer {
 			this.frameAnalysis['faceParts'][k]['position'] = new paper.Point(0, 0);
 			this.frameAnalysis['faceParts'][k]['angle'] = 0;
 			this.frameAnalysis['faceParts'][k]['scale'] = 1;
+			this.frameAnalysis['faceParts'][k]['velocity'] = new paper.Point(0, 0);
 		}
 
 		this.frameAnalysis['boundingCircle'] = {};
@@ -186,6 +193,8 @@ class dataPlayer {
 		//face info
 		this.regionsLayer = new paper.Layer();
 		this.facePartDebug = {};
+		this.facePartVel = {};
+
 		var count = 0;
 		for (var k in this.faceParts) {
 
@@ -203,6 +212,10 @@ class dataPlayer {
 			this.facePartDebug[k].position.y = 100;
 
 			this.facePartDebug[k].pivot = new paper.Point(0, 0);
+
+			this.facePartVel[k] = new paper.Path.Line(new paper.Point(100, 100), new paper.Point(150, 150));
+			this.facePartVel[k].strokeColor = '#ffff00';
+			this.facePartVel[k].strokeWidth = 1;
 			//this.facePartDebug[k] = new paper.Path.Circle(new paper.Point(count * 100, 100), 30);
 
 			count++;
@@ -249,16 +262,32 @@ class dataPlayer {
 
 
 		this.frame++;
-		var frameData = this.dataObject[this.frame % this.dataObject.length];
+		this.frame %= this.dataObject.length;
+		var frameData = this.dataObject[this.frame];
 
 		// copy the data in! 
+
+		var totalVel = 0.0;
+
 		for (var i = 0; i < 68; i++) {
+
+
+			this.prevFrameData[i].x = this.frameAnalysis['points'][i].x;
+			this.prevFrameData[i].y = this.frameAnalysis['points'][i].y;
+
 			this.frameAnalysis['points'][i].x = frameData[i][0] * this.viewScale;
 			this.frameAnalysis['points'][i].y = frameData[i][1] * this.viewScale;
+
+			if (!this.firstFrame) {
+				this.velocity[i] = this.frameAnalysis['points'][i].getDistance(this.prevFrameData[i]);
+				totalVel += this.velocity[i];
+			}
 
 			this.ptsForCircleTest[i].x = this.frameAnalysis['points'][i].x;
 			this.ptsForCircleTest[i].y = this.frameAnalysis['points'][i].y;
 		}
+
+		//console.log(totalVel);
 
 		this.frameAnalysis['boundingCircle'] = makeCircle(this.ptsForCircleTest);
 
@@ -312,9 +341,23 @@ class dataPlayer {
 			//this.facePartDebug[k].position.x = this.frameAnalysis['points'][0].x;
 			//this.facePartDebug[k].position.y = this.frameAnalysis['points'][0].y;
 
-			this.facePartDebug[k].position = this.frameAnalysis['faceParts'][k]['position'];
+			var pos = this.frameAnalysis['faceParts'][k]['position'];
 			this.facePartDebug[k].rotation = this.frameAnalysis['faceParts'][k]['angle'] * (180.0 / Math.PI);
 			this.facePartDebug[k].scaling = this.frameAnalysis['faceParts'][k]['scale'];
+
+			if (totalVel > 0.01) {
+				if (this.frame > 0) {
+					this.frameAnalysis['faceParts'][k]['velocity'] = pos.subtract(this.facePartDebug[k].position);
+					//console.log(this.facePartVel[k].segments);
+					this.facePartVel[k].segments[0].point.x = pos.x;
+					this.facePartVel[k].segments[0].point.y = pos.y;
+					this.facePartVel[k].segments[1].point.x = pos.x + this.frameAnalysis['faceParts'][k]['velocity'].x * 8.0;
+					this.facePartVel[k].segments[1].point.y = pos.y + this.frameAnalysis['faceParts'][k]['velocity'].y * 8.0;
+				}
+				//console.log(this.frameAnalysis['faceParts'][k]['velocity']);
+			}
+
+			this.facePartDebug[k].position = pos;
 
 		}
 
