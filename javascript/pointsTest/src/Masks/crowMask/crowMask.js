@@ -3,6 +3,7 @@ class crowMaskEye {
 	constructor(){
 		this.eyeLGroup = new paper.Group();
 		this.eyeLGroup.transformContent = false;
+		this.eyeLGroup.pivot = [0, 0];
 		this.linesGroup = new paper.Group();
 		this.linesGroup.transformContent = false;
 		this.linesGroup.pivot = [0, 0];
@@ -13,7 +14,7 @@ class crowMaskEye {
 			this.randomNumbers[i] = Math.random();
 			var line = new paper.Path();
 			line.add(0, 0);
-			line.add(Math.random()*200,0)	;
+			line.add(Math.random()*50+50,0)	;
 			line.strokeColor = 'white';
 
 			var lineOffsetGroup = new paper.Group();
@@ -60,12 +61,18 @@ class crowMaskEye {
 		this.eyeLGroup.addChild(outerCircle); // 1
 		this.eyeLGroup.addChild(yellowCircleGroup); // 2
 		this.eyeLGroup.addChild(this.linesGroup); // 3
+
+		this.spring = new Fx.Spring({
+            'stiffness': 1000,
+            'friction': 5,
+            // 'onMotion': function(t){console.log("t = " + t);}
+          });
 	}
 	update(data, name){
+		this.spring.start(this.spring.get(), data['faceParts'][name]['velocity'].length);
+
 		for (var i = 0; i < this.lineCount; i++) {
-			var rotation = this.smoothValue(this.linesGroup.children[i].children[0].rotation, 
-								 data['faceParts'][name]['velocity'].length*this.randomNumbers[i]*4 - this.randomNumbers[i]*20,
-								 0.8);
+			var rotation = this.spring.get()*this.randomNumbers[i]*2;
 			// var rotation = this.linesGroup.children[i].children[0].rotation;
 			this.linesGroup.children[i].children[0].rotation = rotation;
 		}

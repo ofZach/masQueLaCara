@@ -36,6 +36,7 @@ var gui = new dat.GUI();
 gui.add(text, 'displayDebug').onChange(function(value) {
     DP.setDebugView(value);
 });
+DP.setDebugView(false);
 var changeMask = false;
 var newMaskName = "";
 gui.add(text, 'maskName', MM.names).onChange(function(value) {
@@ -45,7 +46,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     newMaskName = value;
 });
 
-MM.setMaskByName('crowMask');
+MM.setMaskByName('gradientMask');
 
 function onFrame(event) {
 
