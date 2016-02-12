@@ -4,6 +4,7 @@ class MaskManager {
 		this.masks = [
 			new demoMask(),
 			new crowMask(),
+			new bounceMask()
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

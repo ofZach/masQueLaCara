@@ -27,12 +27,22 @@ class physicsManager {
 		engine.world.gravity.x = 0;
 		engine.world.gravity.y = 0;
 
+		this.bodiesList = [];
 
+		console.log(engine);
 
-		// assume we want walls;
-		//physicsManager.addWalls();
+	}
 
-		//Engine.run(engine);
+	static update() {
+		Engine.update(engine, 1.0); // delta?
+	}
+
+	static removeAllBodies() {
+
+		for (var j = 0; j < this.bodiesList.length; j++) {
+			World.remove(engine.world, this.bodiesList[j]);
+		}
+		this.bodiesList = [];
 	}
 
 	//-------------------------------------------------------------------------
@@ -51,18 +61,28 @@ class physicsManager {
 			isStatic: true
 		});
 		World.add(engine.world, [ground, wallA, wallB, ceiling]);
+
+		this.bodiesList.push(ground);
+		this.bodiesList.push(wallA);
+		this.bodiesList.push(wallB);
+		this.bodiesList.push(ceiling);
 	}
 
+
+
 	//-------------------------------------------------------------------------
-	static addCircle(x, y, radius) {
+	static addCircle(x, y, radius, amIstatic) {
 
 		var body = Bodies.circle(x, y, radius, {
-			friction: 0.01,
-			restitution: 0.1,
-			density: 0.001
+			friction: 0.001,
+			restitution: 0.01,
+			density: 0.001,
+			isStatic: amIstatic
 		});
+
 		World.add(engine.world, body);
 
+		this.bodiesList.push(body);
 		return body;
 	}
 

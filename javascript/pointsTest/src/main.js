@@ -17,6 +17,11 @@ document.body.appendChild(stats.domElement);
 var MM = new MaskManager();
 MM.setup();
 
+//--------------------- physics: 
+physicsManager.setup();
+
+noise.seed(Math.random());
+
 
 //----------------------------------------- gui
 var mainGui = function() {
@@ -31,9 +36,13 @@ var gui = new dat.GUI();
 gui.add(text, 'displayDebug').onChange(function(value) {
     DP.setDebugView(value);
 });
+var changeMask = false;
+var newMaskName = "";
 gui.add(text, 'maskName', MM.names).onChange(function(value) {
     console.log("value = " + value)
-    MM.setMaskByName(value);
+    //MM.setMaskByName(value);
+    changeMask = true;
+    newMaskName = value;
 });
 
 MM.setMaskByName('demoMask');
@@ -49,6 +58,11 @@ function onFrame(event) {
     DP.update();
     MM.update(DP.frameAnalysis);
     stats.end();
+
+    if (changeMask === true) {
+        changeMask = false;
+        MM.setMaskByName(newMaskName);
+    }
 }
 
 
