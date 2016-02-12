@@ -1,61 +1,5 @@
 'use strict';
-class DropShape{
-	constructor(){
-		this.hadleLength = 60;
 
-
-
-		this.start = new paper.Point(0, 0);
-		this.end = new paper.Point(0, -200);
-
-		this.colorStart = '#87d0a1';
-		this.colorEnd = '#ea4a73'
-		this.gradPointStartOffset = new paper.Point(0, 0);
-		this.gradPointEndOffset = new paper.Point(0, 0);
-
-		this.colorStartAlpha = 0.8;
-		this.colorEndAlpha = 0.0;
-	}
-	make(reverse){
-
-		this.upRight = new paper.Point(this.hadleLength, -this.hadleLength);
-		this.upLeft = new paper.Point(-this.hadleLength, -this.hadleLength);
-		this.downLeft = new paper.Point(-this.hadleLength, this.hadleLength);
-		this.downRight = new paper.Point(this.hadleLength, this.hadleLength);
-		this.up = new paper.Point(0, -this.hadleLength);
-		this.down = new paper.Point(0, this.hadleLength);
-		this.left = new paper.Point(-this.hadleLength, 0);
-		this.right = new paper.Point(this.hadleLength, 0);
-		if(reverse){
-			this.firstSegment = new paper.Segment(this.start, this.right, this.left);
-			this.secondSegment = new paper.Segment(this.end, this.upLeft, this.upRight);
-		}else{
-			this.firstSegment = new paper.Segment(this.end, this.upLeft, this.upRight );
-			this.secondSegment = new paper.Segment(this.start, this.right, this.left);
-		}
-		
-		this.firstSegment.handleIn.angle = this.firstSegment.handleIn.angle + this.end.angle - 90;
-		this.firstSegment.handleOut.angle = this.firstSegment.handleOut.angle + this.end.angle -90;
-		this.secondSegment.handleIn.angle = this.secondSegment.handleIn.angle + this.end.angle - 90;
-		this.secondSegment.handleOut.angle = this.secondSegment.handleOut.angle + this.end.angle -90;
-		
-		this.gradPointStart = this.start;
-		this.gradPointEnd = this.end;
-		// this.firstSegment.
-		this.path = new paper.Path(this.firstSegment, this.secondSegment);
-		this.path.fillColor = {
-			gradient: {
-		   		stops: [this.colorStart,this.colorEnd]
-			},
-			origin: this.gradPointStart,
-			destination: this.gradPointEnd,
-		}
-		this.path.fullySelected = true;
-		this.path.fillColor.gradient.stops[0].color.alpha = this.colorStartAlpha;
-		this.path.fillColor.gradient.stops[1].color.alpha = this.colorEndAlpha;
-		this.path.closed = true;
-	}
-}
 class head{
 	constructor(){
 		this.headGroup = new paper.Group();
@@ -66,20 +10,39 @@ class head{
 		this.shapesGroup = new paper.Group();
 		this.shapesGroup.transformContent = false;
 		this.shapesGroup.pivot = [0, 0];
+ 		var self = this;
+ 		paper.project.importSVG('assets/svg/GradientMask/GradientMask.svg', function(item) {
+            // set gradients 
+            var paths = item.children[0].children;
+            for (var i = 0; i < paths.length; i++) {
+            	if(i <= 1){ // brows
+	            	paths[i].fillColor = {
+					   gradient: {
+					       stops: ['#87d0a1', '#ea4a73']
+					   },
+					   origin: paths[i].segments[0].point,
+					   destination: paths[i].segments[1].point,
+					}
+					paths[i].fillColor.gradient.stops[1].color.alpha = 0.0;
+            	}else{
+					paths[i].fillColor = {
+					   gradient: {
+					       stops: ['#cf9777', '#a1002c']
+					   },
+					   origin: paths[i].segments[0].point,
+					   destination: paths[i].segments[1].point,
+					}
+					paths[i].fillColor.gradient.stops[1].color.alpha = 0.0;
+            	}
+            	// paths[i].fullySelected = true;
+            };
+            self.headGroup.pivot = [item.bounds.width/2, 400];
+            self.headGroup.addChild(item);
 
-		var dropShape = new DropShape();
-		dropShape.start = new paper.Point(-100, 0);
-		dropShape.end = new paper.Point(0, 0);
-		dropShape.make(true);
+            console.log("item = " + item.children[0].children[0].segments[0]);
+            // self.group.pivot = [self.group.bounds.width/2+pivotOffset.x, self.group.bounds.height/2+pivotOffset.y];
+        });
 
-		var dropShape2 = new DropShape();
-		dropShape2.start = new paper.Point(0, 0);
-		dropShape2.end = new paper.Point(100, 0);
-		dropShape2.make(true);
-
-		this.headGroup.addChild(dropShape.path);
-		this.headGroup.addChild(dropShape2.path);
-		// path.fullySelected = true;
 		// 0
 		this.spring = new Fx.Spring({
             'stiffness': 100,
