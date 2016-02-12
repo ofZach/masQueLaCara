@@ -3,7 +3,7 @@
 
 
 class SvgLoader {
-    setup(name, parentName, path) {
+    constructor(name, parentName, path, pivotOffset) {
 
         this.angleOffset = 0;
         this.positionOffset = new paper.Point(0, 0);
@@ -16,20 +16,42 @@ class SvgLoader {
         var self = this;
         paper.project.importSVG(path, function(item) {
             self.group.addChild(item);
+            
+            self.group.pivot = [self.group.bounds.width/2+pivotOffset.x, self.group.bounds.height/2+pivotOffset.y];
+            // var rect = new paper.Shape.Rectangle([0, 0], [self.group.bounds.width, self.group.bounds.height]);
+            // self.group.addChild(rect);
+            // rect.strokeColor = 'white';
         });
+
+        
     }
     setPosition(position) {
-        this.group.position.x = position.x + this.positionOffset.x;
-        this.group.position.y = position.y + this.positionOffset.y;
+        var smooth = 0.76;
+        this.group.position.x = this.group.position.x*smooth + (1-smooth)*position.x + this.positionOffset.x;
+        this.group.position.y = this.group.position.y*smooth + (1-smooth)*position.y + this.positionOffset.y;
     }
-    setPivot(position) {
-        this.group.pivot = position;
+    offsetPivot(position) {
+        this.group.pivot = this.group.pivot+position;
     }
-    setAngle(angle) {
-        this.group.rotation = angle * (180.0 / Math.PI) + this.angleOffset;
-    }
+    setAngle(angle, smooth) {
+       var curAngle = this.group.rotation;
+       var newAngle = angle * (180.0 / Math.PI);
+       var diff = (newAngle - curAngle);
+       if (diff < -180) diff += 360;
+       if (diff > 180) diff -= 360;
+
+       curAngle = curAngle + smooth * diff;
+       this.group.rotation = curAngle + this.angleOffset;
+   }
     setScale(scale) {
-        this.group.scaling = this.scale;
+        var smooth = 0.75;
+        this.group.scaling.x = this.group.scaling.x*smooth + (1-smooth)*scale;
+        this.group.scaling.y = this.group.scaling.y*smooth  + (1-smooth)*scale;
+    }
+    setOpacity(opacity){
+        var smooth = 0.9; 
+        this.group.opacity = this.group.opacity*smooth + (1-smooth)*opacity;
+
     }
     sayHello() {
         console.log("hello");

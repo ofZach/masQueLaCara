@@ -44,6 +44,16 @@ class dataPlayer {
 					end: 54
 				}
 			},
+			head: {
+				region: {
+					start: 0,
+					end: 67
+				},
+				line: {
+					start: 3,
+					end: 13
+				}
+			},
 			eyeL: {
 				region: {
 					start: 36,

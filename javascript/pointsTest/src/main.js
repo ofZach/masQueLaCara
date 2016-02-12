@@ -45,7 +45,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     newMaskName = value;
 });
 
-MM.setMaskByName('demoMask');
+MM.setMaskByName('crowMask');
 
 function onFrame(event) {
 
