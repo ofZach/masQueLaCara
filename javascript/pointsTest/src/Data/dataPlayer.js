@@ -14,7 +14,7 @@ class dataPlayer {
 	setup() {
 
 
-		this.viewScale = 1.7;
+		this.viewScale = 1.3;
 		this.frame = 0;
 		this.frameAnalysis = {};
 		this.angleSmoothing = 0.1;
