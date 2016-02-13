@@ -14,15 +14,15 @@ stats.domElement.style.top = '0px';
 document.body.appendChild(stats.domElement);
 
 //---------------------------------------- setup masks
+var rootLayer = new Layer();
 var MM = new MaskManager();
 MM.setup();
+console.log("project.layers = " + project.activeLayer);
 
 //--------------------- physics: 
 physicsManager.setup();
 
 noise.seed(Math.random());
-
-
 //----------------------------------------- gui
 var mainGui = function() {
     this.maskName = '';

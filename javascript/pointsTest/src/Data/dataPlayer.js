@@ -14,7 +14,7 @@ class dataPlayer {
 	setup() {
 
 
-		this.viewScale = 1.3;
+		this.viewScale = 1.7;
 		this.frame = 0;
 		this.frameAnalysis = {};
 		this.angleSmoothing = 0.1;
@@ -185,7 +185,7 @@ class dataPlayer {
 		this.layer = new paper.Layer();
 		for (var i = 0; i < this.nPts; i++) {
 			var path = new paper.Path.Circle(new paper.Point(100, 100), 5);
-			this.layer.children[i].fillColor = (255, 255, 0, 0.1);
+			this.layer.children[i].fillColor = (255, 255, 0, 0.3);
 		}
 
 		//type
