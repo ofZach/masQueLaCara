@@ -2,41 +2,61 @@
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="249.318px" height="431.484px" viewBox="0 0 249.318 431.484" style="enable-background:new 0 0 249.318 431.484;"
+	 width="316.811px" height="521.608px" viewBox="0 0 316.811 521.608" style="enable-background:new 0 0 316.811 521.608;"
 	 xml:space="preserve">
 <g id="cheekL">
-	
-		<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-325.353" y1="156.9497" x2="-392.1253" y2="88.9992" gradientTransform="matrix(-0.2618 0.9651 -0.9651 -0.2618 126.3594 497.9781)">
-		<stop  offset="0" style="stop-color:#87D0A1"/>
-		<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
-	</linearGradient>
-	<path style="fill:url(#SVGID_1_);" d="M177.645,179.189c-42.189-76.093-38.703,43.836-59.102,12.966
-		c-20.397-30.87-27.858-61.819-43.13-94.472c-15.271-32.651,4.17-95.502,44.629-82.275c40.458,13.228-6.979,53.623,25.791,59.513
-		C178.604,80.811,188.55,198.857,177.645,179.189z"/>
-	
-		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-245.9199" y1="462.8203" x2="-351.676" y2="355.198" gradientTransform="matrix(-0.7064 0.7078 -0.7078 -0.7064 112.7634 622.6071)">
-		<stop  offset="0" style="stop-color:#87D0A1"/>
-		<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
-	</linearGradient>
-	<path style="fill:url(#SVGID_2_);" d="M129.289,139.078C70.52,125.437,33.66,239.659,3.924,210.798
-		c-26.551-25.771,90.23-85.94,93.182-121.866s32.743-71.639,45.865-55.376c26.729,33.128-29.293,46.239-3.77,67.621
-		C164.725,122.558,151.194,144.163,129.289,139.078z"/>
-	
-		<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="-124.3906" y1="276.5088" x2="-192.7473" y2="206.9459" gradientTransform="matrix(-0.7114 1.1041 -1.0421 -0.6714 218.6859 620.9814)">
-		<stop  offset="0" style="stop-color:#87D0A1"/>
-		<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
-	</linearGradient>
-	<path style="fill:url(#SVGID_3_);" d="M85.566,428.121c-38.92-24.272,17.552-164.584,12.856-210.599
-		c-4.695-46.014,14.431-110.236,34.486-93.812c40.853,33.457,31.705,80.175-21.695,141.872
-		C72.667,310.118,129.155,455.305,85.566,428.121z"/>
-	
-		<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="35.2524" y1="725.7217" x2="-85.0644" y2="603.2817" gradientTransform="matrix(-0.5933 -0.805 0.805 -0.5933 -377.2673 424.0525)">
-		<stop  offset="0" style="stop-color:#87D0A1"/>
-		<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
-	</linearGradient>
-	<path style="fill:url(#SVGID_4_);" d="M145.815,158.43C168.153,102.387,51.481,34.332,84.492,9.282
-		c29.477-22.366,27.47,1.145,20.637,13.508C81.875,64.854,266.125,177.329,248.07,187.853
-		c-36.775,21.433-41.298-35.926-66.28-13.914C156.808,195.949,137.488,179.32,145.815,158.43z"/>
+	<g id="Layer_15_copy">
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="-266.1484" y1="292.8535" x2="-363.96" y2="193.316" gradientTransform="matrix(-0.2618 0.9651 -0.9651 -0.2618 314.4378 522.9124)">
+			<stop  offset="0" style="stop-color:#87D0A1"/>
+			<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
+		</linearGradient>
+		<path style="fill:url(#SVGID_1_);" d="M273.711,242.557c-61.801-111.466-56.694,64.213-86.575,18.99
+			c-29.879-45.219-40.808-90.555-63.18-138.386c-22.369-47.83,6.109-139.898,65.375-120.522
+			c59.264,19.376-10.223,78.55,37.779,87.178C275.116,98.444,289.686,271.367,273.711,242.557z"/>
+		
+			<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="-154.2065" y1="557.3232" x2="-259.9633" y2="449.7003" gradientTransform="matrix(-0.7064 0.7078 -0.7078 -0.7064 303.9348 676.0381)">
+			<stop  offset="0" style="stop-color:#87D0A1"/>
+			<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
+		</linearGradient>
+		<path style="fill:url(#SVGID_2_);" d="M188.782,190.668c-58.769-13.643-95.629,100.58-125.365,71.719
+			c-26.551-25.77,90.23-85.939,93.182-121.866c2.952-35.926,32.743-71.639,45.865-55.376c26.729,33.128-29.293,46.239-3.769,67.621
+			C224.218,174.146,210.688,195.752,188.782,190.668z"/>
+		
+			<linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="-55.6196" y1="370.5146" x2="-123.9763" y2="300.9517" gradientTransform="matrix(-0.7114 1.1041 -1.0421 -0.6714 425.0618 659.7615)">
+			<stop  offset="0" style="stop-color:#87D0A1"/>
+			<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
+		</linearGradient>
+		<path style="fill:url(#SVGID_3_);" d="M145.06,479.711c-38.92-24.273,17.552-164.584,12.856-210.6
+			c-4.695-46.014,14.431-110.236,34.486-93.811c40.852,33.457,31.704,80.174-21.696,141.871
+			C132.161,361.707,188.648,506.895,145.06,479.711z"/>
+		
+			<linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="-76.3027" y1="494.1025" x2="-196.6203" y2="371.6619" gradientTransform="matrix(-0.9871 -0.1603 0.1603 -0.9871 -42.2959 481.0537)">
+			<stop  offset="0" style="stop-color:#87D0A1"/>
+			<stop  offset="1" style="stop-color:#EA4A73;stop-opacity:0"/>
+		</linearGradient>
+		<path style="fill:url(#SVGID_4_);" d="M218.746,171.863C195.513,116.186,64.527,149.15,70.6,108.159
+			c5.424-36.602,20.434-18.396,24.197-4.78c12.802,46.326,223.153-2.156,217.609,17.993c-11.292,41.041-54.644,3.209-57.103,36.414
+			C252.845,190.99,227.406,192.619,218.746,171.863z"/>
+	</g>
+	<g id="Layer_10_copy_2">
+		<g id="Layer_11_copy_2">
+			<rect x="124.275" y="254.753" style="fill:#87D0A1;" width="14.041" height="12.102"/>
+			<rect x="235.547" y="102.546" style="opacity:0;fill:#EA4A73;" width="14.042" height="12.102"/>
+		</g>
+		<g id="Layer_12_copy_2">
+			<rect y="244.96" style="fill:#87D0A1;" width="14.043" height="12.102"/>
+			<rect x="216.842" y="111.679" style="opacity:0;fill:#EA4A73;" width="14.042" height="12.102"/>
+		</g>
+		<g id="Layer_13_copy_2">
+			<rect x="104.649" y="509.507" style="fill:#87D0A1;" width="14.041" height="12.102"/>
+			<rect x="236.254" y="234.891" style="opacity:0;fill:#EA4A73;" width="14.042" height="12.102"/>
+		</g>
+		<g id="Layer_14_copy_2">
+			<rect x="34.563" y="86.617" style="fill:#FBE3B8;" width="14.043" height="12.102"/>
+			<rect x="302.769" y="134.582" style="opacity:0;fill:#EA4A73;" width="14.042" height="12.102"/>
+		</g>
+	</g>
 </g>
 <g id="Layer_1">
 </g>

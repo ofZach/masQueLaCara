@@ -16,7 +16,6 @@ document.body.appendChild(stats.domElement);
 var rootLayer = new Layer();
 var MM = new MaskManager();
 MM.setup();
-console.log("project.layers = " + project.activeLayer);
 
 //--------------------- physics: 
 physicsManager.setup();
@@ -44,7 +43,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('blobGradientMask');
+MM.setMaskByName('pyrateMask');
 
 function onFrame(event) {
 

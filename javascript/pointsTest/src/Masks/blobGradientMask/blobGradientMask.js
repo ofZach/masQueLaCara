@@ -6,50 +6,52 @@ class blob{
 		this.group = new paper.Group();
 		this.group.transformContent = false;
 		this.group.pivot = [0, 0];
-		// init point position of each path
 		this.pointsPositions = {}; // path0: [Point, Point, ..], path1: [Point, Point, ...]
 		this.smoothAngle = 0;
-		// this.pointsPositions["path"+2] = [];
-		// this.pointsPositions["path"+2][0] = 1;
  		var self = this;
  		paper.project.importSVG(data['path'], function(item) {
-            // set gradients 
-            var paths = item.children[0].children;
-            for (var i = 0; i < paths.length; i++) { // paths
-            	var gStart = data['gradientDir'][0];
-            	var gEnd = data['gradientDir'][1];
-            	if(i%2==0){
-	            	paths[i].fillColor = {
-
-					   gradient: {
-					       stops: ['#87d0a1', '#ea4a73']
-					   },
-					   origin: paths[i].segments[gStart].point,
-					   destination: paths[i].segments[gEnd].point,
-					}
-            	}else{
-            		paths[i].fillColor = {
-
-					   gradient: {
-					       stops: ['#cf9777', '#a1002c']
-					   },
-					   origin: paths[i].segments[gStart].point,
-					   destination: paths[i].segments[gEnd].point,
-					}
+            // console.log("paths = " + item.children[0]); // head
+            // console.log("paths = " + item.children[0].children[0]); // path
+            // console.log("paths = " + item.children[0].children[1]); // gradient
+            var gradient = item.children[0].children[1].children;
+            var paths = item.children[0].children[0].children;
+            var gradientData = {};
+            // set gradient data
+            for (var i = 0; i < gradient.length; i++) { // gradient 
+            	gradientData['path'+i] = []; // hold gradient data for each shape
+            	var layers =  gradient[i].children; // layers with grad points
+            	for (var k = 0; k < layers.length; k++) { // each point object
+            		gradientData['path'+i]['point'+k+'pos'] = layers[k].position;
+            		gradientData['path'+i]['point'+k+'color'] = layers[k].fillColor;
+            		gradientData['path'+i]['point'+k+'alpha'] = layers[k].opacity;
+            		// console.log("layers[k].opacity = "+layers[k].opacity);
             	}
-				paths[i].fillColor.gradient.stops[0].color.alpha = data['alpha'][0];
-				paths[i].fillColor.gradient.stops[1].color.alpha = data['alpha'][1];
+            }
+            // set gradients and store init positions
+            for (var i = 0; i < paths.length; i++) { // paths
+            	var gd = gradientData['path'+i];
+	        	paths[i].fillColor = {
+				   gradient: {
+				       stops: [ gd['point0color'] , gd['point1color'] ]
+				   },
+				   origin: gd['point0pos'],
+				   destination: gd['point1pos'],
+				}
+				paths[i].fillColor.gradient.stops[0].color.alpha = gd['point0alpha'];
+				paths[i].fillColor.gradient.stops[1].color.alpha = gd['point1alpha'];
 
 				var segments = paths[i].segments;
-				self.pointsPositions["path"+i] = [0];
+				self.pointsPositions["path"+i] = [];
 				for (var k = 0; k < segments.length; k++) {
 					self.pointsPositions["path"+i][k] = new paper.Point(segments[k].point.x,segments[k].point.y) ;
 				}
             	// paths[i].fullySelected = true;
             };
+            // delete dummy objects
+            item.children[0].children[1].remove();
             self.group.pivot = [item.bounds.width/2+data['pivot'][0], data['pivot'][1]];
             self.group.addChild(item);
-
+            // console.log("self.group = " + self.group.children[0].children[0].children[0].children);
         });
 
 		this.spring = new Fx.Spring({
@@ -65,7 +67,7 @@ class blob{
 	update(d, name){
 		var data = d['faceParts'][name];
 		if(this.group.children[0] != undefined){
-			var paths = this.group.children[0].children[0].children;
+			var paths = this.group.children[0].children[0].children[0].children;
 			for (var i = 0; i < paths.length; i++) {
 				var segments = paths[i].segments;
 				// var xOffset = ns * 100.0;
@@ -92,28 +94,25 @@ class blobGradientMask extends MaskBase{
 		this.name = 'blobGradientMask';
 		super.addLayer();
 		this.head = new blob(
-			{ path:'assets/svg/BlobGradientMask/blobs.svg',
+			{ path:'assets/svg/BlobGradientMask/head.svg',
 			  pivot:[0, 300],
-			  alpha: [0.01, 1],
-			  gradientDir: [0, 1]
-			});
-		this.cheekL = new blob(
-			{ path:'assets/svg/BlobGradientMask/cheekL.svg',
-			  pivot:[40, 100],
-			  alpha: [0.1, 0.5],
-			  gradientDir: [0, 1]
 			});
 		this.cheekR = new blob(
 			{ path:'assets/svg/BlobGradientMask/cheekR.svg',
-			  pivot:[-40, 100],
-			  alpha: [0.1, 0.5],
-			  gradientDir: [0, 1]
+			  pivot:[0, 100],
 			});
+		this.cheekL = new blob(
+			{ path:'assets/svg/BlobGradientMask/cheekL.svg',
+			  pivot:[70, 100],
+			});
+
 	}
 	update(d){
 		this.head.update(d, 'head');
-		this.cheekL.update(d, 'cheekL');
 		this.cheekR.update(d, 'cheekR');
+		this.cheekL.update(d, 'cheekL');
+		// this.cheekL.update(d, 'cheekL');
+		// this.cheekR.update(d, 'cheekR');
 	}
 	show(){
 		this.showLayer();
