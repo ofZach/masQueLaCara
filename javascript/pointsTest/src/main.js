@@ -1,5 +1,4 @@
 'use strict';
-
 var DP = new dataPlayer();
 DP.setup();
 DP.setupDebugView();
@@ -45,8 +44,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-
-MM.setMaskByName('gradientMask');
+MM.setMaskByName('blobGradientMask');
 
 function onFrame(event) {
 
@@ -65,7 +63,6 @@ function onFrame(event) {
         MM.setMaskByName(newMaskName);
     }
 }
-
 
 function onResize(event) {
 

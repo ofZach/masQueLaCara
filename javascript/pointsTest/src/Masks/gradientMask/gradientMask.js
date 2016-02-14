@@ -14,7 +14,6 @@ class SvgGrad{
  		paper.project.importSVG(path, function(item) {
             // set gradients 
             var paths = item.children[0].children;
-            console.log("name = " + paths);
             for (var i = 0; i < paths.length; i++) {
             	if(i %2 == 0){ 
 	            	paths[i].fillColor = {

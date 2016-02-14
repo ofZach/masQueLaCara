@@ -6,6 +6,7 @@ class MaskManager {
 			new crowMask(),
 			new bounceMask(), 
 			new gradientMask(),
+			new blobGradientMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
