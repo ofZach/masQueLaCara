@@ -21,7 +21,7 @@ class dataPlayer {
 		this.firstFrame = true;
 		this.refFrame = false;
 		this.nPts = 68;
-
+		this.offset = new paper.Point(-100, 200);
 		this.ptsForCircleTest = [];
 		this.prevFrameData = []; // for velocity calculation
 		this.velocity = []; // for velocity calculation
@@ -285,8 +285,8 @@ class dataPlayer {
 			this.prevFrameData[i].x = this.frameAnalysis['points'][i].x;
 			this.prevFrameData[i].y = this.frameAnalysis['points'][i].y;
 
-			this.frameAnalysis['points'][i].x = frameData[i][0] * this.viewScale;
-			this.frameAnalysis['points'][i].y = frameData[i][1] * this.viewScale;
+			this.frameAnalysis['points'][i].x = frameData[i][0] * this.viewScale + this.offset.x;
+			this.frameAnalysis['points'][i].y = frameData[i][1] * this.viewScale + this.offset.y;
 
 			if (!this.firstFrame) {
 				this.velocity[i] = this.frameAnalysis['points'][i].getDistance(this.prevFrameData[i]);

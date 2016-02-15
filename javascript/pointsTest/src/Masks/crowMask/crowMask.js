@@ -9,13 +9,20 @@ class crowMaskEye {
 		this.linesGroup.pivot = [0, 0];
 		this.lineCount = 20;
 		this.randomNumbers = [];
-		this.innerCircleRadius = 50;
+		this.innerCircleRadius = 150;
 		for (var i = 0; i < this.lineCount; i++) {
 			this.randomNumbers[i] = Math.random();
+			var rand = Math.random();
 			var line = new paper.Path();
 			line.add(0, 0);
-			line.add(Math.random()*50+50,0)	;
+			line.add(rand*this.innerCircleRadius+this.innerCircleRadius,0);
 			line.strokeColor = 'white';
+
+			var circle = new paper.Path.Circle({
+				center: [rand*this.innerCircleRadius+this.innerCircleRadius, 0],
+				radius: 5,
+				fillColor: 'white',
+			});
 
 			var lineOffsetGroup = new paper.Group();
 			lineOffsetGroup.transformContent = false;
@@ -29,6 +36,7 @@ class crowMaskEye {
 			lineGroup.position = [0, 0];
 			lineGroup.rotation = - Math.random()*40;
 			lineGroup.addChild(line);
+			lineGroup.addChild(circle);
 			
 			lineOffsetGroup.addChild(lineGroup);
 			this.linesGroup.addChild(lineOffsetGroup);
@@ -73,8 +81,8 @@ class crowMaskEye {
 
 		for (var i = 0; i < this.lineCount; i++) {
 			var rotation = this.spring.get()*this.randomNumbers[i]*2;
-			// var rotation = this.linesGroup.children[i].children[0].rotation;
-			this.linesGroup.children[i].children[0].rotation = rotation;
+			var line = this.linesGroup.children[i].children[0]
+			line.rotation = rotation;
 		}
 		var eyeLGroupRotation = this.smoothValue(this.eyeLGroup.children[2].rotation , 
 										data['faceParts'][name]['velocity'].length*90,

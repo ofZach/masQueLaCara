@@ -8,6 +8,7 @@ class blob{
 		this.group.pivot = [0, 0];
 		this.pointsPositions = {}; // path0: [Point, Point, ..], path1: [Point, Point, ...]
 		this.smoothAngle = 0;
+		this.speed = data['speed'];
  		var self = this;
  		paper.project.importSVG(data['path'], function(item) {
             // console.log("paths = " + item.children[0]); // head
@@ -73,9 +74,8 @@ class blob{
 				// var xOffset = ns * 100.0;
 				for (var k = 0; k < segments.length; k++) {
 					var initPos = this.pointsPositions["path"+i][k];
-					var nsX = noise.simplex2(0.0,  (this.counter+k*200+i*100)/70);
-					var nsY = noise.simplex2(0.0,  (this.counter+k*100+i*100+400)/70);
-					var nsSlow = noise.simplex2(0.0,  (this.counter+k*233+i*50+400)/50);
+					var nsX = noise.simplex2(0.0,  (this.counter+k*200+i*100)/this.speed);
+					var nsY = noise.simplex2(0.0,  (this.counter+k*100+i*100+400)/this.speed);
 					segments[k].point.x = initPos.x+nsX*20;
 					segments[k].point.y = initPos.y+nsY*20;
 				}
@@ -96,14 +96,17 @@ class blobGradientMask extends MaskBase{
 		this.head = new blob(
 			{ path:'assets/svg/BlobGradientMask/head.svg',
 			  pivot:[0, 300],
+			  speed: 80
 			});
 		this.cheekR = new blob(
 			{ path:'assets/svg/BlobGradientMask/cheekR.svg',
 			  pivot:[0, 100],
+			  speed: 150
 			});
 		this.cheekL = new blob(
 			{ path:'assets/svg/BlobGradientMask/cheekL.svg',
 			  pivot:[70, 100],
+			  speed: 100
 			});
 
 	}
