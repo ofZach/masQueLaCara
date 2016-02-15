@@ -62,7 +62,7 @@ class rotationMask extends MaskBase {
 		// rotate the eye
 		this.leftEyeAngleAmount += this.leftEyeAngleEnergy;
 
-		console.log(this.leftEyeAngleAmount);
+		// console.log(this.leftEyeAngleAmount);
 
 		//this.circ.children[0].strokeWidth = 10 + xOffset; //0.9 * this.circ.children[0].strokeWidth +
 		//0.1 * (data['faceParts']['eyeL']['velocity'].length * 5 + 20);

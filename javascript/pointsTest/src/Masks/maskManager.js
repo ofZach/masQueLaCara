@@ -9,6 +9,7 @@ class MaskManager {
 			new blobGradientMask(),
 			new pyrateMask(),
 			new rotationMask(),
+			new gradientCircleMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

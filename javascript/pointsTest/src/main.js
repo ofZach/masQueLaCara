@@ -43,7 +43,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('rotationMask');
+MM.setMaskByName('gradientCircleMask');
 
 function onFrame(event) {
 
