@@ -25,12 +25,16 @@ noise.seed(Math.random());
 var mainGui = function() {
     this.maskName = '';
     this.displayDebug = true;
+    this.displayDebugDots = true;
     this.explode = function() {
         console.log("hello");
     };
 };
 var text = new mainGui();
 var gui = new dat.GUI();
+gui.add(text, 'displayDebugDots').onChange(function(value) {
+    DP.setViewDots(value);
+});
 gui.add(text, 'displayDebug').onChange(function(value) {
     DP.setDebugView(value);
 });

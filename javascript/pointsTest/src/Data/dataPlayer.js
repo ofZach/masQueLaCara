@@ -246,6 +246,16 @@ class dataPlayer {
 
 	}
 
+
+	setViewDots(value) {
+		if (value === true) {
+			this.layer.visible = true;
+
+		} else {
+			this.layer.visible = false;
+		}
+	}
+
 	setDebugView(value) {
 
 		if (value === true) {
