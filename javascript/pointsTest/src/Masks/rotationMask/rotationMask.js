@@ -6,6 +6,11 @@ class rotationMask extends MaskBase {
 	//------------------------------------------
 	setup() {
 
+		this.gui = new dat.GUI({
+			autoPlace: false
+		});
+		//this.gui.domElement.class = 'sceneGui';
+
 		this.leftEyeAngleEnergy = 0; // vel
 		this.leftEyeAngleAmount = 0;
 		this.leftEyeAngleLastFrame = 0;
@@ -28,6 +33,8 @@ class rotationMask extends MaskBase {
 	//------------------------------------------
 	update(data) {
 
+
+		//dat.GUI.toggleHide();
 		//console.log(data);
 
 		//----------------- noise: 
