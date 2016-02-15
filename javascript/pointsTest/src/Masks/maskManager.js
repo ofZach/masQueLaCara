@@ -10,6 +10,7 @@ class MaskManager {
 			new pyrateMask(),
 			new rotationMask(),
 			new gradientCircleMask(),
+			new clipingMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
