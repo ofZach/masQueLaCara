@@ -1,14 +1,7 @@
 'use strict';
-class energyCircle {
+class shapeCircle {
 	constructor(d) {
-		this.energy = d.energy;
-		this.scaleFactor = d.scaleFactor;
-		this.angleEnergy = 0; // vel
-		this.rotation = 0;
-		this.angleLastFrame = 0;
-		this.counter = 0;
-
-		this.circle = new paper.Path.Circle({
+		this.path = new paper.Path.Circle({
 			center: [0, 0],
 			radius: d.radius,
 			strokeWidth: d.stroke,
@@ -20,9 +13,33 @@ class energyCircle {
 				destination: [d.radius, 0],
 			}
 		});
-		this.circle.strokeColor.gradient.stops[0].color.alpha = 0.2;
-		this.circle.strokeColor.gradient.stops[1].color.alpha = 0.9;
-		this.group = new paper.Group(this.circle);
+		this.path.strokeColor.gradient.stops[0].color.alpha = 0.2;
+		this.path.strokeColor.gradient.stops[1].color.alpha = 0.9;
+	}
+};
+class shapeType {
+	constructor(d) {
+		this.shapeType;
+		if (d.shape == 'circle') {
+			this.shapeType = new shapeCircle(d);
+		} else if (d.shape == 'halfCircle') {
+			this.shapeType = new shapeCircle(d);
+			this.shapeType.path.removeSegment(0);
+			this.shapeType.path.closed = false;
+		}
+	}
+};
+class energyCircle {
+	constructor(d) {
+		this.energy = d.energy;
+		this.scaleFactor = d.scaleFactor;
+		this.angleEnergy = 0; // vel
+		this.rotation = 0;
+		this.angleLastFrame = 0;
+		this.counter = 0;
+		var shape = new shapeType(d);
+		this.group = new paper.Group(shape.shapeType.path);
+		this.group.pivot = [0, 0];
 		this.group.transformContent = false;
 	}
 	update(data, name) {
@@ -44,7 +61,7 @@ class energyCircle {
 		this.rotation += this.angleEnergy;
 		this.group.rotation = this.rotation;
 	}
-}
+};
 class tubeCircle {
 	constructor(d) {
 		this.counter = 0;
@@ -56,15 +73,16 @@ class tubeCircle {
 			var circle = new energyCircle({
 				radius: d.radius * i + d.innerRadius,
 				stroke: d.radius,
-				energy: this.random(0.99999, 0.999999),
+				energy: this.random(0.999, 0.9999),
 				scaleFactor: this.random(0.7, 1.4),
 				startColor: '#ff0099',
 				endColor: '#ea4a73',
+				shape: 'circle',
 			});
 			this.circles.push(circle);
 			this.group.addChild(circle.group);
 		}
-
+		this.group.pivot = [0, 0];
 	}
 	random(min, max) {
 		return Math.random() * (max - min) + min;
