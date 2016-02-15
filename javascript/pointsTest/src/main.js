@@ -1,5 +1,4 @@
 'use strict';
-
 var DP = new dataPlayer();
 DP.setup();
 DP.setupDebugView();
@@ -14,6 +13,7 @@ stats.domElement.style.top = '0px';
 document.body.appendChild(stats.domElement);
 
 //---------------------------------------- setup masks
+var rootLayer = new Layer();
 var MM = new MaskManager();
 MM.setup();
 
@@ -21,8 +21,6 @@ MM.setup();
 physicsManager.setup();
 
 noise.seed(Math.random());
-
-
 //----------------------------------------- gui
 var mainGui = function() {
     this.maskName = '';
@@ -45,8 +43,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-
-MM.setMaskByName('gradientMask');
+MM.setMaskByName('crowMask');
 
 function onFrame(event) {
 
@@ -65,7 +62,6 @@ function onFrame(event) {
         MM.setMaskByName(newMaskName);
     }
 }
-
 
 function onResize(event) {
 

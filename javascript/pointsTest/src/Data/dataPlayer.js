@@ -14,14 +14,14 @@ class dataPlayer {
 	setup() {
 
 
-		this.viewScale = 1.3;
+		this.viewScale = 1.7;
 		this.frame = 0;
 		this.frameAnalysis = {};
 		this.angleSmoothing = 0.1;
 		this.firstFrame = true;
 		this.refFrame = false;
 		this.nPts = 68;
-
+		this.offset = new paper.Point(-100, 200);
 		this.ptsForCircleTest = [];
 		this.prevFrameData = []; // for velocity calculation
 		this.velocity = []; // for velocity calculation
@@ -185,7 +185,7 @@ class dataPlayer {
 		this.layer = new paper.Layer();
 		for (var i = 0; i < this.nPts; i++) {
 			var path = new paper.Path.Circle(new paper.Point(100, 100), 5);
-			this.layer.children[i].fillColor = (255, 255, 0, 0.1);
+			this.layer.children[i].fillColor = (255, 255, 0, 0.3);
 		}
 
 		//type
@@ -285,8 +285,8 @@ class dataPlayer {
 			this.prevFrameData[i].x = this.frameAnalysis['points'][i].x;
 			this.prevFrameData[i].y = this.frameAnalysis['points'][i].y;
 
-			this.frameAnalysis['points'][i].x = frameData[i][0] * this.viewScale;
-			this.frameAnalysis['points'][i].y = frameData[i][1] * this.viewScale;
+			this.frameAnalysis['points'][i].x = frameData[i][0] * this.viewScale + this.offset.x;
+			this.frameAnalysis['points'][i].y = frameData[i][1] * this.viewScale + this.offset.y;
 
 			if (!this.firstFrame) {
 				this.velocity[i] = this.frameAnalysis['points'][i].getDistance(this.prevFrameData[i]);
