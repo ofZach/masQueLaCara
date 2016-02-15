@@ -4,10 +4,11 @@ class MaskManager {
 		this.masks = [
 			new demoMask(),
 			new crowMask(),
-			new bounceMask(), 
+			new bounceMask(),
 			new gradientMask(),
 			new blobGradientMask(),
 			new pyrateMask(),
+			new rotationMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
