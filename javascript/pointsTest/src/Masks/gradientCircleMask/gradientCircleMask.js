@@ -24,10 +24,21 @@ class gradientCircleMask extends MaskBase {
 		//this.gui.add(this.guiInfo, 'explode');
 		//this.gui.toggleHide();
 
+		this.head = new tubeCircle({
+			innerRadius: 200,
+			radius: 40,
+			count: 1,
+		});
+		this.head2 = new tubeCircle({
+			innerRadius: 265,
+			radius: 90,
+			count: 1,
+		});
+
 		this.eyeL = new tubeCircle({
-			innerRadius: 20,
-			radius: 29,
-			count: 3,
+			innerRadius: 30,
+			radius: 10,
+			count: 2,
 		});
 		this.eyeL2 = new tubeCircle({
 			innerRadius: 100,
@@ -45,6 +56,8 @@ class gradientCircleMask extends MaskBase {
 			count: 1,
 		});
 
+
+
 		this.counter = 0;
 	}
 	update(d) {
@@ -53,6 +66,8 @@ class gradientCircleMask extends MaskBase {
 		this.eyeL2.update(d, 'mouth');
 		this.eyeR.update(d, 'eyeR');
 		this.eyeR2.update(d, 'mouth');
+		this.head.update(d, 'head');
+		this.head2.update(d, 'head');
 	}
 	show() {
 		document.getElementById(this.gui.domElement.id).style.visibility = "visible";
