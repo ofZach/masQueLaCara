@@ -12,9 +12,9 @@ class tubeCircle{
 			var circle = new energyCircle({
 				radius: d.radius * i + d.innerRadius,
 				stroke: d.radius,
-				energy: this.random(0.999, 0.9999),
+				energy: this.random(0.999999, 0.9999999),
 				scaleFactor: this.random(0.7, 1.4),
-				startColor: '#ff0099',
+				startColor: '#9900ff',
 				endColor: '#ea4a73',
 				shape: 'circle',
 			});
