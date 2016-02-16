@@ -3,6 +3,9 @@
 
 // I think these lines need some smoothing (blurring) 
 // or to be offset in 3d...  
+// don't have the right look yet  : /
+
+
 class lineDisplaceMask extends MaskBase {
 
 	//------------------------------------------
