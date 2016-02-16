@@ -2,12 +2,15 @@
 class MaskManager {
 	setup() {
 		this.masks = [
+			new emptyMask(),
+			new attractFacePointMask(),
 			new demoMask(),
 			new crowMask(),
 			new bounceMask(),
 			new gradientMask(),
 			new blobGradientMask(),
 			new pyrateMask(),
+			new lineDisplaceMask(),
 			/*new rotationMask(),  demo for showing how rotation energy might work to move shapes */
 			new gradientCircleMask(),
 			new clipingMask(),

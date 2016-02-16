@@ -47,7 +47,9 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('circleFaceMask');
+
+
+MM.setMaskByName('lineDisplaceMask');
 
 console.log(MM);
 

@@ -28,14 +28,6 @@ class innerCircle {
 		var targetScale = innerRadius + (outerRadius - innerRadius) / 2.0;
 		var curScale = this.path.segments[0].point.getDistance(this.path.position);
 		this.path.scale(targetScale / curScale);
-		// var diff = this.path.segments[0].point.subtract(this.path.position);
-		// console.log(diff.length);
-		// var targetScale = (outerRadius - innerRadius) / 2.0;
-		// for (var i = 0; i < this.path.segments.length; i++) {
-		// 	this.path.segments[i].point = this.path.segments[i].point.subtract(this.path.position).normalize(targetScale);
-		// 	this.path.segments[i].point.add(this.path.position);
-		// }
-		//console.log(targetScale);
 	}
 
 
