@@ -6,58 +6,12 @@ class rotator{
 		this.scaleFactor = d.scaleFactor;
 		this.angleEnergy = 0; // vel
 		this.rotation = 0;
+		this.offset = d.offset;
 		this.angleLastFrame = 0;
 		this.counter = 0;
-		
-		this.path1 = new paper.Path.RegularPolygon({
-			center: [0, 0],
-			sides: 3,
-			strokeWidth: d.stroke,
-			radius: d.radius-50,
-			strokeColor:{
-					   gradient: {
-					       stops: [d.startColor, d.endColor]
-					   },
-					   origin: [-d.radius, 0],
-					   destination:  [d.radius, 0],
-			},
-
-		});
-		this.path2 = new paper.Path.RegularPolygon({
-			center: [0, 0],
-			sides: 3,
-			strokeWidth: d.stroke,
-			radius: d.radius,
-			strokeColor:{
-					   gradient: {
-					       stops: [d.startColor, d.endColor]
-					   },
-					   origin: [-d.radius, 0],
-					   destination:  [d.radius, 0],
-			},
-
-		});
-		this.path1.visible = false;
-		this.path2.visible = false;
-		this.path1.strokeColor.gradient.stops[0].color.alpha = 0.2;
-		this.path1.strokeColor.gradient.stops[1].color.alpha = 0.9;
-		// this.path1.position = [100, 0];
-		// this.result = this.path1.subtract(this.path2);
-		this.group = new paper.Group();
-		this.group.pivot = [0, 0];
-		
-		this.group.transformContent = false;
-		console.log("this.path.children = " + this.path);
 	}
 	update(data, name){
 		var d = data['faceParts'][name];
-		if(this.result) this.result.remove();
-		this.path2.rotation = this.rotation;
-		this.path2.pivot = [0, 0];
-		// this.path2.segments[0].handleIn.angle = this.rotation;
-		// this.path2.segments[0].handleOut.angle = this.rotation+180;
-		this.result = this.path1.unite(this.path2);
-		this.group.addChild(this.result);
 		this.counter++;
 		// fade out the prev energy: 
 		this.angleEnergy = this.angleEnergy * this.energy;
@@ -73,11 +27,93 @@ class rotator{
 		// store the last frame
 		this.angleLastFrame = leftEyeAngleThisFrame;
 		// rotate the eye
-		this.rotation += this.angleEnergy;
+		this.rotation += this.angleEnergy ;
 		// this.group.rotation = this.rotation;
-		this.group.position = d.position;
 	}
 };
+class triangle {
+	constructor(d){
+		this.result;
+		this.offset = d.offset;
+		this.rotator1 = new rotator({
+			energy: 0.999,
+			scaleFactor: 0.7,
+			offset: d.offset,
+		});
+		this.rotator2 = new rotator({
+			energy: 0.99,
+			scaleFactor: 1.2,
+			offset: d.offset,
+		});
+		this.path1 = new paper.Path.Circle({
+				center: [0, 0],
+				radius: d.radius+40,
+				strokeWidth: d.stroke,
+				strokeColor:{
+					   gradient: {
+					       stops: [d.startColor, d.endColor]
+					   },
+					   origin: [-d.radius, 0],
+					   destination:  [d.radius, 0],
+				}
+		});
+		this.path2 = new paper.Path.Circle({
+				center: [0, 0],
+				radius: d.radius,
+				strokeWidth: d.stroke,
+				strokeColor:{
+					   gradient: {
+					       stops: [d.startColor, d.endColor]
+					   },
+					   origin: [-d.radius, 0],
+					   destination:  [d.radius, 0],
+				}
+		});
+		// this.path2 = new paper.Path.Circle({
+		// 		center: [100, 0],
+		// 		radius: d.radius-100,
+		// 		strokeWidth: d.stroke,
+		// 		strokeColor:{
+		// 			   gradient: {
+		// 			       stops: [d.startColor, d.endColor]
+		// 			   },
+		// 			   origin: [-d.radius, 0],
+		// 			   destination:  [d.radius, 0],
+		// 		}
+		// });
+		this.path1.visible = false;
+		this.path2.visible = false;
+		this.path1.strokeColor.gradient.stops[0].color.alpha = 0.2;
+		this.path1.strokeColor.gradient.stops[1].color.alpha = 0.9;
+		// this.path1.position = [100, 0];
+		// this.result = this.path1.subtract(this.path2);
+		this.group = new paper.Group();
+		this.group.pivot = [0, 0];
+		this.group.transformContent = false;
+		this.counter = 0;
+	}
+	update(data, name){
+		var d = data['faceParts'][name];
+		if(this.result) this.result.remove();
+		this.rotator1.update(data, name);
+		this.rotator2.update(data, name);
+		// this.path2.rotation = this.rotator1.rotation;
+		// this.path1.rotation = 1;
+		this.path1.position = data['faceParts']['eyeL']['position'];
+		this.path2.position = data['faceParts']['eyeR']['position'];
+		this.path2.position.x += Math.sin(this.counter/100.0) * 300;
+		// this.path2.scaling = Math.cos(this.counter/20)*0.5+0.5+1;
+		// this.path2.pivot = [0, 0];
+		// this.path2.segments[0].handleIn.angle = this.rotation;
+		// this.path2.segments[0].handleOut.angle = this.rotation+180;
+		this.result = this.path1.unite(this.path2);
+		// this.result.rotation = Math.cos(this.counter/20)*120;
+		this.group.addChild(this.result);
+		// this.group.position = d.position;
+		// this.group.rotation = this.offset;
+		this.counter++;
+	}
+}
 class clipingMask extends MaskBase {
 	setup() {
 
@@ -103,11 +139,23 @@ class clipingMask extends MaskBase {
 		//this.gui.add(this.guiInfo, 'explode');
 		//this.gui.toggleHide();
 
-		this.head = new rotator({
-			radius: 400,
+		this.head = new triangle({
+			radius: 100,
 				stroke: 40,
 				energy: 0.999,
 				scaleFactor: 0.7,
+				offset: 0,
+				startColor: '#3a963e',
+				endColor: '#ea4a73',
+				shape: 'circle',
+		});
+
+		this.head2 = new triangle({
+			radius: 100,
+				stroke: 40,
+				energy: 0.99,
+				offset: 100,
+				scaleFactor: 0.9,
 				startColor: '#3a963e',
 				endColor: '#ea4a73',
 				shape: 'circle',
@@ -118,7 +166,8 @@ class clipingMask extends MaskBase {
 	}
 	update(d) {
 		//console.log(this.guiSettings['speed']);
-		this.head.update(d, 'head');
+		// this.head.update(d, 'head');
+		this.head2.update(d, 'head');
 
 	}
 	show() {
