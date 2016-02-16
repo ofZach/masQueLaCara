@@ -8,7 +8,7 @@ class MaskManager {
 			new gradientMask(),
 			new blobGradientMask(),
 			new pyrateMask(),
-			new rotationMask(),
+			/*new rotationMask(),  demo for showing how rotation energy might work to move shapes */
 			new gradientCircleMask(),
 			new clipingMask(),
 			new circleFaceMask(),

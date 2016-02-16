@@ -94,10 +94,10 @@ class circleFaceMask extends MaskBase {
 
 		this.counter++;
 
-		this.leftEye.setCircle(0, 30);
+		this.leftEye.setCircle(20, 30);
 		this.leftEye.path.position = data['faceParts']['eyeL']['position']
 
-		this.rightEye.setCircle(0, 30);
+		this.rightEye.setCircle(20, 30);
 		this.rightEye.path.position = data['faceParts']['eyeR']['position']
 
 		this.noseA.setCircle(0, 5);
