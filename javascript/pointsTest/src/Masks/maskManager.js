@@ -6,12 +6,14 @@ class MaskManager {
 			new crowMask(),
 			new bounceMask(),
 			new gradientMask(),
+			new flowerMask(),
 			new blobGradientMask(),
 			new pyrateMask(),
 			new rotationMask(),
 			new gradientCircleMask(),
 			new clipingMask(),
 			new circleFaceMask(),
+			new flowerMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
