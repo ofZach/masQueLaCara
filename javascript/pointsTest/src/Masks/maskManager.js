@@ -11,6 +11,7 @@ class MaskManager {
 			new rotationMask(),
 			new gradientCircleMask(),
 			new clipingMask(),
+			new circleFaceMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

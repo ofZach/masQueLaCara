@@ -47,7 +47,9 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('clipingMask');
+MM.setMaskByName('circleFaceMask');
+
+console.log(MM);
 
 function onFrame(event) {
 
