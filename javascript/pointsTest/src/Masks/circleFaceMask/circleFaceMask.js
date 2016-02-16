@@ -28,14 +28,6 @@ class innerCircle {
 		var targetScale = innerRadius + (outerRadius - innerRadius) / 2.0;
 		var curScale = this.path.segments[0].point.getDistance(this.path.position);
 		this.path.scale(targetScale / curScale);
-		// var diff = this.path.segments[0].point.subtract(this.path.position);
-		// console.log(diff.length);
-		// var targetScale = (outerRadius - innerRadius) / 2.0;
-		// for (var i = 0; i < this.path.segments.length; i++) {
-		// 	this.path.segments[i].point = this.path.segments[i].point.subtract(this.path.position).normalize(targetScale);
-		// 	this.path.segments[i].point.add(this.path.position);
-		// }
-		//console.log(targetScale);
 	}
 
 
@@ -94,10 +86,10 @@ class circleFaceMask extends MaskBase {
 
 		this.counter++;
 
-		this.leftEye.setCircle(0, 30);
+		this.leftEye.setCircle(20, 30);
 		this.leftEye.path.position = data['faceParts']['eyeL']['position']
 
-		this.rightEye.setCircle(0, 30);
+		this.rightEye.setCircle(20, 30);
 		this.rightEye.path.position = data['faceParts']['eyeR']['position']
 
 		this.noseA.setCircle(0, 5);
