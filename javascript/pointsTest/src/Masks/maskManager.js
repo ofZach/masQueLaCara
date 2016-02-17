@@ -17,6 +17,8 @@ class MaskManager {
 			new clipingMask(),
 			new circleFaceMask(),
 			new flowerMask(),
+			new tentacleMask(),
+			new flowerShapeMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

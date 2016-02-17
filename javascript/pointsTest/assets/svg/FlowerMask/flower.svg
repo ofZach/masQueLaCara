@@ -12,13 +12,6 @@
 	</linearGradient>
 	<path style="fill:url(#SVGID_1_);" d="M48.309,198.338C-13.443,136.306-17.002,68.644,43.462,0
 		C88.212,65.789,105.496,116.374,48.309,198.338z"/>
-	
-		<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="1791.877" y1="-4731.3857" x2="1759.7952" y2="-4645.4297" gradientTransform="matrix(0.589 0.4978 0.399 -0.4907 865.469 -3120.8765)">
-		<stop  offset="0" style="stop-color:#CF9777"/>
-		<stop  offset="1" style="stop-color:#A1002C;stop-opacity:0"/>
-	</linearGradient>
-	<path style="fill:url(#SVGID_2_);" d="M45.984,99.169c-27.035-27.389-29.34-56.52-4.375-85.328
-		C61.443,42.647,69.397,64.597,45.984,99.169z"/>
 </g>
 <g id="Layer_1">
 </g>

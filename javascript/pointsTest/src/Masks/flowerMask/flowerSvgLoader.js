@@ -33,8 +33,8 @@ class flowerSvgLoader{
 						destination: paths[i].segments[1].point,
 					}
 				}
-					paths[i].fillColor.gradient.stops[1].color.alpha = 0.0;
-					paths[i].fillColor.gradient.stops[0].color.alpha = 0.7;
+					paths[i].fillColor.gradient.stops[1].color.alpha = 0.2;
+					paths[i].fillColor.gradient.stops[0].color.alpha = 1.7;
 				self.init['path'+i] = {};
 				self.init['path'+i]['posPoint1'] = [];
 
@@ -66,15 +66,17 @@ class flowerSvgLoader{
 			for (var i = 0; i < paths.length; i++) {
 				var init = this.init['path'+i];
 				var osc = d.animate;
+				paths[i].pivot.x = d.pivot[0];
+				paths[i].pivot.y = d.pivot[1];
 				// paths[i].rotation = d.animate*osc;
 				paths[i].segments[0].point.y = init.posPoint0.y + osc*20;
 				// paths[i].segments[0].point.x = init.posPoint0.x + osc*50-30;
 				// paths[i].segments[0].point.y = init.posPoint0.y + osc3*100;
 				// paths[i].segments[0].point.y = init.posPoint0.y - osc*100;
 				// paths[i].segments[1].point.y = init.posPoint1.y- osc2*50;
-				paths[i].segments[0].handleIn.angle = init.inPoint0 - osc*60 + 20 ;
-				paths[i].segments[0].handleOut.angle = init.outPoint0 + osc*60 - 20;  
-				paths[i].opacity = (1.2-osc);
+				paths[i].segments[0].handleIn.angle = init.inPoint0 - osc*20 + 30 ;
+				paths[i].segments[0].handleOut.angle = init.outPoint0 + osc*20 - 30;  
+				// paths[i].opacity = (1.5-osc);
 				// paths[i].segments[1].handleOut.angle = init.outPoint1 + osc2*100;  
 			}
 		}
