@@ -33,8 +33,8 @@ class flowerSvgLoader{
 						destination: paths[i].segments[1].point,
 					}
 				}
-					paths[i].fillColor.gradient.stops[1].color.alpha = 0.2;
-					paths[i].fillColor.gradient.stops[0].color.alpha = 1.7;
+				paths[i].fillColor.gradient.stops[1].color.alpha = 0.2;
+				paths[i].fillColor.gradient.stops[0].color.alpha = 1.7;
 				self.init['path'+i] = {};
 				self.init['path'+i]['posPoint1'] = [];
 

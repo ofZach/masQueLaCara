@@ -13,15 +13,15 @@ class petal{
 		this.pos = [this.shape.segments[0].point,this.shape.segments[1].point]
 		this.shape.fillColor = {
 			gradient: {
-				stops: ['#87d0a1', '#ea4a73']
+				stops: [d.colorStart,d.colorEnd]
 			},
 			origin: this.pos[0],
 			destination: this.pos[1],
 		}
 		// this.shape.bounds.selected = true;
 		// this.shape.fullySelected = true;
-		this.shape.fillColor.gradient.stops[1].color.alpha = 0.2;
-		this.shape.fillColor.gradient.stops[0].color.alpha = 1.7;
+		this.shape.fillColor.gradient.stops[1].color.alpha = 0;
+		this.shape.fillColor.gradient.stops[0].color.alpha = 1.0;
 		this.shape.segments[0].handleIn.length = d.length;
 		this.shape.segments[0].handleOut.length = d.length;
 		this.shape.segments[1].handleIn.length = d.length;
@@ -77,30 +77,48 @@ class flowerShapeMask extends MaskBase {
 			length: 130, 
 			radius: 270, 
 			offset: [50, 0],
+			colorStart: '#ffc541',
+			colorEnd: '#4e589e',
 			angleRange: 45, 
 			angleRangeH: 100, 
 			angleOffset: 0, 
-			speed: 16,
+			speed: 8,
 			isOsc: true, 
 		})
 		this.eyeR = new petal({
 			length: 130, // hadle length
 			radius: 270, 
 			offset: [-50, 0],
+			colorStart: '#ffc541',
+			colorEnd: '#4e589e',
 			angleRange: 45, // pendulum
 			angleRangeH: 100, // for handles
 			angleOffset: 180, // rotation
-			speed: 16,
+			speed: 8,
 			isOsc: true, // auto rotation
 		})
 		this.head = new petal({
 			length: 400,
 			radius: 600,
 			offset: [0, -120],
+			colorStart: '#ffc541',
+			colorEnd: '#4e589e',
 			angleRange: 45,
 			angleRangeH: 100,
 			angleOffset: -90,
 			speed: 20,
+			isOsc: true,
+		})
+		this.head2 = new petal({
+			length: 400,
+			radius: 300,
+			offset: [0, 100],
+			colorStart: '#a96f99',
+			colorEnd: '#4e589e',
+			angleRange: 90,
+			angleRangeH: 500,
+			angleOffset: 90,
+			speed: 50,
 			isOsc: true,
 		})
 		this.angle = 0;
@@ -118,16 +136,20 @@ class flowerShapeMask extends MaskBase {
 		var cheekL = data['faceParts']['cheekL'];
 		this.angle = this.smooth(this.angle, head.angle, 0.95);
 		this.eyeL.update(eyeL);
-		this.eyeL.angleRange = this.angle*500;
+		this.eyeL.angleRange = this.angle*140;
 		this.eyeL.angleRangeH = this.angle*1000;
 
 		this.eyeR.update(eyeR);
-		this.eyeR.angleRange = this.angle*500;
+		this.eyeR.angleRange = this.angle*140;
 		this.eyeR.angleRangeH = this.angle*1000;
 		
 		this.head.update(head);
 		this.head.angleRange = this.angle*500;
 		this.head.angleRangeH = this.angle*1000;
+
+		this.head2.update(head);
+		this.head2.angleRange = this.angle*250;
+		this.head2.angleRangeH = this.angle*500;
 		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...
 	}
 	show() {
