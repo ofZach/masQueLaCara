@@ -20,6 +20,7 @@ class MaskManager {
 			new tentacleMask(),
 			new flowerShapeMask(),
 			new candleMask(),
+			new jellyBeanMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

@@ -8,7 +8,7 @@ class candleMask extends MaskBase {
 		this.shapes = [];
 		for (var i = 0; i < 5; i++) {
 			var shape = new petal({
-				length: random(100, 200), 
+				length: 100*i, 
 				radius: 100*i, 
 				offset: [i*20, 0],
 				colorStart: '#ffc541',
