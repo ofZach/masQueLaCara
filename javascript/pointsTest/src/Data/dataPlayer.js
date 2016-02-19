@@ -21,7 +21,7 @@ class dataPlayer {
 		this.firstFrame = true;
 		this.refFrame = false;
 		this.nPts = 68;
-		this.offset = new paper.Point(-100, 200);
+		this.offset = new paper.Point(-100,0);
 		this.ptsForCircleTest = [];
 		this.prevFrameData = []; // for velocity calculation
 		this.velocity = []; // for velocity calculation

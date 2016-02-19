@@ -31,95 +31,59 @@ class rotator{
 		// this.group.rotation = this.rotation;
 	}
 };
-class triangle {
+class circles {
 	constructor(d){
 		this.result;
 		this.offset = d.offset;
 		this.rotator1 = new rotator({
-			energy: 0.999,
+			energy: d.energy,
 			scaleFactor: 0.7,
 			offset: d.offset,
 		});
-		this.rotator2 = new rotator({
-			energy: 0.99,
-			scaleFactor: 1.2,
-			offset: d.offset,
-		});
-		this.path1 = new paper.Path.Circle({
-				center: [0, 0],
-				radius: d.radius+40,
-				strokeWidth: d.stroke,
-				strokeColor:{
-					   gradient: {
-					       stops: [d.startColor, d.endColor]
-					   },
-					   origin: [-d.radius, 0],
-					   destination:  [d.radius, 0],
-				}
-		});
-		this.path2 = new paper.Path.Circle({
+		this.outerCircle = new paper.Path.Circle({
 				center: [0, 0],
 				radius: d.radius,
-				strokeWidth: d.stroke,
-				strokeColor:{
-					   gradient: {
-					       stops: [d.startColor, d.endColor]
-					   },
-					   origin: [-d.radius, 0],
-					   destination:  [d.radius, 0],
-				}
+				fillColor: d.outerColor,
 		});
-		// this.path2 = new paper.Path.Circle({
-		// 		center: [100, 0],
-		// 		radius: d.radius-100,
-		// 		strokeWidth: d.stroke,
-		// 		strokeColor:{
-		// 			   gradient: {
-		// 			       stops: [d.startColor, d.endColor]
-		// 			   },
-		// 			   origin: [-d.radius, 0],
-		// 			   destination:  [d.radius, 0],
-		// 		}
-		// });
-		this.path1.visible = false;
-		this.path2.visible = false;
-		this.path1.strokeColor.gradient.stops[0].color.alpha = 0.2;
-		this.path1.strokeColor.gradient.stops[1].color.alpha = 0.9;
-		// this.path1.position = [100, 0];
-		// this.result = this.path1.subtract(this.path2);
+		this.innerCircle = new paper.Path.Circle({
+				center: [0, 0],
+				radius: d.radiusInner,
+				fillColor: d.innerColor,
+		});
+		
 		this.group = new paper.Group();
-		this.group.pivot = [0, 0];
 		this.group.transformContent = false;
+		this.group.addChild(this.outerCircle);
+		this.group.addChild(this.innerCircle);
+		this.smallCirclesCount = 5;
+		this.rand = [];
+		for (var i = 0; i < this.smallCirclesCount; i++) {
+			var smallCircle = new paper.Path.Circle({
+					center: [calc.random(-d.radius*0.2, d.radius), calc.random(-d.radius*0.2, d.radius)],
+					radius: calc.random(d.radius*0.03, d.radius*0.05),
+					fillColor: 'black',
+			});
+			this.rand.push(Math.random());
+			smallCircle.pivot = [calc.random(d.radius*0.01, d.radius*0.04), calc.random(d.radius*0.01, d.radius*0.04)] ;
+			this.group.addChild(smallCircle);
+		}
+		this.group.pivot = d.pivot;
 		this.counter = 0;
 	}
 	update(data, name){
 		var d = data['faceParts'][name];
-		if(this.result) this.result.remove();
 		this.rotator1.update(data, name);
-		this.rotator2.update(data, name);
-		// this.path2.rotation = this.rotator1.rotation;
-		// this.path1.rotation = 1;
-		this.path1.position = data['faceParts']['eyeL']['position'];
-		this.path2.position = data['faceParts']['eyeR']['position'];
-		this.path2.position.x += Math.sin(this.counter/100.0) * 300;
-		// this.path2.scaling = Math.cos(this.counter/20)*0.5+0.5+1;
-		// this.path2.pivot = [0, 0];
-		// this.path2.segments[0].handleIn.angle = this.rotation;
-		// this.path2.segments[0].handleOut.angle = this.rotation+180;
-		this.result = this.path1.unite(this.path2);
-		// this.result.rotation = Math.cos(this.counter/20)*120;
-		this.group.addChild(this.result);
-		// this.group.position = d.position;
-		// this.group.rotation = this.offset;
+		this.group.position = d.position;
+		for (var i = 2; i < this.smallCirclesCount+2; i++) {
+			this.group.children[i].rotation = this.rotator1.rotation*this.rand[i-2];
+		}
 		this.counter++;
 	}
 }
 class clipingMask extends MaskBase {
 	setup() {
-
 		super.addLayer();
 		this.name = 'clipingMask';
-
 		//---------------------------------------------------- gui
 		this.guiSettings = {
 			message: 'dat.gui',
@@ -135,40 +99,56 @@ class clipingMask extends MaskBase {
 		this.gui.domElement.id = this.name + '_gui';
 		document.getElementById(this.gui.domElement.id).style.visibility = "hidden";
 		//---------------------------------------------------- 
-
 		//this.gui.add(this.guiInfo, 'explode');
 		//this.gui.toggleHide();
 
-		this.head = new triangle({
-			radius: 100,
-				stroke: 40,
-				energy: 0.999,
-				scaleFactor: 0.7,
-				offset: 0,
-				startColor: '#3a963e',
-				endColor: '#ea4a73',
-				shape: 'circle',
+		this.clippingPath = new paper.Path.RegularPolygon({
+			center: [0, 0],
+			radius: 250,
+			sides: 3,
+			fillColor: 'white',
 		});
-
-		this.head2 = new triangle({
-			radius: 100,
-				stroke: 40,
-				energy: 0.99,
-				offset: 100,
-				scaleFactor: 0.9,
-				startColor: '#3a963e',
-				endColor: '#ea4a73',
-				shape: 'circle',
+		this.clippingPath.rotation = 60;
+		this.eyeL = new circles({
+			radiusInner: 130,
+			radius: 160,
+			innerColor: '#a96f99',
+			outerColor: '#ffff00',
+			pivot: [100, 0],
+			energy: 0.999,
+			scaleFactor: 0.7,
+			offset: 0,
 		});
-
-
+		this.eyeR = new circles({
+			radiusInner: 120,
+			radius: 200,
+			innerColor: '#fbe3b8',
+			outerColor: '#a96f99',
+			pivot: [-100, 100],
+			energy: 0.999,
+			scaleFactor: 0.7,
+			offset: 0,
+		});
+		this.groupContent = new paper.Group(this.eyeL.group, this.eyeR.group);
+		this.groupContent.transformContent = false;
+		this.groupContent.pivot = [0,0];
+		this.groupMask = new paper.Group( this.clippingPath, this.groupContent);
+		this.groupMask.transformContent = false;
+		this.groupMask.clipped = true;
 		this.counter = 0;
 	}
-	update(d) {
-		//console.log(this.guiSettings['speed']);
-		// this.head.update(d, 'head');
-		this.head2.update(d, 'head');
+	update(data) {
+		var head = data['faceParts']['head'];
+		var nose = data['faceParts']['nose'];
+		var eyeL = data['faceParts']['eyeL'];
+		var eyeR = data['faceParts']['eyeR'];
+		var mouth = data['faceParts']['mouth'];
+		var cheekL = data['faceParts']['cheekL'];
 
+		this.eyeL.update(data, 'eyeL');
+		this.eyeR.update(data, 'eyeR');
+
+		this.clippingPath.position = head.position;
 	}
 	show() {
 		document.getElementById(this.gui.domElement.id).style.visibility = "visible";
