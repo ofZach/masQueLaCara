@@ -50,13 +50,13 @@ class circles {
 				radius: d.radiusInner,
 				fillColor: d.innerColor,
 		});
-		
 		this.group = new paper.Group();
 		this.group.transformContent = false;
 		this.group.addChild(this.outerCircle);
 		this.group.addChild(this.innerCircle);
-		this.smallCirclesCount = 5;
 		this.rand = [];
+		// create small cirecles
+		this.smallCirclesCount = 5;
 		for (var i = 0; i < this.smallCirclesCount; i++) {
 			var smallCircle = new paper.Path.Circle({
 					center: [calc.random(-d.radius*0.2, d.radius), calc.random(-d.radius*0.2, d.radius)],
@@ -74,6 +74,7 @@ class circles {
 		var d = data['faceParts'][name];
 		this.rotator1.update(data, name);
 		this.group.position = d.position;
+		// rotate small circles
 		for (var i = 2; i < this.smallCirclesCount+2; i++) {
 			this.group.children[i].rotation = this.rotator1.rotation*this.rand[i-2];
 		}
@@ -108,6 +109,14 @@ class clipingMask extends MaskBase {
 			sides: 3,
 			fillColor: 'white',
 		});
+
+		this.line = new paper.Path({
+			strokeWidth: 1,
+			strokeColor: 'white',
+		});
+		this.line.add([0, 0]);
+		this.line.add([500, 0]);
+		this.line2 = this.line.clone();
 		this.clippingPath.rotation = 60;
 		this.eyeL = new circles({
 			radiusInner: 130,
@@ -129,12 +138,33 @@ class clipingMask extends MaskBase {
 			scaleFactor: 0.7,
 			offset: 0,
 		});
-		this.groupContent = new paper.Group(this.eyeL.group, this.eyeR.group);
+		this.cheekR = new circles({
+			radiusInner: 10,
+			radius: 100,
+			innerColor: '#fbe3b8',
+			outerColor: '#fbe3b8',
+			pivot: [-40, 0],
+			energy: 0.99,
+			scaleFactor: 0.7,
+			offset: 0,
+		});
+		this.groupContent = new paper.Group(this.eyeL.group, this.eyeR.group, this.cheekR.group);
 		this.groupContent.transformContent = false;
 		this.groupContent.pivot = [0,0];
 		this.groupMask = new paper.Group( this.clippingPath, this.groupContent);
 		this.groupMask.transformContent = false;
 		this.groupMask.clipped = true;
+		this.circle = new paper.Path.Circle({
+				center: [0, 0],
+				radius: 50,
+				fillColor: '#a96f99',
+		});
+		this.circle2 = new paper.Path.Circle({
+				center: [0, 0],
+				radius: 20,
+				fillColor: '#a96f99',
+		});
+		this.circle.pivot = [-40, 0];
 		this.counter = 0;
 	}
 	update(data) {
@@ -144,10 +174,14 @@ class clipingMask extends MaskBase {
 		var eyeR = data['faceParts']['eyeR'];
 		var mouth = data['faceParts']['mouth'];
 		var cheekL = data['faceParts']['cheekL'];
-
+		var cheekR = data['faceParts']['cheekR'];
+		this.line.position = head.position;
+		this.line2.position = head.position.add([0, -194]);
+		this.circle.position = cheekR.position;
+		this.circle2.position = cheekL.position;
 		this.eyeL.update(data, 'eyeL');
 		this.eyeR.update(data, 'eyeR');
-
+		this.cheekR.update(data, 'cheekR');
 		this.clippingPath.position = head.position;
 	}
 	show() {
