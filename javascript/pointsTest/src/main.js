@@ -47,7 +47,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('squareMask3');
+MM.setMaskByName('squareMask5');
 
 console.log(MM);
 

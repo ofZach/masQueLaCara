@@ -17,6 +17,7 @@ class stripes{
 				strokeWidth: 2,
 				strokeColor: 'white',
 			});
+			
 
 			this.group.addChild(line);
 		}
@@ -177,6 +178,7 @@ class stripeyMask extends MaskBase {
 		this.linesEyeR.group.rotation = this.deg(angle);
 
 		this.line.position =  nose.position.add([0, -120]);
+		this.mouthGroup.rotation = this.deg(angle);
 
 		this.linesHead.update();
 		this.linesEarL.update();

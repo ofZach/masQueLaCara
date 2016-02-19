@@ -24,6 +24,8 @@ class MaskManager {
 			new squareMask(),
 			new squareMask2(),
 			new squareMask3(),
+			new squareMask4(),
+			new squareMask5(),
 			new stripeyMask(),
 		];
 		this.curMaskNum = 0;
