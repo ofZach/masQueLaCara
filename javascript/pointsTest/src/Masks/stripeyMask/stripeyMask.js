@@ -45,18 +45,34 @@ class stripeyMask extends MaskBase {
 			freq: 3,
 			range: 100,
 		});
+		this.linesEyeL = new stripes({
+			length: 100,
+			distance: 10,
+			count: 3,
+			speed: 20,
+			freq: 3,
+			range: 100,
+		});
+		this.linesEyeR = new stripes({
+			length: 120,
+			distance: 10,
+			count: 20,
+			speed: 20,
+			freq: 3,
+			range: 100,
+		});
 		this.linesEarL = new stripes({
 			length: 600,
 			distance: 20,
-			count: 5,
+			count: 10,
 			speed: 20,
 			freq: 3,
 			range: 10,
 		});
 		this.linesEarR = new stripes({
 			length: 600,
-			distance: 10,
-			count: 5,
+			distance: 20,
+			count: 10,
 			speed: 20,
 			freq: 3,
 			range: 10,
@@ -135,7 +151,7 @@ class stripeyMask extends MaskBase {
 		var angle = this.angle;
 		var velocity = this.velocity;
 		
-		this.headGroup.position = head.position.add([0, -120]);
+		this.headGroup.position = head.position.add([0, -220]);
 		this.headGroup.rotation = this.deg(angle)+90;
 
 		this.earLGroup.position = earL.position;
@@ -149,6 +165,9 @@ class stripeyMask extends MaskBase {
 
 		this.mouthGroup.position = mouth.position;
 		this.mouthGroup.rotation = this.deg(angle);
+
+		this.linesEyeL.group.position = eyeL.position;
+		this.linesEyeR.group.position = eyeR.position;
 
 		this.linesHead.update();
 		this.linesEarL.update();
