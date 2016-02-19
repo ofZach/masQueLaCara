@@ -175,14 +175,14 @@ class clipingMask extends MaskBase {
 		var mouth = data['faceParts']['mouth'];
 		var cheekL = data['faceParts']['cheekL'];
 		var cheekR = data['faceParts']['cheekR'];
+		this.clippingPath.position = head.position;
+		this.eyeL.update(data, 'eyeL');
+		this.eyeR.update(data, 'eyeR');
+		this.cheekR.update(data, 'cheekR');
 		this.line.position = head.position.add([-head.angle*500, 0]);
 		this.line2.position = head.position.add([head.angle*500, -194]);
 		this.circle.position = cheekR.position;
 		this.circle2.position = cheekL.position;
-		this.eyeL.update(data, 'eyeL');
-		this.eyeR.update(data, 'eyeR');
-		this.cheekR.update(data, 'cheekR');
-		this.clippingPath.position = head.position;
 	}
 	show() {
 		document.getElementById(this.gui.domElement.id).style.visibility = "visible";
