@@ -37,6 +37,12 @@ class stripeyMask extends MaskBase {
 	setup() {
 		super.addLayer();
 		this.name = "stripeyMask"
+		this.line = new paper.Path.Line({
+				from: [0, 0], 
+				to: [0, 300],
+				strokeWidth: 2,
+				strokeColor: 'white',
+			});
 		this.linesHead = new stripes({
 			length: 100,
 			distance: 10,
@@ -47,7 +53,7 @@ class stripeyMask extends MaskBase {
 		});
 		this.linesEyeL = new stripes({
 			length: 100,
-			distance: 10,
+			distance: 50,
 			count: 3,
 			speed: 20,
 			freq: 3,
@@ -62,15 +68,15 @@ class stripeyMask extends MaskBase {
 			range: 100,
 		});
 		this.linesEarL = new stripes({
-			length: 600,
-			distance: 20,
+			length: 400,
+			distance: 10,
 			count: 10,
 			speed: 20,
 			freq: 3,
 			range: 10,
 		});
 		this.linesEarR = new stripes({
-			length: 600,
+			length: 400,
 			distance: 20,
 			count: 10,
 			speed: 20,
@@ -78,9 +84,9 @@ class stripeyMask extends MaskBase {
 			range: 10,
 		});
 		this.linesNose = new stripes({
-			length: 300,
+			length: 400,
 			distance: 10,
-			count: 5,
+			count: 50,
 			speed: 20,
 			freq: 3,
 			range: 10,
@@ -160,14 +166,17 @@ class stripeyMask extends MaskBase {
 		this.earRGroup.position = earR.position;
 		this.earRGroup.rotation = this.deg(angle)+90;
 
-		this.noseGroup.position = nose.position;
-		this.noseGroup.rotation = this.deg(angle)+90;
+		this.noseGroup.position = head.position;
 
 		this.mouthGroup.position = mouth.position;
 		this.mouthGroup.rotation = this.deg(angle);
 
 		this.linesEyeL.group.position = eyeL.position;
+		this.linesEyeL.group.rotation = this.deg(angle);
 		this.linesEyeR.group.position = eyeR.position;
+		this.linesEyeR.group.rotation = this.deg(angle);
+
+		this.line.position =  nose.position.add([0, -120]);
 
 		this.linesHead.update();
 		this.linesEarL.update();
@@ -177,6 +186,7 @@ class stripeyMask extends MaskBase {
 
 		this.linesHead.range = angle*200;
 		this.linesEarL.range = angle*200;
+		this.linesNose.range = angle*500;
 		this.linesMouth.range = angle*200;
 	}
 

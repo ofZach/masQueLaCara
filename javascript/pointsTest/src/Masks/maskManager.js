@@ -23,6 +23,7 @@ class MaskManager {
 			new jellyBeanMask(),
 			new squareMask(),
 			new squareMask2(),
+			new squareMask3(),
 			new stripeyMask(),
 		];
 		this.curMaskNum = 0;
