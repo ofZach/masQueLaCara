@@ -22,6 +22,7 @@ class MaskManager {
 			new candleMask(),
 			new jellyBeanMask(),
 			new squareMask(),
+			new squareMask2(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
