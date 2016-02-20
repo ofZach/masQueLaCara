@@ -1,12 +1,11 @@
 'use strict';
 
-
 class emptyMask extends MaskBase {
 
 	//------------------------------------------
 	setup() {
 		super.addLayer();
-		this.name = "emptyMask"
+		this.name = "emptyMask";
 	}
 
 	//------------------------------------------

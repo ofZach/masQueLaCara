@@ -27,6 +27,7 @@ class MaskManager {
 			new squareMask4(),
 			new squareMask5(),
 			new stripeyMask(),
+			new circleClipMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
