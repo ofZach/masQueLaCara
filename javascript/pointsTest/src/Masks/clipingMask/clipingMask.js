@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 class rotator{
 	constructor(d){
 		this.energy = d.energy;

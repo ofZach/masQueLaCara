@@ -22,6 +22,7 @@ class tubeCircle{
 			this.group.addChild(circle.group);
 		}
 		this.group.pivot = [0, 0];
+		this.groupOffset = [0, 0];
 	}
 	random(min, max) {
 		return Math.random() * (max - min) + min;
@@ -34,6 +35,6 @@ class tubeCircle{
 		for (var i = 0; i < this.circles.length; i++) {
 			this.circles[i].update(data, name);
 		}
-		this.group.position = d.position;
+		this.group.position = d.position.add(this.groupOffset);
 	}
 }

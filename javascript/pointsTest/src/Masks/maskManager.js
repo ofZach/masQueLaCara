@@ -28,6 +28,7 @@ class MaskManager {
 			new squareMask5(),
 			new stripeyMask(),
 			new circleClipMask(),
+			new cthulhuMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
