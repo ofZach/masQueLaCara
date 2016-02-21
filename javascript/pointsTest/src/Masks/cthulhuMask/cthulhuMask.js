@@ -48,17 +48,17 @@ class cthulhuMask extends MaskBase {
 		var endColor = 'green';
 		this.lines = [];
 		this.linesInterval = [];
-		for (var i = 0; i < 12; i++) {
+		for (var i = 0; i < 7; i++) {
 			var line = new gradLine({
 				length: calc.random(100, 500),
-				width: width,
+				width: calc.random(10, width),
 				startColor: '#9900ff',
 				endColor: '#ea4a73',
 				stiffness: calc.random(500, 1000),
 				friction: calc.random(10, 15),
 				speed: calc.random(10, 30),
 			});
-			this.linesInterval.push( calc.random(20, 100));
+			this.linesInterval.push( calc.random(10, 20));
 			this.lines.push(line);
 		}
 		this.rotator1 = new rotator({
@@ -70,6 +70,33 @@ class cthulhuMask extends MaskBase {
 			innerRadius: 170,
 			radius: width,
 			count: 2,
+		});
+		this.eyeLLine = new gradLine({
+			length: 100,
+			width: width,
+			startColor: '#9900ff',
+			endColor: '#ea4a73',
+			stiffness: calc.random(500, 1000),
+			friction: calc.random(10, 15),
+			speed: calc.random(10, 30),
+		});
+		this.eyeRLine = new gradLine({
+			length: 100,
+			width: width,
+			startColor: '#9900ff',
+			endColor: '#ea4a73',
+			stiffness: calc.random(500, 1000),
+			friction: calc.random(10, 15),
+			speed: calc.random(10, 30),
+		});
+		this.noseLine = new gradLine({
+			length: 300,
+			width: width*2,
+			startColor: '#9900ff',
+			endColor: '#ea4a73',
+			stiffness: calc.random(500, 1000),
+			friction: calc.random(10, 15),
+			speed: calc.random(10, 30),
 		});
 		this.head.groupOffset = [0, -100];
 
@@ -91,11 +118,11 @@ class cthulhuMask extends MaskBase {
 		var lipLower = data['faceParts']['lipLower'];
 
 		this.head.update(data, 'head');
-		this.head.group.scaling = head.scale
+		this.head.group.scaling = head.scale;
 		this.rotator1.update(data, 'head');
 		for (var i = 0; i < this.lines.length; i++) {
 			var interval = this.linesInterval[i];
-			var angle = calc.deg(head.angle) + interval*i + this.rotator1.rotation;
+			var angle = calc.deg(head.angle) + interval*i;
 			var radius = 170*head.scale;
 			var linePos = this.lines[i].line.position;
 			var centerPoint = head.position.add([0, -100]);
@@ -103,6 +130,11 @@ class cthulhuMask extends MaskBase {
 			linePos.y = centerPoint.y + Math.sin(calc.rad(angle))*radius;
 			this.lines[i].update(head.velocity.length);
 		}
+		this.eyeLLine.update(head.velocity.length);
+		this.eyeLLine.line.position = eyeL.position;
+		this.eyeRLine.update(head.velocity.length);
+		this.eyeRLine.line.position = eyeR.position;
+		this.noseLine.line.position = nose.position.add([0, -200]);
 		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...
 	}
 
