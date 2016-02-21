@@ -107,21 +107,38 @@ class clipingMask extends MaskBase {
 			radius: 250,
 			sides: 3,
 			fillColor: 'white',
+			transformContent: false,
 		});
-
-		this.line = new paper.Path({
-			strokeWidth: 1,
-			strokeColor: 'white',
+		this.noseClipPath = new paper.Path.Rectangle({
+			from: [0, 0],
+			to: [100, 210],
+			fillColor: 'white',
+			transformContent: false,
+			// fullySelected: true,
 		});
-		this.line.add([0, 0]);
-		this.line.add([500, 0]);
+		this.line = new paper.Path.Line({
+			from:[0, 0],
+			to: [100, 0],
+			strokeWidth: 10,
+			strokeColor: '#a96f99',
+		});
+		this.triangle = new paper.Path.RegularPolygon({
+			center: [0, 0],
+			radius: 50,
+			sides: 3,
+			fillColor: '#a96f99',
+			transformContent: false,
+			rotation: 60,
+		});
 		this.line2 = this.line.clone();
+		this.line2.scaling.x = 4.5;
+		this.line2.strokeWidth = 20;
 		this.clippingPath.rotation = 60;
 		this.eyeL = new circles({
 			radiusInner: 130,
 			radius: 160,
-			innerColor: '#a96f99',
-			outerColor: '#ffff00',
+			innerColor: '#ffff00',
+			outerColor: '#a96f99',
 			pivot: [100, 0],
 			energy: 0.999,
 			scaleFactor: 0.7,
@@ -138,16 +155,16 @@ class clipingMask extends MaskBase {
 			offset: 0,
 		});
 		this.cheekR = new circles({
-			radiusInner: 10,
+			radiusInner: 70,
 			radius: 100,
 			innerColor: '#fbe3b8',
-			outerColor: '#fbe3b8',
-			pivot: [-40, 0],
+			outerColor: '#a96f99',
+			pivot: [-50, 10],
 			energy: 0.99,
 			scaleFactor: 0.7,
 			offset: 0,
 		});
-		this.groupContent = new paper.Group(this.eyeL.group, this.eyeR.group, this.cheekR.group);
+		this.groupContent = new paper.Group(this.eyeL.group, this.eyeR.group);
 		this.groupContent.transformContent = false;
 		this.groupContent.pivot = [0,0];
 		this.groupMask = new paper.Group( this.clippingPath, this.groupContent);
@@ -163,6 +180,11 @@ class clipingMask extends MaskBase {
 				radius: 20,
 				fillColor: '#a96f99',
 		});
+		this.clipNoseGroup = new paper.Group({
+			children: [this.noseClipPath, this.cheekR.group],
+			transformContent: false,
+			clipped: true,
+		});
 		this.circle.pivot = [-40, 0];
 		this.counter = 0;
 	}
@@ -174,14 +196,18 @@ class clipingMask extends MaskBase {
 		var mouth = data['faceParts']['mouth'];
 		var cheekL = data['faceParts']['cheekL'];
 		var cheekR = data['faceParts']['cheekR'];
+		var browL = data['faceParts']['browL'];
 		this.clippingPath.position = head.position;
+		this.clippingPath.scaling = head.scale;
+		this.noseClipPath.position = nose.position.add([-40, 0]);
 		this.eyeL.update(data, 'eyeL');
 		this.eyeR.update(data, 'eyeR');
-		this.cheekR.update(data, 'cheekR');
-		this.line.position = head.position.add([-head.angle*500, 0]);
-		this.line2.position = head.position.add([head.angle*500, -194]);
-		this.circle.position = cheekR.position;
-		this.circle2.position = cheekL.position;
+		this.cheekR.update(data, 'nose');
+		this.line.position = mouth.position.add([-head.angle*500, 0]);
+		this.line2.position = browL.position.add([head.angle*500+100, -100]);
+		this.triangle.position = mouth.position.add([0, 70]);
+		// this.circle.position = cheekR.position;
+		// this.circle2.position = cheekL.position;
 	}
 	show() {
 		document.getElementById(this.gui.domElement.id).style.visibility = "visible";
