@@ -1,55 +1,55 @@
 'use strict';
-class snake{
-	constructor(d){
-		this.pointsAmount = d.count;
-		this.length = 35;
 
-		this.chainPath = new paper.Path({
-			strokeColor: d.color,
-			strokeWidth: d.width,
-			strokeCap: 'round'
-		});
-		// this.chainPath.fullySelected = true;
-		var start = new paper.Point(500, 500);
-		for (var i = 0; i < this.pointsAmount; i++){
-			this.chainPath.add(new paper.Point(i * this.length, 0));
-		}
-		this.position = new paper.Point(0,0);
-	}
-	update(d){
-		this.chainPath.firstSegment.point = d.position;
-		this.position = d.position;
-		for (var i = 0; i < this.pointsAmount - 1; i++) {
-			var segment = this.chainPath.segments[i];
-			var nextSegment = segment.next;
-			var vector = segment.point.subtract(nextSegment.point).add(d.position	.divide(d.offset));
-			vector.length = this.length;
-			nextSegment.point = segment.point.subtract(vector);
-		}
-		this.chainPath.smooth({ type: 'continuous' });
-	}
-}
-class tentacleMask extends MaskBase {	
+class tentacleMask extends MaskBase {
 	//------------------------------------------
 	setup() {
 		super.addLayer();
-		this.snakes = [
-			new snake({
-				count: 12,
-				color: '#3a963e',
-				width: 5,
-			}),
-			new snake({
-				count: 15,
-				color: '#4e589e',
-				width: 20,
-			}),
-			new snake({
-				count: 50,
-				color: '#ffc541',
-				width: 20,
-			}),
-		];
+
+		this.snakes = [];
+		for (var i = 0; i < 100; i++) {
+			this.snakes.push(
+				new snake({
+					count: calc.random(3, 30),
+					color: '#3a963e',
+					width: calc.random(2, 15),
+					radius: calc.random(70, 150),
+					speed: calc.random(-2.3, 2.3),
+					attractedTo: Math.round(calc.random(0, 10000)) % 3
+				})
+			);
+
+			if (this.snakes[i].attractedTo === 3) {
+				this.snakes[i].radius = 250;
+				this.snakes[i].speed = calc.random(-0.5, 0.5);
+			}
+
+			if (this.snakes[i].attractedTo === 2) {
+				this.snakes[i].scaley = 0.4;
+				//this.snakes[i].speed = calc.random(-0.5, 0.5);
+			} else {
+				this.snakes[i].scaley = 1.0;
+			}
+		}
+		// this.snakes = [
+		// 	new snake({
+		// 		count: 12,
+		// 		color: '#3a963e',
+		// 		width: 5,
+		// 		attractedTo: 0
+		// 	}),
+		// 	new snake({
+		// 		count: 5,
+		// 		color: '#4e589e',
+		// 		width: 50,
+		// 		attractedTo: 0
+		// 	}),
+		// 	new snake({
+		// 		count: 50,
+		// 		color: '#ffc541',
+		// 		width: 5,
+		// 		attractedTo: 0
+		// 	}),
+		// ];
 		this.name = "tentacleMask"
 		this.points = [];
 		this.velocity = [];
@@ -70,10 +70,11 @@ class tentacleMask extends MaskBase {
 
 		});
 		this.path2.visible = false;
+		this.path.visible = false;
 		this.attractIndex = -1;
 		this.frameNum = 0;
 		this.lastFrameChange = 0;
-	
+
 	}
 
 	//------------------------------------------
@@ -84,18 +85,34 @@ class tentacleMask extends MaskBase {
 		var head = data['faceParts']['head'];
 		var eyeL = data['faceParts']['eyeL'];
 		var eyeR = data['faceParts']['eyeR'];
-		this.snakes[0].update({
-			position: this.path2.position,
-			offset: 300,
-		});
-		this.snakes[1].update({
-			position: eyeR.position,
-			offset: 100,
-		});
-		this.snakes[2].update({
-			position: eyeL.position,
-			offset: 200,
-		});
+		var mouth = data['faceParts']['mouth'];
+
+		var pts = [];
+		pts.push(eyeL);
+		pts.push(eyeR);
+		pts.push(mouth);
+		pts.push(head);
+
+		for (var i = 0; i < this.snakes.length; i++) {
+			//console.log(pts[this.snakes[i].attractedTo]);
+			this.snakes[i].update({
+				position: pts[this.snakes[i].attractedTo].position,
+				offset: 300
+			})
+		}
+
+		// this.snakes[0].update({
+		// 	position: this.path2.position,
+		// 	offset: 300,
+		// });
+		// this.snakes[1].update({
+		// 	position: eyeR.position,
+		// 	offset: 100,
+		// });
+		// this.snakes[2].update({
+		// 	position: eyeL.position,
+		// 	offset: 200,
+		// });
 		this.points.push(data['faceParts']['eyeL']['position']);
 		this.points.push(data['faceParts']['eyeR']['position']);
 		this.points.push(data['faceParts']['nose']['position']);
@@ -128,6 +145,8 @@ class tentacleMask extends MaskBase {
 				this.lastFrameChange = this.frameNum;
 			}
 		}
+
+
 
 		if (this.attractIndex !== -1) {
 			this.path.position = this.path.position.multiply(0.0).add(this.points[this.attractIndex].multiply(1.0));

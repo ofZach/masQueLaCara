@@ -93,11 +93,37 @@ class bounceMask extends MaskBase {
 
 		this.physicsLayer = new paper.Layer();
 		this.physObjs = [];
-		for (var i = 0; i < 100; i++) {
-			var rad = getRand(20, 30);
+		for (var i = 0; i < 70; i++) {
+			var rad = getRand(20, 25);
+			if (getRand(0, 1) > 0.8) {
+				rad = getRand(10, 15);
+			}
 			var x = getRand(200, 500);
 			var y = getRand(200, 500);
-			var path = new paper.Path.Circle(new paper.Point(x, y), rad * 0.9);
+			var path = new paper.Path.Circle(new paper.Point(x, y), rad * 1.2);
+
+			path.fillColor = 'white';
+			path.shadowColor = new paper.Color(getRand(0.3, 0.9), getRand(0.0, 0.3), getRand(0.0, 0.4));
+
+			path.shadowBlur = 142;
+			path.shadowOffset = new paper.Point(7, 7);
+
+			var p = path.position.clone();
+			p.y -= 100;
+
+			// path.fillColor = {
+			// 	gradient: {
+			// 		stops: [
+			// 			['white', 0.05],
+			// 			['white', 0.2],
+			// 			['pink', 1]
+			// 		],
+			// 		radial: true
+			// 	},
+			// 	origin: p,
+			// 	destination: path.bounds.rightCenter
+			// };
+
 			this.physicsLayer.children[i].fillColor = 'white';
 			//this.physicsLayer.children[i].strokeWidth = 1;
 			//this.physicsLayer.children[i].strokeColor = 'red';

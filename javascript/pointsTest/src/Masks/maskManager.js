@@ -3,8 +3,8 @@ class MaskManager {
 	setup() {
 		this.masks = [
 			new emptyMask(),
-			new attractFacePointMask(),
-			new demoMask(),
+			/*new attractFacePointMask(),
+			new demoMask(),*/
 			new crowMask(),
 			new bounceMask(),
 			new gradientMask(),
