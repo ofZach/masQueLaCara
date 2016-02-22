@@ -70,6 +70,8 @@ class cthulhuMask extends MaskBase {
 			innerRadius: 170,
 			radius: width,
 			count: 1,
+			startColor: 'lightgreen',
+			endColor: 'white',
 		});
 		this.eyeLLine = new gradLine({
 			length: 100,

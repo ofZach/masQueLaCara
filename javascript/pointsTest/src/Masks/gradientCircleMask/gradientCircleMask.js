@@ -28,32 +28,44 @@ class gradientCircleMask extends MaskBase {
 			innerRadius: 200,
 			radius: 40,
 			count: 1,
+			startColor:  '#9900ff',
+			endColor:  '#ea4a73',
 		});
 		this.head2 = new tubeCircle({
 			innerRadius: 265,
 			radius: 90,
 			count: 1,
+			startColor:  '#9900ff',
+			endColor:  '#ea4a73',
 		});
 
 		this.eyeL = new tubeCircle({
 			innerRadius: 30,
 			radius: 10,
 			count: 2,
+			startColor:  '#9900ff',
+			endColor:  '#ea4a73',
 		});
 		this.eyeL2 = new tubeCircle({
 			innerRadius: 100,
 			radius: 100,
 			count: 1,
+			startColor:  '#9900ff',
+			endColor:  '#ea4a73',
 		});
 		this.eyeR = new tubeCircle({
 			innerRadius: 20,
 			radius: 29,
 			count: 3,
+			startColor:  '#9900ff',
+			endColor:  '#ea4a73',
 		});
 		this.eyeR2 = new tubeCircle({
 			innerRadius: 20,
 			radius: 100,
 			count: 1,
+			startColor:  '#9900ff',
+			endColor:  '#ea4a73',
 		});
 
 

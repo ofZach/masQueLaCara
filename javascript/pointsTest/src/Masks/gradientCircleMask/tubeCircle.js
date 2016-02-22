@@ -14,8 +14,8 @@ class tubeCircle{
 				stroke: d.radius,
 				energy: this.random(0.999999, 0.9999999),
 				scaleFactor: this.random(0.7, 1.4),
-				startColor: '#9900ff',
-				endColor: '#ea4a73',
+				startColor: d.startColor,
+				endColor: d.endColor,
 				shape: 'circle',
 			});
 			this.circles.push(circle);
