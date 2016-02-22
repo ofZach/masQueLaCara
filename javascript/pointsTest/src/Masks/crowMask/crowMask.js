@@ -1,6 +1,6 @@
 'use strict';
 class crowMaskEye {
-	constructor(){
+	constructor() {
 		this.eyeLGroup = new paper.Group();
 		this.eyeLGroup.transformContent = false;
 		this.eyeLGroup.pivot = [0, 0];
@@ -9,35 +9,27 @@ class crowMaskEye {
 		this.linesGroup.pivot = [0, 0];
 		this.lineCount = 20;
 		this.randomNumbers = [];
-		this.innerCircleRadius = 150;
+		this.innerCircleRadius = 20;
 		for (var i = 0; i < this.lineCount; i++) {
-			this.randomNumbers[i] = Math.random();
-			var rand = Math.random();
+			this.randomNumbers[i] = 0.5 + 0.5 * Math.random();
 			var line = new paper.Path();
 			line.add(0, 0);
-			line.add(rand*this.innerCircleRadius+this.innerCircleRadius,0);
+			line.add(Math.random() * 50 + 50, 0);
 			line.strokeColor = 'white';
-
-			var circle = new paper.Path.Circle({
-				center: [rand*this.innerCircleRadius+this.innerCircleRadius, 0],
-				radius: 5,
-				fillColor: 'white',
-			});
 
 			var lineOffsetGroup = new paper.Group();
 			lineOffsetGroup.transformContent = false;
 			lineOffsetGroup.pivot = [-this.innerCircleRadius, 0];
 			lineOffsetGroup.position = [0, 0];
-			lineOffsetGroup.rotation = 360/this.lineCount*i;
+			lineOffsetGroup.rotation = 360 / this.lineCount * i;
 
 			var lineGroup = new paper.Group();
 			lineGroup.transformContent = false;
 			lineGroup.pivot = [0, 0];
 			lineGroup.position = [0, 0];
-			lineGroup.rotation = - Math.random()*40;
+			lineGroup.rotation = -Math.random() * 40;
 			lineGroup.addChild(line);
-			lineGroup.addChild(circle);
-			
+
 			lineOffsetGroup.addChild(lineGroup);
 			this.linesGroup.addChild(lineOffsetGroup);
 		};
@@ -45,12 +37,13 @@ class crowMaskEye {
 			center: [0, 0],
 			radius: this.innerCircleRadius,
 			strokeColor: 'white',
+			strokeWidth: 20
 		});
 		var outerCircle = new paper.Path.Circle({
 			center: [0, 0],
-			radius: 60,
+			radius: 100,
 			strokeColor: 'white',
-			strokeWidth: 4,
+			strokeWidth: 2,
 		});
 		var yellowCircle = new paper.Path.Circle({
 			center: [0, 0],
@@ -71,28 +64,29 @@ class crowMaskEye {
 		this.eyeLGroup.addChild(this.linesGroup); // 3
 
 		this.spring = new Fx.Spring({
-            'stiffness': 1000,
-            'friction': 5,
-            // 'onMotion': function(t){console.log("t = " + t);}
-          });
+			'stiffness': 100,
+			'friction': 5,
+			// 'onMotion': function(t){console.log("t = " + t);}
+		});
 	}
-	update(data, name){
+	update(data, name) {
 		this.spring.start(this.spring.get(), data['faceParts'][name]['velocity'].length);
 
 		for (var i = 0; i < this.lineCount; i++) {
-			var rotation = this.spring.get()*this.randomNumbers[i]*2;
-			var line = this.linesGroup.children[i].children[0]
-			line.rotation = rotation;
+			//var rotation = this.spring.get() * this.randomNumbers[i] * 30;
+			// var rotation = this.linesGroup.children[i].children[0].rotation;
+			//this.linesGroup.children[i].children[0].rotation = rotation;
+			this.linesGroup.children[i].children[0].scaling = 0.8 + 0.13 * this.spring.get();
 		}
-		var eyeLGroupRotation = this.smoothValue(this.eyeLGroup.children[2].rotation , 
-										data['faceParts'][name]['velocity'].length*90,
-										0.97);
+		var eyeLGroupRotation = this.smoothValue(this.eyeLGroup.children[2].rotation,
+			data['faceParts'][name]['velocity'].length * 5,
+			0.97);
 		this.eyeLGroup.children[2].rotation = eyeLGroupRotation;
 
 		this.eyeLGroup.position = data['faceParts'][name]['position'];
 	}
-	smoothValue(valueOld, valueNew, smooth){
-		return valueOld*smooth + (1-smooth)* valueNew;
+	smoothValue(valueOld, valueNew, smooth) {
+		return valueOld * smooth + (1 - smooth) * valueNew;
 	}
 };
 class crowMask extends MaskBase {
@@ -108,41 +102,41 @@ class crowMask extends MaskBase {
 		this.rightEyeScale = 0.5;
 		this.leftEyeScale = 0.5;
 	}
-	smoothValue(valueOld, valueNew, smooth){
-		return valueOld*smooth + (1-smooth)* valueNew;
+	smoothValue(valueOld, valueNew, smooth) {
+		return valueOld * smooth + (1 - smooth) * valueNew;
 	}
-	show(){
+	show() {
 		this.showLayer();
 	}
-	hide(){
+	hide() {
 		this.hideLayer();
 	}
 	update(data) {
-		
+
 		this.eyeL.update(data, 'eyeL');
 		this.eyeR.update(data, 'eyeR');
-		
+
 		this.faceParts['head'].setPosition(data['faceParts']['head']['position']);
 		this.faceParts['head'].setAngle(data['faceParts']['head']['angle'], 0.6);
 		this.faceParts['head'].setScale(data['faceParts']['head']['scale']);
-		this.faceParts['head'].setOpacity(data['faceParts']['head']['velocity'].length*0.6);
-		
+		this.faceParts['head'].setOpacity(data['faceParts']['head']['velocity'].length * 0.6);
+
 		// if (Math.abs(data['faceParts']['head']['angle']) > 0.1){
 		// 	if (data['faceParts']['head']['angle'] < 0){
 		// 		this.rightEyeScale = 0.9 * this.rightEyeScale + 0.1 * 0.9;
 		// 		this.leftEyeScale = 0.9 * this.leftEyeScale + 0.1 * 0.5;
-					
+
 		// 	} else {
 		// 		this.rightEyeScale = 0.9 * this.rightEyeScale + 0.1 * 0.5;
 		// 		this.leftEyeScale = 0.9 * this.leftEyeScale + 0.1 * 0.9;
-				
+
 		// 	}
 		// } else {
 		// 	this.rightEyeScale = 0.9 * this.rightEyeScale + 0.1 * 0.5;
 		// 		this.leftEyeScale = 0.9 * this.leftEyeScale + 0.1 * 0.5;
 		// }
 		//console.log("data['faceParts']['head']['angle'] = " + data['faceParts']['head']['angle']);
-		
+
 	}
 
 }
