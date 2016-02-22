@@ -1,7 +1,8 @@
 'use strict';
+paper.install(window);
 class gradLine{
 	constructor(d){
-		this.line = new paper.Path.Line({
+		this.line = new Path.Line({
 			from:[0, 0], 
 			to:[0, d.length],
 			strokeWidth: d.width,
