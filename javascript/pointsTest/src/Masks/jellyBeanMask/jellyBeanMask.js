@@ -61,7 +61,7 @@ class jellyBeanMask extends MaskBase {
 		this.head = new jellyBean({
 			radius: 300,
 			speed: 180,
-			color: '#a96f99',
+			color: 'white',
 			scale: [1, 0.6],
 			step: 100,
 			offset: [0, 200],
@@ -98,6 +98,16 @@ class jellyBeanMask extends MaskBase {
 			noiseRange: 3,
 			mode: 'normal',
 		});
+		this.nose = new jellyBean({
+			radius: 200,
+			speed: 80,
+			color: 'green',
+			scale: [0.1, 0.5],
+			step: 30,
+			offset: [0, 0],
+			noiseRange: 30,
+			mode: 'normal',
+		});
 
 		this.angle = 0;
 	}
@@ -119,6 +129,7 @@ class jellyBeanMask extends MaskBase {
 		this.head2.noiseRange = this.angle * 100 + 20;
 		this.eyeL.update(eyeL);
 		this.eyeR.update(eyeR);
+		this.nose.update(nose);
 		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...
 	}
 
