@@ -1,6 +1,6 @@
 'use strict';
-class jellyBean{
-	constructor(d){
+class jellyBean {
+	constructor(d) {
 		this.group = new paper.Group();
 		this.seed = calc.random(100, 3000);
 		this.speed = d.speed;
@@ -31,19 +31,21 @@ class jellyBean{
 		this.counter = 0;
 	}
 	smooth(valueOld, valueNew, smooth) {
-		return valueOld.multiply(smooth).add(valueNew.multiply(1-smooth));
+		return valueOld.multiply(smooth).add(valueNew.multiply(1 - smooth));
 	}
-	update(data){
+	update(data) {
 		for (var i = 0; i < this.shape.segments.length; i++) {
-			var nsY = noise.simplex2(0.0, (this.counter + this.seed*i) / this.speed);
-			var nsX = noise.simplex2(0.0, (this.counter + (this.seed+100)*i)/ this.speed);
-			var x = nsX*this.noiseRange;
-			var y = nsY*this.noiseRange;
+			var nsY = noise.simplex2(0.0, (this.counter + this.seed * i) / this.speed);
+			var nsX = noise.simplex2(0.0, (this.counter + (this.seed + 10000) * i) / this.speed);
+			var x = nsX * this.noiseRange * this.scale[0];
+			var y = nsY * this.noiseRange * this.scale[1];
 			var pos = [x, y];
 			this.shape.segments[i].point = this.points[i].add(pos);
 		}
 
-		this.shape.smooth({ type: 'continuous' });
+		this.shape.smooth({
+			type: 'continuous'
+		});
 		this.group.position = data.position;
 		// this.shape.scaling = this.scale;
 		this.counter++;
@@ -57,8 +59,8 @@ class jellyBeanMask extends MaskBase {
 		this.name = "jellyBeanMask"
 		this.rand = calc.random(0, 1);
 		this.head = new jellyBean({
-			radius: 300, 
-			speed: 80,
+			radius: 300,
+			speed: 180,
 			color: '#a96f99',
 			scale: [1, 0.6],
 			step: 100,
@@ -67,7 +69,7 @@ class jellyBeanMask extends MaskBase {
 			mode: 'normal',
 		});
 		this.head2 = new jellyBean({
-			radius: 100, 
+			radius: 100,
 			speed: 80,
 			color: '#ffc541',
 			scale: [1, 0.6],
@@ -77,7 +79,7 @@ class jellyBeanMask extends MaskBase {
 			mode: 'multiply',
 		});
 		this.eyeL = new jellyBean({
-			radius: 50, 
+			radius: 50,
 			speed: 80,
 			color: 'black',
 			scale: [0.13, 0.2],
@@ -87,7 +89,7 @@ class jellyBeanMask extends MaskBase {
 			mode: 'normal',
 		});
 		this.eyeR = new jellyBean({
-			radius: 40, 
+			radius: 40,
 			speed: 80,
 			color: 'black',
 			scale: [0.3, 0.2],
@@ -112,9 +114,9 @@ class jellyBeanMask extends MaskBase {
 		var cheekL = data['faceParts']['cheekL'];
 		this.angle = this.smooth(this.angle, head.angle, 0.95);
 		this.head.update(head);
-		this.head.noiseRange = this.angle*300+30;
+		this.head.noiseRange = this.angle * 300 + 30;
 		this.head2.update(head);
-		this.head2.noiseRange = this.angle*100+20;
+		this.head2.noiseRange = this.angle * 100 + 20;
 		this.eyeL.update(eyeL);
 		this.eyeR.update(eyeR);
 		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...

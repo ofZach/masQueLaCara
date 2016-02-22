@@ -303,51 +303,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "'use strict';\n\nclass flowerMask extends MaskBase {\n	setup() {\n		super.addLayer();\n		this.name = 'flowerMask';\n		this.shapes = [];\n		this.group = new paper.Group();\n		this.group.transformContent = false;\n		for (var i = 0; i < 4; i++) {\n			var shape = new flowerSvgLoader({\n				path: 'assets/svg/FlowerMask/flower.svg',\n				offset: [0, i*50+200],\n			});\n			this.group.addChild(shape.group);\n			this.shapes.push(shape);\n		}\n		this.eyeL = new flowerSvgLoader({\n			path: 'assets/svg/FlowerMask/flower.svg',\n			offset: [0, 0],\n		});\n		this.eyeL2 = new flowerSvgLoader({\n			path: 'assets/svg/FlowerMask/flower.svg',\n			offset: [10, 0],\n		});\n\n		this.group.pivot = [this.group.bounds.width / 2, 300];\n		this.counter = 0;\n		this.velocity = 0;\n	}\n	smoothValue(valueOld, valueNew, smooth) {\n		return valueOld * smooth + (1 - smooth) * valueNew;\n	}\n	update(data) {\n		var head = data['faceParts']['head'];\n		var nose = data['faceParts']['nose'];\n		var eyeL = data['faceParts']['eyeL'];\n		var eyeR = data['faceParts']['eyeR'];\n		var mouth = data['faceParts']['mouth'];\n		var cheekL = data['faceParts']['cheekL'];\n		this.velocity = this.smoothValue(this.velocity, head['velocity'].length, 0.95);\n		for (var i = 0; i < this.shapes.length; i++) {\n			this.shapes[i].update({\n				rootPos: head.position,\n				animate: Math.cos(this.counter/20+i*0.5+0.7)*0.5+0.5,\n				rotation: head.angle*i*3,\n				pivot: [i*100, i*100],\n			});\n			var offsetAmount =  this.velocity*20 +3;\n			this.shapes[i].group.pivot = [70,i*offsetAmount+200];\n			//this.shapes[i].group.scaling = [0,i*offsetAmount];\n		}\n		this.eyeL.group.scaling = 1.3;\n		this.eyeL2.group.scaling = 1.3;\n		this.eyeL.update({\n			rootPos: eyeL.position,\n			animate: Math.cos(this.counter/30+0.7)*0.5+0.5,\n			rotation: eyeL.angle*2+this.velocity/4.,\n			pivot: [0, 0],\n		});\n		this.eyeL2.update({\n			rootPos: eyeR.position,\n			animate: (Math.cos(this.counter/15+0.9)*0.5+0.5)*0.5+0.5,\n			rotation: eyeR.angle*2-this.velocity/3.+0.2,\n			pivot: [0, 0],\n		});\n		this.counter++;\n	}\n	show() {\n		this.showLayer();\n		// this.head.show();\n	}\n	hide() {\n		this.hideLayer();\n		// this.head.hide();\n	}\n\n}",
-			"file": "javascript/pointsTest/src/Masks/flowerMask/flowerMask.js",
-			"file_size": 2118,
-			"file_write_time": 131001437030000000,
-			"settings":
-			{
-				"buffer_size": 2119,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
-			"settings":
-			{
-				"buffer_size": 2431,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "javascript/pointsTest/src/Masks/emptyMask/emptyMask.js",
-			"settings":
-			{
-				"buffer_size": 425,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "'use strict';\nclass flowerSvgLoader{\n	constructor(d){\n		// console.log(\"d.path = \" + d.path);\n		this.group = new paper.Group();\n		this.group.transformContent = false;\n		this.group.pivot = [0, 0];\n		this.init = {};\n		this.loaded = false;\n		var self = this;\n\n\n		paper.project.importSVG( d.path, function(item) {\n			// set gradients \n			var paths = item.children[0].children;\n			for (var i = 0; i < paths.length; i++) {\n				paths[i].pivot = paths[i].segments[0].point;\n				if (i % 2 == 0) {\n					paths[i].fillColor = {\n						gradient: {\n							stops: ['#87d0a1', '#ea4a73']\n						},\n						origin: paths[i].segments[0].point,\n						destination: paths[i].segments[1].point,\n					}\n					paths[i].fillColor.gradient.stops[1].color.alpha = 0.0;\n				} else {\n					paths[i].fillColor = {\n						gradient: {\n							stops: ['#cf9777', '#a1002c']\n						},\n						origin: paths[i].segments[0].point,\n						destination: paths[i].segments[1].point,\n					}\n				}\n				paths[i].fillColor.gradient.stops[1].color.alpha = 0.2;\n				paths[i].fillColor.gradient.stops[0].color.alpha = 1.7;\n				self.init['path'+i] = {};\n				self.init['path'+i]['posPoint1'] = [];\n\n				self.init['path'+i]['posPoint0'] = new paper.Point(paths[i].segments[0].point.x, paths[i].segments[0].point.y);\n				self.init['path'+i]['inPoint0'] = paths[i].segments[0].handleIn.angle;\n				self.init['path'+i]['outPoint0'] = paths[i].segments[0].handleOut.angle;\n				\n				self.init['path'+i]['posPoint1'] = new paper.Point(paths[i].segments[1].point.x, paths[i].segments[1].point.y);\n				self.init['path'+i]['inPoint1'] = paths[i].segments[1].handleIn.angle;\n				self.init['path'+i]['outPoint1'] = paths[i].segments[1].handleOut.angle;\n\n				// paths[i].fullySelected = true;\n			};\n			self.group.pivot = [item.bounds.width / 2 + d.offset[0], d.offset[1]];\n			self.group.addChild(item);\n			this.loaded = true;\n		});\n		this.counter = 0;\n	}\n\n	smoothValue(valueOld, valueNew, smooth) {\n		return valueOld * smooth + (1 - smooth) * valueNew;\n	}\n\n	update(d){\n		if (this.group.children[0] != undefined) {\n\n			var paths = this.group.children[0].children[0].children;\n			for (var i = 0; i < paths.length; i++) {\n				var init = this.init['path'+i];\n				var osc = d.animate;\n				paths[i].pivot.x = d.pivot[0];\n				paths[i].pivot.y = d.pivot[1];\n				// paths[i].rotation = d.animate*osc;\n				paths[i].segments[0].point.y = init.posPoint0.y + osc*20;\n				// paths[i].segments[0].point.x = init.posPoint0.x + osc*50-30;\n				// paths[i].segments[0].point.y = init.posPoint0.y + osc3*100;\n				// paths[i].segments[0].point.y = init.posPoint0.y - osc*100;\n				// paths[i].segments[1].point.y = init.posPoint1.y- osc2*50;\n				paths[i].segments[0].handleIn.angle = init.inPoint0 - osc*20 + 30 ;\n				paths[i].segments[0].handleOut.angle = init.outPoint0 + osc*20 - 30;  \n				// paths[i].opacity = (1.5-osc);\n				// paths[i].segments[1].handleOut.angle = init.outPoint1 + osc2*100;  \n			}\n		}\n		this.group.position = d.rootPos;\n		this.group.rotation = this.smoothValue(this.group.rotation, d.rotation * (180.0 / Math.PI), 0.95);\n		// this.group.scaling = d.animate+0.5+Math.sin(this.counter/20)*0.5+1.3;\n		this.counter++;\n	}\n\n}\n",
-			"file": "javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js",
-			"file_size": 3150,
-			"file_write_time": 131001428160000000,
-			"settings":
-			{
-				"buffer_size": 3148,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -494,20 +449,15 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/gordey/Sites/masQueLaCara",
-		"/Users/gordey/Sites/masQueLaCara/javascript",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/circleFaceMask",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/clipingMask",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientMask",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/rotationMask",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/vendor"
+		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara"
 	],
 	"file_history":
 	[
+		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js",
+		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/emptyMask/emptyMask.js",
+		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
+		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerMask.js",
+		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/masQueLaCara.sublime-project",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerShapeMask/flowerShapeMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/pointsPlayer.html",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/maskManager.js",
@@ -784,158 +734,13 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "javascript/pointsTest/src/Masks/flowerMask/flowerMask.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2119,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								737,
-								837
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 306.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2431,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								103,
-								103
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "javascript/pointsTest/src/Masks/emptyMask/emptyMask.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 425,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								425
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				}
 			]
 		},
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 4,
-					"file": "javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3148,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								795,
-								795
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -967,7 +772,7 @@
 		"cols":
 		[
 			0.0,
-			0.514883948546,
+			0.716856915756,
 			1.0
 		],
 		"rows":
