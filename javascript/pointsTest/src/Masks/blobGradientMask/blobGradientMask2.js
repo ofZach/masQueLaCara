@@ -11,6 +11,8 @@ class blobSVG{
 		this.smoothAngle = 0;
 		this.speed = data['speed'];
 		this.scale = data.scale;
+		this.angleRange = data.angleRange;
+		this.posRange = data.posRange;
  		var self = this;
  		paper.project.importSVG(data['path'], function(item) {
             var gradient = item.children[0].children[1].children;
@@ -80,10 +82,10 @@ class blobSVG{
 					var nsX = noise.simplex2(0.0,  (this.counter+k*200+i*100)/this.speed);
 					var nsY = noise.simplex2(0.0,  (this.counter+k*100+i*100+400)/this.speed);
 					var nsAngle = noise.simplex2(0.0,  (this.counter+k*100+i*100+2000)/this.speed*0.7);
-					segments[k].point.x = initPos.x+nsX*20;
-					segments[k].point.y = initPos.y+nsY*20;
-					segments[k].handleIn.angle = handleIn+nsAngle*50;
-					segments[k].handleOut.angle = handleOut+nsAngle*50;
+					segments[k].point.x = initPos.x+nsX*this.posRange;
+					segments[k].point.y = initPos.y+nsY*this.posRange;
+					segments[k].handleIn.angle = handleIn+nsAngle*this.angleRange;
+					segments[k].handleOut.angle = handleOut+nsAngle*this.angleRange;
 				}
 			}
 		}
@@ -94,14 +96,59 @@ class blobGradientMask2 extends MaskBase{
 	setup(){
 		this.name = 'blobGradientMask2';
 		super.addLayer();
-		this.scale = [1, 1];
+		this.scale = new paper.Point(1, 1);
 		this.angle = 0;
-		this.head = new blobSVG(
-			{ path:'assets/svg/blobs/glass.svg',
-			  pivot:[0, 0],
-			  speed: 80,
-			  scale: 0.5,
-			});
+		this.head = new blobSVG({ 
+			path:'assets/svg/blobs/glass.svg',
+		  	pivot:[0, 0],
+		  	speed: 80,
+		  	scale: 0.5,
+		  	angleRange: 50,
+		  	posRange: 20,
+		});
+		this.nose = new blobSVG({ 
+			path:'assets/svg/blobs/tshape.svg',
+		  	pivot:[0, 0],
+		  	speed: 100,
+		  	scale: 0.5,
+		  	angleRange: 40,
+		  	posRange: 20,
+		});
+		this.eyeR = new blobSVG({ 
+			path:'assets/svg/blobs/duck.svg',
+		  	pivot:[0, 0],
+		  	speed: 80,
+		  	scale: 0.3,
+		  	angleRange: 60,
+		  	posRange: 10,
+		});
+		this.eyeL = new blobSVG({ 
+			path:'assets/svg/blobs/duck.svg',
+		  	pivot:[0, 0],
+		  	speed: 70,
+		  	scale: 0.3,
+		  	angleRange: 50,
+		  	posRange: 10,
+		});
+		this.mouth = new blobSVG({ 
+			path:'assets/svg/blobs/mouth.svg',
+		  	pivot:[0, 0],
+		  	speed: 80,
+		  	scale: 0.3,
+		  	angleRange: 60,
+		  	posRange: 10,
+		});
+		this.cheekL = new blobSVG({ 
+			path:'assets/svg/blobs/bone.svg',
+		  	pivot:[0, 0],
+		  	speed: 80,
+		  	scale: 0.3,
+		  	angleRange: 60,
+		  	posRange: 10,
+		});
+		this.eyeR.group.opacity = 0.6;
+		this.eyeL.group.opacity = 0.6;
+		this.velocity = 0;
 
 	}
 	smoothValue(valueOld, valueNew, smooth){
@@ -125,11 +172,38 @@ class blobGradientMask2 extends MaskBase{
 		var angle = head.angle;
 
 		this.angle =  this.smoothValue(this.angle, angle * (180.0 / Math.PI), 0.6);
-		this.scale[0] = this.smoothValue(this.scale[0], scale, 0.7);
-		this.scale[1] = this.smoothValue(this.scale[1], scale, 0.7);
+		this.scale.x = this.smoothValue(this.scale.x, scale, 0.7);
+		this.scale.y = this.smoothValue(this.scale.y, scale, 0.7);
+		this.velocity = this.smoothValue(this.velocity, head.velocity.length, 0.9);
+
 		
 		this.head.update();
-		this.head.group.position = head.position;
+		this.head.group.position = head.position.add([0, 120]);
+		this.head.group.scaling = this.scale.add([-0.1, -0.1]);
+		
+		this.nose.update();
+		this.nose.group.position = nose.position.add([-20, 0]);
+		this.nose.group.rotation = this.angle;
+
+		this.cheekL.update();
+		this.cheekL.group.position = browL.position.add([20, -20]);
+		this.cheekL.group.rotation = this.angle;
+		this.cheekL.group.scaling = this.scale.add([-0.7,-0.7]);
+		
+		this.eyeR.update();
+		this.eyeR.group.position = eyeR.position;
+		this.eyeR.group.rotation = this.angle;
+		this.eyeR.group.scaling = this.scale.add([0.4, 0.4]);
+		this.eyeR.posRange = 5*this.velocity+10;
+		
+		this.eyeL.update();
+		this.eyeL.group.position = eyeL.position;
+		this.eyeL.group.rotation = this.angle+90;
+		this.eyeL.group.scaling = this.scale.add([0.5, 0.5]);
+		
+		this.mouth.update();
+		this.mouth.group.position = mouth.position;
+		this.mouth.group.scaling = [0.5, 0.5];
 	}
 	show(){
 		this.showLayer();
