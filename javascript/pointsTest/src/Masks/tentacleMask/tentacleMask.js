@@ -11,21 +11,41 @@ class tentacleMask extends MaskBase {
 				new snake({
 					count: calc.random(3, 30),
 					color: '#3a963e',
-					width: calc.random(2, 15),
-					radius: calc.random(70, 150),
+					width: calc.random(1, 15),
+					radius: calc.random(40, 150),
 					speed: calc.random(-2.3, 2.3),
-					attractedTo: Math.round(calc.random(0, 10000)) % 3
+					attractedTo: Math.round(calc.random(0, 10000)) % 4
 				})
 			);
 
+			if (this.snakes[i].attractedTo === 2 ||
+				this.snakes[i].attractedTo === 3) {
+				if (calc.random(0, 1) > 0.5) {
+
+					this.snakes[i].attractedTo = Math.round(calc.random(0, 10000)) % 3;
+				}
+			}
+
+			// if (this.snakes[i].attractedTo === 2) {
+			// 	this.snakes[i].attractedTo = 3;
+			// }
+
+			if (this.snakes[i].attractedTo === 1) {
+				this.snakes[i].radius = calc.random(30, 80);
+
+				//this.snakes[i].speed = calc.random(-0.5, 0.5);
+			}
+
 			if (this.snakes[i].attractedTo === 3) {
 				this.snakes[i].radius = 250;
+				this.snakes[i].scaley = 1.2;
 				this.snakes[i].speed = calc.random(-0.5, 0.5);
 			}
 
 			if (this.snakes[i].attractedTo === 2) {
-				this.snakes[i].scaley = 0.4;
-				//this.snakes[i].speed = calc.random(-0.5, 0.5);
+				this.snakes[i].scaley = 0.2;
+				this.snakes[i].radius = calc.random(40, 130);
+				this.snakes[i].speed = calc.random(-2.5, 2.5);
 			} else {
 				this.snakes[i].scaley = 1.0;
 			}
