@@ -30,6 +30,8 @@ class MaskManager {
 			new stripeyMask(),
 			new circleClipMask(),
 			new cthulhuMask(),
+			new blobGradientMask2(),
+			new cloudMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
