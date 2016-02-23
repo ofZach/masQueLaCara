@@ -5,10 +5,11 @@ class loadSvgPivot {
         this.group = new paper.Group();
         this.energy = d.energy;
         this.speed = d.speed;
+        this.fadeForce = d.fadeForce;
         this.rootPivot;
+        this.levelCount = 0;
         var self = this;
         paper.project.importSVG(d.path, function(item) {
-            // console.log("item = " + item.children[0]);
             self.setPivot(item.children[0]);
             self.group.addChild(item.children[0]);
             self.group.pivot = self.rootPivot;
@@ -19,43 +20,42 @@ class loadSvgPivot {
     setPivot(item){
     	// iterate through hierarchy
     	for (var i = 0; i < item.children.length; i++) {
-           // console.log("layers = "+item.children[i]);
            var name = item.children[i].name;
-           // shadow
+           // add shadow
            if(item.children[i].className == 'Path'){
            		var path = item.children[i];
            		path.shadowColor = new Color(0, 0, 0, 0.8);
 				path.shadowBlur = 120;
 				path.shadowOffset = new Point(10, 10);
-           		console.log("this is path = " + item.children[i]);
            }
-           // set pivot
-           if(name.substring(0, 5) == 'dummy'){
+           // if wee meet layer named dummy set parent pivot to this object
+           if(name != undefined && name.substring(0, 5) == 'dummy'){
            		var dummy = item.children[i];
 				var group = dummy.parent;
 				dummy.visible = false;
-    //        		console.log("match! " + i);
-    //        		console.log("parent= " + item.children[i].parent);
-				// console.log("pos "+item.children[i].position);
 				group.pivot = dummy.position;
 				if(group.name.substring(0, 4) == 'root'){
 					this.rootPivot = dummy.position;
-					// console.log("group.name = " + group.name);
 				}
 				group.transformContent = false;
            }
            if(item.children[i].children != undefined){
+           		// continiue search in level tree
            		this.setPivot(item.children[i]);
+           		// how deep this hierarchy?
+           		this.levelCount++;
            }
         }
         this.counter = 0;
     }
     rotate(item){
     	for (var i = 0; i < item.children.length; i++) {
-           // console.log("layers = "+item.children[i]);
            if(item.children[i].className == 'Group'){
-           		item.children[i].rotation = Math.cos(this.counter/this.speed+i*100)*this.energy;
-           		// console.log("group = " + item.children[i].name+" "+ item.children[i].rotation );
+           		var fadeForce = 1;
+           		if(this.levelCount != 0){
+           			fadeForce = this.levelCount/this.fadeForce;
+           		}
+           		item.children[i].rotation = Math.cos(this.counter/this.speed+i*100)*this.energy/fadeForce;
            }
            if(item.children[i].children != undefined){
            		this.rotate(item.children[i]);
@@ -68,7 +68,6 @@ class loadSvgPivot {
     		var root = this.group.children[0];
     		this.group.children[0].rotation = Math.cos(this.counter/20+100)*this.energy;
     		this.rotate(this.group.children[0]);
-    		// console.log("this.group.children[0] = " + this.group.children[0]);
     	}
     }
 }
@@ -84,18 +83,21 @@ class paperCutMask extends MaskBase {
 			pivot: [0, 0],
 			energy: 20,
 			speed: 15,
+			fadeForce: 2,
 		});
 		this.eyeR = new loadSvgPivot({
 			path: 'assets/svg/CutPaperMask/rootEyeR.svg',
 			pivot: [0, 0],
 			energy: 20,
 			speed: 18,
+			fadeForce: 2,
 		});
 		this.mouth = new loadSvgPivot({
 			path: 'assets/svg/CutPaperMask/rootHead.svg',
 			pivot: [0, 0],
 			energy: 20,
 			speed: 30,
+			fadeForce: 2,
 		});
 		this.velocity = 0;
 	}
