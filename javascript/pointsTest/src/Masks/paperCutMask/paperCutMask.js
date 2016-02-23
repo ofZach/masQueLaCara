@@ -4,6 +4,7 @@ class loadSvgPivot {
         this.loaded = false;
         this.group = new paper.Group();
         this.energy = d.energy;
+        this.speed = d.speed;
         this.rootPivot;
         var self = this;
         paper.project.importSVG(d.path, function(item) {
@@ -20,6 +21,15 @@ class loadSvgPivot {
     	for (var i = 0; i < item.children.length; i++) {
            // console.log("layers = "+item.children[i]);
            var name = item.children[i].name;
+           // shadow
+           if(item.children[i].className == 'Path'){
+           		var path = item.children[i];
+           		path.shadowColor = new Color(0, 0, 0, 0.8);
+				path.shadowBlur = 120;
+				path.shadowOffset = new Point(10, 10);
+           		console.log("this is path = " + item.children[i]);
+           }
+           // set pivot
            if(name.substring(0, 5) == 'dummy'){
            		var dummy = item.children[i];
 				var group = dummy.parent;
@@ -44,7 +54,7 @@ class loadSvgPivot {
     	for (var i = 0; i < item.children.length; i++) {
            // console.log("layers = "+item.children[i]);
            if(item.children[i].className == 'Group'){
-           		item.children[i].rotation = Math.cos(this.counter/20+i*100)*this.energy;
+           		item.children[i].rotation = Math.cos(this.counter/this.speed+i*100)*this.energy;
            		// console.log("group = " + item.children[i].name+" "+ item.children[i].rotation );
            }
            if(item.children[i].children != undefined){
@@ -69,11 +79,25 @@ class paperCutMask extends MaskBase {
 	setup() {
 		super.addLayer();
 		this.name = "paperCutMask";
-		this.head = new loadSvgPivot({
-			path: 'assets/svg/CutPaperMask/eyeL.svg',
+		this.eyeL = new loadSvgPivot({
+			path: 'assets/svg/CutPaperMask/rootEyeL.svg',
 			pivot: [0, 0],
 			energy: 20,
+			speed: 15,
 		});
+		this.eyeR = new loadSvgPivot({
+			path: 'assets/svg/CutPaperMask/rootEyeR.svg',
+			pivot: [0, 0],
+			energy: 20,
+			speed: 18,
+		});
+		this.mouth = new loadSvgPivot({
+			path: 'assets/svg/CutPaperMask/rootHead.svg',
+			pivot: [0, 0],
+			energy: 20,
+			speed: 30,
+		});
+		this.velocity = 0;
 	}
 
 	//------------------------------------------
@@ -92,8 +116,19 @@ class paperCutMask extends MaskBase {
 		var lipUpper = data['faceParts']['lipUpper'];
 		var lipLower = data['faceParts']['lipLower'];
 
-		this.head.update();
-		this.head.group.position = eyeL.position.add([-140, 0]);
+		this.velocity = calc.smooth(this.velocity, head.velocity.length, 0.99);
+
+		this.eyeL.update();
+		this.eyeL.group.position = eyeL.position.add([-140, 0]);
+		this.eyeL.energy = this.velocity*10;
+
+		this.eyeR.update();
+		this.eyeR.group.position = eyeR.position.add([0, 0]);
+		this.eyeR.energy = this.velocity*7;
+
+		this.mouth.update();
+		this.mouth.group.position = mouth.position.add([-100, 0]);
+		this.mouth.energy = this.velocity*6;
 		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...
 	}
 
