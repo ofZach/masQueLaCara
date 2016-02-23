@@ -1,8 +1,8 @@
 'use strict';
 class loadSvg {
     constructor(d) {
-        this.group = new paper.Group();
         this.loaded = false;
+        this.group = new paper.Group();
         var self = this;
         paper.project.importSVG(d.path, function(item) {
             self.group = item;
@@ -84,6 +84,11 @@ class cloudMask extends MaskBase {
 		this.scale.y = this.smoothValue(this.scale.y, scale, 0.7);
 		
 		this.link(this.head, head, [0, -100], [0.5, 0.5], 0);
+
+		for (var i = 0; i < this.head.group.length; i++) {
+			this.head.group[i]
+		}
+		
 		this.link(this.eyeL, eyeL, [0, 0], [0, 0], 0);
 		this.link(this.eyeR, eyeR, [0, 0], [0, 0], 0);
 		this.link(this.nose, nose, [0, -50], [0.5, 0.5], 0);
