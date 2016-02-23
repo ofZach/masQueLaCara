@@ -34,6 +34,7 @@ class MaskManager {
 			new paperCutMask(),
 			new cloudMask(),
 			new pebblesMask(),
+			new divideMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
