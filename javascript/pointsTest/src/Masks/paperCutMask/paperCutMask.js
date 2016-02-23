@@ -66,8 +66,8 @@ class loadSvgPivot {
     	this.counter++;
     	if(this.group.children[0] != undefined){
     		var root = this.group.children[0];
-    		this.group.children[0].rotation = Math.cos(this.counter/20+100)*this.energy;
-    		this.rotate(this.group.children[0]);
+    		root.rotation = Math.cos(this.counter/20+100)*this.energy;
+    		this.rotate(root);
     	}
     }
 }
