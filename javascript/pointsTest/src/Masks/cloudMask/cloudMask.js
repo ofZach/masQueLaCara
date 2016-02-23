@@ -5,7 +5,7 @@ class loadSvg {
         this.group = new paper.Group();
         var self = this;
         paper.project.importSVG(d.path, function(item) {
-            self.group = item;
+            self.group.addChild(item);
             self.group.pivot = [self.group.bounds.width/2 + d.pivot[0], self.group.bounds.height/2 + d.pivot[1] ];
             self.group.transformContent = false;
             this.loaded = true;
@@ -85,9 +85,6 @@ class cloudMask extends MaskBase {
 		
 		this.link(this.head, head, [0, -100], [0.5, 0.5], 0);
 
-		for (var i = 0; i < this.head.group.length; i++) {
-			this.head.group[i]
-		}
 		
 		this.link(this.eyeL, eyeL, [0, 0], [0, 0], 0);
 		this.link(this.eyeR, eyeR, [0, 0], [0, 0], 0);

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="603.42px" height="435.027px" viewBox="0 0 603.42 435.027" style="enable-background:new 0 0 603.42 435.027;"
+	 xml:space="preserve">
+<g id="testPivot">
+	
+		<rect id="dummy1_1_" x="556.92" y="393.813" style="fill:#FF0000;stroke:#FFFFFF;stroke-miterlimit:10;" width="46" height="40.714"/>
+	<g id="rectBigGroup">
+		
+			<rect id="rectBig" x="239.838" y="191.456" style="fill:#00FF00;stroke:#FFFFFF;stroke-miterlimit:10;" width="340.082" height="237.315"/>
+		
+			<rect id="dummy2_1_" x="466.889" y="353.1" style="fill:#FF0000;stroke:#FFFFFF;stroke-miterlimit:10;" width="46" height="40.714"/>
+		<g id="rectSmallGroup">
+			
+				<rect id="rectSmall" x="0.5" y="118.25" style="fill:#FF00FF;stroke:#FFFFFF;stroke-miterlimit:10;" width="239.37" height="73.206"/>
+			
+				<rect id="rectSmall_1_" x="38.499" y="59.47" transform="matrix(0.842 0.5394 -0.5394 0.842 76.8138 -70.1529)" style="fill:#FF00FF;stroke:#FFFFFF;stroke-miterlimit:10;" width="239.369" height="73.207"/>
+			
+				<rect id="dummy3" x="216.87" y="171.1" transform="matrix(0.9307 0.3658 -0.3658 0.9307 86.6494 -74.4694)" style="fill:#FF0000;stroke:#FFFFFF;stroke-miterlimit:10;" width="46" height="40.713"/>
+		</g>
+	</g>
+</g>
+<g id="Layer_1">
+</g>
+</svg>
