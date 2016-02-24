@@ -35,6 +35,9 @@ class MaskManager {
 			new cloudMask(),
 			new pebblesMask(),
 			new divideMask(),
+			new cloudFacePivot(),
+			new intersectMask(),
+			new forestMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

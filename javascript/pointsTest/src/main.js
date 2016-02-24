@@ -47,7 +47,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('divideMask');
+MM.setMaskByName('forestMask');
 
 console.log(MM);
 
