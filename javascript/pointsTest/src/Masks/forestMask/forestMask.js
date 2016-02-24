@@ -1,5 +1,4 @@
 'use strict';
-'use strict';
 class forestSVG {
     constructor(d) {
         this.loaded = false;

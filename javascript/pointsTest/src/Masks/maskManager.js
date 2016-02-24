@@ -38,6 +38,7 @@ class MaskManager {
 			new cloudFacePivot(),
 			new intersectMask(),
 			new forestMask(),
+			new blockMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
