@@ -17,6 +17,7 @@ class blockSVG {
 		this.tweenColor = new TWEEN.Tween(this.color).onComplete(function(){
 			});
 		this.tween.easing(TWEEN.Easing.Elastic.Out);
+		this.tweenColor.easing(TWEEN.Easing.Quadratic.InOut);
 		paper.project.importSVG(d.path, function(item) {
             self.group.addChild(item.children[0]);
             self.group.pivot = [self.group.bounds.width/2, self.group.bounds.height/2];
@@ -44,11 +45,7 @@ class blockSVG {
 	}
 	moveTo(d){
 		if(!this.move){
-			if(this.group.children[0]!=undefined){
-				var c = this.color;
-				this.group.children[0].fillColor = new Color(c.r, c.g, c.b, 1);
-				// console.log("this.group.children[0].fillColor = " + this.group.children[0].fillColor);
-			}
+
 			self = this;
 			
 			this.tween
@@ -64,6 +61,8 @@ class blockSVG {
 	update(){
 		if(this.group.children[0] != undefined){
 			if(this.move){
+				var c = this.color;
+				this.group.children[0].fillColor = new Color(c.r, c.g, c.b, 1);
 				this.group.position = [this.curPos.x, this.curPos.y];
 			}
 		}
@@ -113,7 +112,6 @@ class blockEye{
 					duration: calc.randomInt(500, 1000),
 					color: this.colors[calc.randomInt(0, 4)],
 				});
-					console.log("col = "+this.colors[calc.randomInt(0, 4)]);
 			}
 		}else{
 			for (var i = 0; i < this.shapes.length; i++) {
@@ -156,6 +154,16 @@ class blockMask extends MaskBase {
 			column: 2,
 			combination: ['tr', 'tl', 'bl', 'br', 'empty'],
 		});
+		this.browL = new blockEye({
+			row: 1,
+			column: 1,
+			combination: ['br', 'bl', 'tl', 'tr', 'empty'],
+		});
+		this.browR = new blockEye({
+			row: 1,
+			column: 1,
+			combination: ['bl', 'bl', 'tl', 'tr', 'empty'],
+		});
 		this.nose.group.rotation = -90;
 	}
 
@@ -187,11 +195,19 @@ class blockMask extends MaskBase {
 		this.mouth.update();
 		this.mouth.group.position = mouth.position.add([0, 20]);
 
+		this.browL.update();
+		this.browL.group.position = browL.position.add([20, -20]);
+
+		this.browR.update();
+		this.browR.group.position = browR.position.add([20, -20]);
+
 		if(head.velocity.length > calc.random(3.1, 4.8)){
 			this.eyeL.move();
 			this.eyeR.move();
 			this.nose.move();
 			this.mouth.move();
+			this.browL.move();
+			this.browR.move();
 		}
 	}
 
