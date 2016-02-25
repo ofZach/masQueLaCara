@@ -39,6 +39,8 @@ class MaskManager {
 			new intersectMask(),
 			new forestMask(),
 			new blockMask(),
+			new arcMask(),
+			new arcMask2(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
