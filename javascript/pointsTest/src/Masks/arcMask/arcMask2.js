@@ -22,7 +22,7 @@ class arc2 {
 			center: [d.radius,d.radius],
 			radius: d.radius-1.5,
 			strokeColor: 'white',
-			strokeWidth: 3,
+			strokeWidth: 2,
 		});
 		this.rect = new paper.Path.Rectangle({
         	from:[0,0],
@@ -39,11 +39,12 @@ class arc2 {
         this.location.bl = { x: 0, y: height/2,};
         this.location.br = { x: width/2, y: height/2,};
         this.location.empty = { x: width, y: 0,};
-        // this.group.position = this.location[d.location];
+        var l = ['tl', 'tr', 'bl', 'br', 'empty'];
         // this.prevLocation = this.location[d.location];
         this.clip.addChild(this.rect);
         this.clip.addChild(this.circle);
         this.clip.clipped = true;
+        this.circle.position = this.location[l[calc.randomInt(0, 5)]];
 	}
 	moveTo(d){
 		if(!this.move){

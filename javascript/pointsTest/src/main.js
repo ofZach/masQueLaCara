@@ -47,7 +47,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('arcMask3');
+MM.setMaskByName('wormMask');
 
 console.log(MM);
 

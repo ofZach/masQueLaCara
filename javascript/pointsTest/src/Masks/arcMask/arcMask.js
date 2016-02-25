@@ -1,25 +1,11 @@
 'use strict';
-class arcCircleSymbol{
-	constructor(radius){
-		var arcCircleRadius = radius;
-		var arcCircle = new paper.Path.Circle({
-			center: [arcCircleRadius,arcCircleRadius],
-			radius: arcCircleRadius,
-		});
-		arcCircle.style = {
-		    fillColor: 'white',
-		    strokeColor: 'black'
-		};
-		this.symbol = new paper.Symbol(arcCircle);
-		arcCircle.remove();
-	}
-}
+paper.install(window);
 class arc {
 	constructor(d){
 		this.name = calc.randomInt(0, 20);
 		this.clipPos = d.pos;
 		this.offset = d.offset;
-		this.clip = new paper.Group({transformContent: false, pivot: [0, 0]});
+		this.clip = new Group({transformContent: false, pivot: [0, 0]});
 		this.move = false;
 		this.location = {};
 		this.prevLocation = {x: 0, y: 0};
@@ -33,11 +19,11 @@ class arc {
 		});
 		this.tween.easing(TWEEN.Easing.Quadratic.Out);
 		this.tweenColor.easing(TWEEN.Easing.Quadratic.InOut);
-		this.circle = new paper.Path.Circle({
+		this.circle = new Path.Circle({
 			center: [d.radius,d.radius],
 			radius: d.radius,
 		});
-		this.rect = new paper.Path.Rectangle({
+		this.rect = new Path.Rectangle({
         	from:[0,0],
         	to: [d.radius, d.radius],
         	fillColor: 'white',
@@ -87,18 +73,17 @@ class arcGrid {
 		this.shapes = [];
 		this.rightComb = d.combination;
 
-		var radius = 70;
-		var arcCircle = new arcCircleSymbol(radius);
+		var radius = 50;
 		var width = radius;
 		var height = radius;
-		var offset = [350, 100];
+		var offset = [380, 200];
 		this.colors = [
 			{r: 116/255, g:91/255, b: 153/255},
 			{r: 207/255, g:177/255, b: 124/255},
 			{r: 231/255, g:1/255, b: 69/255},
 			{r: 0/255, g:156/255, b: 147/255}
 		];
-		this.group = new paper.Group({
+		this.group = new Group({
 			transformContent: false,
 			pivot: [width/2, height/2],
 		})
@@ -107,7 +92,7 @@ class arcGrid {
 			for (var k = 0; k < d.row ; k++) {
 				
 
-				// var arcCircle = new paper.Path.Circle({
+				// var arcCircle = new Path.Circle({
 				// 	center: [0,0],
 				// 	radius: 10,
 				// 	fillColor: 'white',
@@ -124,7 +109,7 @@ class arcGrid {
 				var x = width*i + offset[0];
 				var y = height*k + offset[1];
 				shape.clip.position = [x-radius/2, y-radius/2];
-				this.pos.push(new paper.Point(x, y));
+				this.pos.push(new Point(x, y));
 				this.shapes.push(shape);
 				this.group.addChild(shape.clip);
 			}
@@ -160,7 +145,7 @@ class arcGrid {
 
 			this.shapes[i].moveTo({
 					destination: dest,
-					duration: calc.randomInt(300, 1000),
+					duration: calc.randomInt(100, 500),
 					color: this.colors[calc.randomInt(0, 4)],
 				});
 			this.shapes[i].update();
@@ -183,8 +168,8 @@ class arcMask extends MaskBase {
 		super.addLayer();
 		this.name = "arcMask";
 		this.eyeL = new arcGrid({
-			row: 8,
-			column: 6,
+			row: 7,
+			column: 8,
 			// loop start down to row then to column, 
 			// center of the shape: br - bottomRight tr - topRight etc. 'empty' just for variations
 			combination: ['br', 'tr', 'bl', 'tl', 'empty'],
