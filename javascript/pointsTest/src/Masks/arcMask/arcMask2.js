@@ -20,7 +20,9 @@ class arc2 {
 		this.tweenColor.easing(TWEEN.Easing.Quadratic.InOut);
 		this.circle = new paper.Path.Circle({
 			center: [d.radius,d.radius],
-			radius: d.radius,
+			radius: d.radius-1.5,
+			strokeColor: 'white',
+			strokeWidth: 3,
 		});
 		this.rect = new paper.Path.Rectangle({
         	from:[0,0],
@@ -61,7 +63,7 @@ class arc2 {
 	update(){
 		if(this.move){
 			var c = this.color;
-			this.circle.fillColor = new Color(c.r, c.g, c.b, 1);
+			this.circle.strokeColor = new Color(c.r, c.g, c.b, 1);
 			this.circle.position = [this.curPos.x, this.curPos.y];
 		}
 	}
@@ -103,6 +105,7 @@ class arcGrid2 {
 		}
 		this.group.pivot = [this.group.bounds.width/2-radius/2, this.group.bounds.height/2-radius/2];
 		this.counter = 0;
+		this.move();
 	}
 	update(){
 		TWEEN.update();
