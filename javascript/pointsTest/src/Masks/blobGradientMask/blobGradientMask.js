@@ -46,7 +46,7 @@ class blob{
 				for (var k = 0; k < segments.length; k++) {
 					self.pointsPositions["path"+i][k] = new paper.Point(segments[k].point.x,segments[k].point.y) ;
 				}
-            	paths[i].fullySelected = true;
+            	// paths[i].fullySelected = true;
             };
             // delete dummy objects
             item.children[0].children[1].remove();
