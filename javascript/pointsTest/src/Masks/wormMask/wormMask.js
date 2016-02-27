@@ -11,7 +11,6 @@ class shapeSet{
 		});
 
         paper.project.importSVG(d.path, function(item) {
-        	console.log("item.children[0] = " + item.children[0].children);
         	var paths = item.children[0].children;
         	for (var i = 0; i < paths.length; i++) {
         		var path = paths[i];

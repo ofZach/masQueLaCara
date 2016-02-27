@@ -43,6 +43,8 @@ class MaskManager {
 			new arcMask2(),
 			new arcMask3(),
 			new wormMask(),
+			new lampMask(),
+			new treeMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

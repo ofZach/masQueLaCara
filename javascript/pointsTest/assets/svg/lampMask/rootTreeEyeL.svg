@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="257.207px" height="284.703px" viewBox="0 0 257.207 284.703" style="enable-background:new 0 0 257.207 284.703;"
+	 xml:space="preserve">
+<g id="rootTreeEyeL">
+	<rect x="152.146" y="126.806" style="fill:none;stroke:#000000;stroke-miterlimit:10;" width="32.061" height="32.06"/>
+	<circle id="dummy_32_" style="fill:#00FF00;stroke:#000000;stroke-miterlimit:10;" cx="168.174" cy="142.835" r="8.022"/>
+	<g id="browRoot">
+		<line style="fill:none;stroke:#000000;stroke-miterlimit:10;" x1="145.877" y1="32.24" x2="168.174" y2="142.835"/>
+		<circle style="fill:none;stroke:#000000;stroke-miterlimit:10;" cx="145.877" cy="32.239" r="22.296"/>
+		<circle id="dummy_34_" style="fill:#00FF00;stroke:#000000;stroke-miterlimit:10;" cx="168.174" cy="142.835" r="8.022"/>
+		<g id="browR">
+			<line style="fill:none;stroke:#000000;stroke-miterlimit:10;" x1="168.174" y1="32.239" x2="248.002" y2="32.239"/>
+			<circle id="browRCir" style="fill:none;stroke:#000000;stroke-miterlimit:10;" cx="248.001" cy="32.239" r="8.706"/>
+			<circle id="dummy_23_" style="fill:#00FF00;stroke:#000000;stroke-miterlimit:10;" cx="168.174" cy="32.24" r="8.022"/>
+		</g>
+		<g id="browL">
+			<line style="fill:none;stroke:#000000;stroke-miterlimit:10;" x1="123.581" y1="32.239" x2="41.529" y2="32.239"/>
+			
+				<rect x="19.232" y="9.942" transform="matrix(0.7071 0.7071 -0.7071 0.7071 34.959 -19.9228)" style="fill:none;stroke:#000000;stroke-miterlimit:10;" width="44.594" height="44.594"/>
+			<circle id="dummy_26_" style="fill:#00FF00;stroke:#000000;stroke-miterlimit:10;" cx="123.581" cy="32.239" r="8.022"/>
+			<g id="browDown">
+				<path style="fill:none;stroke:#000000;stroke-miterlimit:10;" d="M82.556,190.105c0,22.658-18.37,41.027-41.026,41.027
+					c-22.66,0-41.029-18.369-41.029-41.027s18.369-41.028,41.029-41.028C64.186,149.077,82.556,167.447,82.556,190.105z"/>
+				<line style="fill:none;stroke:#000000;stroke-miterlimit:10;" x1="41.529" y1="63.771" x2="41.529" y2="149.077"/>
+				<circle id="dummy_27_" style="fill:#00FF00;stroke:#000000;stroke-miterlimit:10;" cx="41.527" cy="63.771" r="8.022"/>
+				<g id="browDownSmall">
+					<line style="fill:none;stroke:#000000;stroke-miterlimit:10;" x1="41.529" y1="231.133" x2="41.529" y2="265.025"/>
+					<path id="cirBottom" style="fill:none;stroke:#000000;stroke-miterlimit:10;" d="M60.703,265.025
+						c0,10.59-8.586,19.178-19.174,19.178c-10.595,0-19.178-8.588-19.178-19.178s8.583-19.176,19.178-19.176
+						C52.117,245.85,60.703,254.436,60.703,265.025z"/>
+					<circle id="dummy_29_" style="fill:#00FF00;stroke:#000000;stroke-miterlimit:10;" cx="41.529" cy="231.398" r="8.022"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+<g id="Layer_1">
+</g>
+</svg>

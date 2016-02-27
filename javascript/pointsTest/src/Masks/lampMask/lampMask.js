@@ -1,5 +1,5 @@
 'use strict';
-class forestSVG {
+class lampSVG {
     constructor(d) {
         this.loaded = false;
         this.group = new paper.Group();
@@ -8,6 +8,7 @@ class forestSVG {
         this.fadeForce = d.fadeForce;
         this.rootPivot;
         this.levelCount = 0;
+        this.randomNum = [];
         var self = this;
         paper.project.importSVG(d.path, function(item) {
             self.setPivot(item.children[0]);
@@ -21,6 +22,26 @@ class forestSVG {
     	// iterate through hierarchy
     	for (var i = 0; i < item.children.length; i++) {
            var name = item.children[i].name;
+           this.randomNum.push(calc.random(1, 5));
+           // add shadow
+
+           if(item.children[i].className == 'Path' || item.children[i].className == 'Shape'){
+           		var path = item.children[i];
+           		path.strokeColor = 'white';
+           }
+           // if(item.children[i].name != undefined){
+	          //  if(item.children[i].className == 'Path' || item.children[i].className == 'Shape'){
+	          //  		var shape = item.children[i];
+	          //  		var group = shape.parent;
+	          //  		var text = new PointText({
+	          //  			point: shape.position,
+	          //  			justification: 'left',
+	          //  			fillColor: 'white',
+	          //  			content: shape.name,
+	          //  		});
+	          //  		group.addChild(text);
+	          //  }
+           // }
            // if wee meet layer named dummy set parent pivot to this object
            if(name != undefined && name.substring(0, 5) == 'dummy'){
            		var dummy = item.children[i];
@@ -43,13 +64,19 @@ class forestSVG {
     }
     rotate(item){
     	for (var i = 0; i < item.children.length; i++) {
+    		if(item.children[i].className == 'Path' || item.children[i].className == 'Shape'){
+           		var path = item.children[i];
+				path.shadowOffset.x = Math.cos(this.counter/this.speed/this.randomNum[i]+this.randomNum[i]*500)*this.energy*100;
+				path.shadowOffset.y = Math.sin(this.counter/this.speed/this.randomNum[i]+this.randomNum[i]*500)*this.energy*100;
+           }
            if(item.children[i].className == 'Group'){
            		var group = item.children[i];
            		var fadeForce = 1;
            		if(this.levelCount != 0){
            			fadeForce = this.levelCount/this.fadeForce;
            		}
-           		group.rotation = Math.cos(this.counter/this.speed+i*100)*this.energy;
+           		group.rotation = Math.cos(this.counter/this.speed+this.randomNum[i]*500)*this.energy*this.randomNum[i];
+           		group.scaling =  calc.map(Math.sin(this.counter/this.speed+this.randomNum[i]*100)*this.energy, -5, 5, 0.8, 1);
            }
            if(item.children[i].children != undefined){
            		this.rotate(item.children[i]);
@@ -60,69 +87,26 @@ class forestSVG {
     	this.counter++;
     	if(this.group.children[0] != undefined){
     		var root = this.group.children[0];
-    		// root.rotation = Math.cos(this.counter/20+100)*this.energy;
+    		root.rotation = Math.cos(this.counter/20+100)*this.energy;
     		this.rotate(root);
     	}
     }
 }
-class plainSVG {
-	constructor(d){
-		this.group = new paper.Group();
-		var self = this;
-		paper.project.importSVG(d.path, function(item) {
-            self.group.addChild(item.children[0]);
-            self.group.pivot = d.pivot;
-            self.group.transformContent = false;
-            this.loaded = true;
-        });
-	}
-}
-class forestMask extends MaskBase {
-
+class lampMask extends MaskBase {
 	//------------------------------------------
 	setup() {
 		super.addLayer();
-		this.name = "forestMask";
-		this.forest = new forestSVG({
-			path: 'assets/svg/forestMask/rootSmallTrees.svg',
-			pivot: [0, -270],
-			energy: 20,
-			speed: 5,
-			fadeForce: 1,
-		});
-		this.bigTree = new forestSVG({
-			path: 'assets/svg/forestMask/rootBigTree.svg',
-			pivot: [-20, 50],
-			energy: 20,
-			speed: 5,
-			fadeForce: 1,
-		});
-		this.sun = new plainSVG({
-			path: 'assets/svg/forestMask/sun.svg',
-		});
-		this.moon = new plainSVG({
-			path: 'assets/svg/forestMask/moon.svg',
-		});
-		var width = 300;
-		var height = 400;
-		this.clipPath = new paper.Path.Rectangle({
-			from: [0, 0],
-			to: [width, height],
-			pivot: [width/2, height/2],
-			strokeWidth: 2,
-			strokeColor: 'white',
-			transformContent: false,
-		})
-		this.clipPathStroke = this.clipPath.clone();
-		this.window = new paper.Group({
-			children: [this.clipPath, this.forest.group],
-			clipped: true,
-			transformContent: false,
-		})
+		this.name = "lampMask";
 		this.velocity = 0;
 		this.angle = 0;
+		this.mouth = new lampSVG({
+			path: 'assets/svg/lampMask/rootLamp.svg',
+			pivot: [0, 0],
+			energy: 20,
+			speed: 5,
+			fadeForce: 19,
+		});
 	}
-
 	//------------------------------------------
 	update(data) {
 		var head = data['faceParts']['head'];
@@ -142,28 +126,9 @@ class forestMask extends MaskBase {
 		this.velocity = calc.smooth(this.velocity, head.velocity.length, 0.9);
 		this.angle = calc.smooth(this.angle, calc.deg(head.angle), 0.9);
 
-		this.sun.group.position = eyeL.position;
-		this.moon.group.position = eyeR.position;
-		
-		this.forest.update();
-		this.forest.group.position = head.position;
-		this.forest.energy = this.velocity;
-
-		this.bigTree.update();
-		this.bigTree.group.position = nose.position;
-		this.bigTree.energy = this.velocity;
-
-		this.clipPath.position = head.position;
-		this.clipPath.rotation = this.angle;
-		this.clipPath.scaling = [head.scale, head.scale];
-		
-		this.clipPathStroke.position = head.position;
-		this.clipPathStroke.rotation = this.angle;
-		this.clipPathStroke.scaling = [head.scale, head.scale];
-
-
-
-		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...
+		this.mouth.update();
+		this.mouth.group.position = mouth.position;
+		this.mouth.energy = this.velocity;
 	}
 
 	show() {
