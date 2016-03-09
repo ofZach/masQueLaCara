@@ -4,20 +4,368 @@
 		"selected_items":
 		[
 			[
-				"col",
-				"colorEnd"
+				"bo",
+				"browRoot"
 			],
 			[
-				"color",
-				"colorStart"
+				"line2",
+				"line2Pos1"
+			],
+			[
+				"lin",
+				"line1"
+			],
+			[
+				"root",
+				"rootTreeEyeL"
+			],
+			[
+				"line",
+				"line1Pos0"
+			],
+			[
+				"nos",
+				"noseCir"
+			],
+			[
+				"ran",
+				"randomNum"
+			],
+			[
+				"lma",
+				"lampMask"
+			],
+			[
+				"da",
+				"dashOffset"
+			],
+			[
+				"cur",
+				"curOffset"
+			],
+			[
+				"id",
+				"idNext"
+			],
+			[
+				"pah",
+				"paths"
+			],
+			[
+				"len",
+				"length"
+			],
+			[
+				"lo",
+				"location"
+			],
+			[
+				"str",
+				"strokeColor"
+			],
+			[
+				"e",
+				"empty"
+			],
+			[
+				"get",
+				"getDistance"
+			],
+			[
+				"arcC",
+				"arcCircleSymbol"
+			],
+			[
+				"s",
+				"symbol"
+			],
+			[
+				"cou",
+				"constructor"
+			],
+			[
+				"ar",
+				"arcCircle"
+			],
+			[
+				"ra",
+				"radius"
+			],
+			[
+				"arc",
+				"arcGrid"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"t",
+				"tween"
+			],
+			[
+				"rna",
+				"randomInt"
+			],
+			[
+				"move",
+				"moveTo"
+			],
+			[
+				"mo",
+				"move"
+			],
+			[
+				"sh",
+				"shape"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
 			],
 			[
 				"po",
 				"position"
 			],
 			[
+				"pr",
+				"prevLocation"
+			],
+			[
+				"cl",
+				"clip"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"bl",
+				"blockMask"
+			],
+			[
+				"block",
+				"blockSVG"
+			],
+			[
+				"ro",
+				"rotation"
+			],
+			[
+				"clipPathS",
+				"clipPathStroke"
+			],
+			[
+				"cli",
+				"clipPath"
+			],
+			[
+				"clip",
+				"clipPath"
+			],
+			[
+				"tr",
+				"transformContent"
+			],
+			[
+				"fo",
+				"forest"
+			],
+			[
+				"ci",
+				"circleBig3"
+			],
+			[
+				"eye",
+				"eyeLine"
+			],
+			[
+				"cir",
+				"circle3"
+			],
+			[
+				"st",
+				"start"
+			],
+			[
+				"poi",
+				"point"
+			],
+			[
+				"had",
+				"handleOut"
+			],
+			[
+				"fa",
+				"fadeForce"
+			],
+			[
+				"leve",
+				"levelCount"
+			],
+			[
+				"roo",
+				"rootPivot"
+			],
+			[
+				"ud",
+				"undefined"
+			],
+			[
+				"br",
+				"browL"
+			],
+			[
+				"sc",
+				"scale"
+			],
+			[
 				"ang",
-				"angle"
+				"angleRange"
+			],
+			[
+				"load",
+				"loadSvg"
+			],
+			[
+				"gr",
+				"gradLine"
+			],
+			[
+				"li",
+				"linesInterval"
+			],
+			[
+				"sp",
+				"speed"
+			],
+			[
+				"an",
+				"angleOffset"
+			],
+			[
+				"sca",
+				"scaling"
+			],
+			[
+				"gra",
+				"gradLine"
+			],
+			[
+				"grou",
+				"groupOffset"
+			],
+			[
+				"eyel",
+				"eyeLine"
+			],
+			[
+				"eyeBa",
+				"eyeBallR"
+			],
+			[
+				"ey",
+				"eyeL"
+			],
+			[
+				"stroke",
+				"strokeWidth"
+			],
+			[
+				"ea",
+				"earRGroup"
+			],
+			[
+				"linesE",
+				"linesEarL"
+			],
+			[
+				"ear",
+				"earLGroup"
+			],
+			[
+				"a",
+				"a"
+			],
+			[
+				"eyeL",
+				"eyeLGroup"
+			],
+			[
+				"re",
+				"rectWidth"
+			],
+			[
+				"ch",
+				"children"
+			],
+			[
+				"mou",
+				"mouthGroup"
+			],
+			[
+				"p",
+				"position"
+			],
+			[
+				"l",
+				"line2"
+			],
+			[
+				"pa",
+				"Path"
+			],
+			[
+				"chee",
+				"cheekR"
+			],
+			[
+				"c",
+				"counter"
+			],
+			[
+				"sma",
+				"smallCircleCount"
+			],
+			[
+				"inn",
+				"innerColor"
+			],
+			[
+				"ou",
+				"outerCircle"
+			],
+			[
+				"gro",
+				"groupContent"
+			],
+			[
+				"path",
+				"path2"
+			],
+			[
+				"nois",
+				"noiseRange"
+			],
+			[
+				"rand",
+				"randPoint"
+			],
+			[
+				"value",
+				"valueOld"
+			],
+			[
+				"j",
+				"jellyBean"
+			],
+			[
+				"color",
+				"colorStart"
 			],
 			[
 				"co",
@@ -26,14 +374,6 @@
 			[
 				"angle",
 				"angleOffset"
-			],
-			[
-				"an",
-				"angle"
-			],
-			[
-				"p",
-				"pos"
 			],
 			[
 				"g",
@@ -48,10 +388,6 @@
 				"snake"
 			],
 			[
-				"e",
-				"eyeL"
-			],
-			[
 				"on",
 				"onLoadShape2"
 			],
@@ -64,32 +400,12 @@
 				"shape2"
 			],
 			[
-				"cou",
-				"counter"
-			],
-			[
-				"pa",
-				"paths"
-			],
-			[
-				"a",
-				"animate"
-			],
-			[
-				"eye",
-				"eyeL"
-			],
-			[
 				"pos",
 				"posPoint2"
 			],
 			[
 				"osc",
 				"osc2"
-			],
-			[
-				"ran",
-				"rangeScale"
 			],
 			[
 				"ron",
@@ -100,20 +416,12 @@
 				"randomNum"
 			],
 			[
-				"get",
-				"getSample"
-			],
-			[
 				"set",
 				"setFrequency"
 			],
 			[
 				"d",
 				"data"
-			],
-			[
-				"ro",
-				"rotation"
 			],
 			[
 				"r",
@@ -124,10 +432,6 @@
 				"rotator"
 			],
 			[
-				"re",
-				"results"
-			],
-			[
 				"vi",
 				"visible"
 			],
@@ -136,24 +440,8 @@
 				"result"
 			],
 			[
-				"ra",
-				"random"
-			],
-			[
 				"circ",
 				"circles"
-			],
-			[
-				"st",
-				"stroke"
-			],
-			[
-				"sc",
-				"scaleFactor"
-			],
-			[
-				"gr",
-				"gradient	(?)"
 			],
 			[
 				"se",
@@ -168,16 +456,8 @@
 				"point1"
 			],
 			[
-				"da",
-				"data	(?)"
-			],
-			[
 				"sv",
 				"SvgGrad"
-			],
-			[
-				"fa",
-				"faceParts	{}"
 			],
 			[
 				"smoo",
@@ -192,10 +472,6 @@
 				"downRight"
 			],
 			[
-				"li",
-				"linesGroup"
-			],
-			[
 				"y",
 				"yellowCircleGroup"
 			],
@@ -204,16 +480,8 @@
 				"smoothValue"
 			],
 			[
-				"lin",
-				"linesGroup"
-			],
-			[
 				"add",
 				"addChild"
-			],
-			[
-				"sh",
-				"showMask"
 			],
 			[
 				"cu",
@@ -222,18 +490,6 @@
 			[
 				"wai",
 				"waitDistance"
-			],
-			[
-				"cur",
-				"curves"
-			],
-			[
-				"for",
-				"for	for (…) {…}"
-			],
-			[
-				"fo",
-				"for	for (…) {…}"
 			],
 			[
 				"fun",
@@ -248,14 +504,6 @@
 				"pathsLength"
 			],
 			[
-				"mou",
-				"mouseP"
-			],
-			[
-				"ea",
-				"easeOutElastic"
-			],
-			[
 				"brow",
 				"browL"
 			],
@@ -266,43 +514,107 @@
 			[
 				"hea",
 				"headX"
-			],
-			[
-				"W",
-				"Weird"
-			],
-			[
-				"Set",
-				"SetToSlot(PuzzleSlot _slot)	void"
-			],
-			[
-				"fir",
-				"firstSolvedSlot	PuzzleSlot"
-			],
-			[
-				"slo",
-				"slots	ArrayList"
-			],
-			[
-				"In",
-				"Interact()	void"
-			],
-			[
-				"fin",
-				"finishRotation	bool"
-			],
-			[
-				"Ro",
-				"RotateAround	RotateAround"
-			],
-			[
-				"s",
-				"startXPos"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "javascript/pointsTest/src/Masks/forestMask/forestMask.js",
+			"settings":
+			{
+				"buffer_size": 5177,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/lampMask/lampMask.js",
+			"settings":
+			{
+				"buffer_size": 4846,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/lampMask/treeMask.js",
+			"settings":
+			{
+				"buffer_size": 4120,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/assets/svg/lampMask/rootTreeEyeL.svg",
+			"settings":
+			{
+				"buffer_size": 3022,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/paperCutMask/paperCutMask.js",
+			"settings":
+			{
+				"buffer_size": 4333,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/utils/random.js",
+			"settings":
+			{
+				"buffer_size": 490,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
+			"settings":
+			{
+				"buffer_size": 2431,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/blockMask/blockMask.js",
+			"settings":
+			{
+				"buffer_size": 6053,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Data/dataPlayer.js",
+			"settings":
+			{
+				"buffer_size": 10837,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/clipingMask/clipingMask.js",
+			"settings":
+			{
+				"buffer_size": 6392,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/assets/svg/CutPaperMask/testPivot.svg",
+			"settings":
+			{
+				"buffer_size": 1568,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "javascript/pointsTest/src/Masks/circleClipMask/circleClipMask.js",
+			"settings":
+			{
+				"buffer_size": 4156,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -311,14 +623,10 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 387.0,
-		"last_filter": "boo",
+		"height": 392.0,
+		"last_filter": "ins",
 		"selected_items":
 		[
-			[
-				"boo",
-				"SublimeBookmarks: Show Bookmarks Only In Current Project "
-			],
 			[
 				"ins",
 				"Package Control: Install Package"
@@ -328,12 +636,32 @@
 				"Package Control: Remove Package"
 			],
 			[
-				"re",
-				"Package Control: Remove Package"
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"bro",
+				"BrowserBookmarks : Show bookmarks"
 			],
 			[
 				"book",
-				"SublimeBookmarks: Remove A Bookmark"
+				"BrowserBookmarks : Show bookmarks"
+			],
+			[
+				"boo",
+				"Bookmarks: Toggle"
+			],
+			[
+				"packre",
+				"Package Control: Remove Package"
+			],
+			[
+				"re",
+				"Package Control: Remove Package"
 			],
 			[
 				"show",
@@ -400,14 +728,6 @@
 				"Package Control: Disable Package"
 			],
 			[
-				"disa",
-				"Package Control: Disable Package"
-			],
-			[
-				"inst",
-				"Package Control: Install Package"
-			],
-			[
 				"pack",
 				"Package Control: Enable Package"
 			],
@@ -428,7 +748,7 @@
 				"OmniSharpSublime: Reload Solution"
 			]
 		],
-		"width": 521.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -449,51 +769,88 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara"
+		"/Users/gordey/Sites/masQueLaCara",
+		"/Users/gordey/Sites/masQueLaCara/javascript",
+		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest",
+		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/src"
 	],
 	"file_history":
 	[
-		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js",
-		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/emptyMask/emptyMask.js",
-		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
-		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerMask.js",
-		"/Users/zachlieberman/Desktop/mask project/github/masQueLaCara/masQueLaCara.sublime-project",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerShapeMask/flowerShapeMask.js",
+		"/Users/gordey/Desktop/FastType/maskManager.js",
+		"/Users/gordey/Projects/portfolio/music/xthsense_dev/configXTH.py",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/wormMask/wormMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/pointsPlayer.html",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/maskManager.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/main.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/maskManager.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/arcMask/arcMask2.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/emptyMask/emptyMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/vendor/Tween.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Svg/SvgLoader.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/arcMask/arcMask3.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/arcMask/arcMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/forestMask/forestMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/cloudMask/cloudMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/demoMask/demoMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/blockMask/blockMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/paperCutMask/paperCutMask.js",
+		"/Users/gordey/Sites/masQueLaCara/.gitignore",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/intersectMask/intersectMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/cloudFacePivot/cloudFacePivot.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/pebblesMask/pebblesMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/divideMask/divideMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/squareMask/squareMask3.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Data/dataPlayer.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/maskBase.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/utils/random.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask2.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/pyrateMask/pyrateMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/src/blob.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/shapes.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/energyCircle.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/jellyBeanMask/jellyBeanMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/stripeyMask/stripeyMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/cthulhuMask/cthulhuMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/tubeCircle.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/gradientCircleMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/circleClipMask/circleClipMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/clipingMask/clipingMask.js",
+		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerShapeMask/flowerShapeMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/crowMask/crowMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/javascript/Fx.Spring.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/candleMask/candleMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/squareMask/squareMask.js",
+		"/Users/gordey/Sites/masQueLaCara/.metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/rotationMask/rotationMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/squareMask/squareMask5.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/squareMask/squareMask4.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/squareMask/squareMask2.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/AnimatedStroke.html",
+		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/src/GroupChain.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/utils/perlin.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/assets/svg/GridFace/noseLine.svg",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/physicsManager.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/bounceMask/bounceMask.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/utils/oscillator.js",
+		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerMask.js",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
-		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/tentacleMask/tentacleMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/pathDrawMask/pathDrawMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/lineDisplaceMask/lineDisplaceMask.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/src/main.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientMask/gradientMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/attractFacePointMask/attractFacePointMask.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/gradientCircleMask.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/flowerMask/flowerMaskControl.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Data/smallestenclosingcircle.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/demoMask/demoMask.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/utils/oscillator.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/clipingMask/clipingMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/clippingMask",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/tubeCircle.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/rotationMask/rotationMask.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Data/dataPlayer.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/shapes.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/gradientCircleMask/energyCircle.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/assets/svg/GradientMask/GradientMask.svg",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/crowMask/crowMask.js",
 		"/Users/gordey/Projects/Mask/paperjs-v0.9.25/examples/Scripts/BooleanOperations.html",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/assets/svg/BlobGradientMask/blobs.svg",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/assets/svg/BlobGradientMask/test.svg",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/pyrateMask/pyrateMask.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/bounceMask/bounceMask.js",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/vendor/paper-full.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/blobGradientMask/blobGradient.js",
@@ -501,12 +858,8 @@
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/Users/gordey/Sites/masQueLaCara/.jshintrc",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Svg/SvgLoader.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks/maskBase.js",
 		"/Users/gordey/Sites/masQueLaCara/masQueLaCara.sublime-project",
 		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/index.html",
-		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/src/GroupChain.js",
-		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/AnimatedStroke.html",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/printSelected.sublime-macro",
 		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/print.sublime-snippet",
 		"/Users/gordey/Sites/masQueLaCara/javascript/paperShapeTest/src/Chain.js",
@@ -528,7 +881,6 @@
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/maskManager.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/StrokeFace.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/css/style.css",
-		"/Users/gordey/Desktop/FastType/maskManager.js",
 		"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/vendor/paper-core.js",
 		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/PuzzleSlot.cs",
 		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/WuMachineHandler.cs",
@@ -551,23 +903,7 @@
 		"/Users/gordey/Documents/Unity/Philosopharium/Assets/AdventureCreator/Scripts/Speech/Dialog.cs",
 		"/Users/gordey/Desktop/ac backup/Dialog.cs",
 		"/Users/gordey/Desktop/ac backup/Speech.cs",
-		"/Users/gordey/Documents/Unity/OSCtest/Assets/OSCManage.cs",
-		"/Users/gordey/Library/Containers/com.apple.mail/Data/Library/Mail Downloads/22E98C22-C908-47EC-B7B1-D7E17F272322/OSC-module_radical_DEF.pd",
-		"/Users/gordey/Documents/Unity/OSCtest/Assets/UnityOSC/src/OSCHandler.cs",
-		"/Users/gordey/Documents/Unity/tests/touchosc_integration/Assets/oscControl.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/DebugDissapear.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/CombinationChecker.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/R_Puzzle.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/Scaler.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/RadialCloner.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/R_SlotManager.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/AdventureCreator/Scripts/Menu/Menu classes/Menu.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Prefabs/Level1-1/ReactorMan/RotateAround.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/BoxPosition.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Assets/Scripts/Drag.cs",
-		"/Users/gordey/Documents/Unity/Philosopharium/Philosopharium.sublime-project",
-		"/Users/gordey/Documents/Unity/Philosopharium/Test",
-		"/Users/gordey/Library/Application Support/Sublime Text 3/Packages/User/C#.sublime-settings"
+		"/Users/gordey/Documents/Unity/OSCtest/Assets/OSCManage.cs"
 	],
 	"find":
 	{
@@ -578,6 +914,9 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest",
+			"/Users/gordey/Sites/masQueLaCara/javascript",
+			"/Users/gordey/Sites/masQueLaCara/javascript/pointsTest/src/Masks",
 			"<open files>",
 			"<open files>,<open folders>",
 			"<open files>",
@@ -586,137 +925,137 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
-			"ffc541",
-			"colorStart",
-			"colorEnd",
-			"radius",
-			"head",
-			"length",
-			"//",
-			"length",
-			"radius",
-			"100",
-			"eyeL",
-			"petal",
-			"petal2",
-			"petal",
-			"petal2",
-			"1",
-			"radius",
-			"0",
-			"200",
-			"velocity",
-			"speed",
-			"var",
-			": ",
-			"var",
-			"angleOffset",
-			"var",
-			"length",
-			"radius",
-			"var",
-			"20",
-			"angleDeg",
-			"pendulum",
-			"angle",
-			"100",
-			"0",
-			"30",
-			"20",
-			"pendulum",
-			"tentacleMask",
-			"emptyMask",
-			"f2",
-			"head",
-			"count",
-			"strokeColor",
-			"color",
-			"offset",
-			"children",
-			"60",
-			"30",
-			"300",
-			"_points",
-			"points",
+			"bool",
+			"line1",
 			"value",
-			"path",
-			"var",
-			"path",
-			"var",
-			"lineDisplaceMask",
-			"200",
-			"20",
-			"mouth",
-			"head",
-			"inPoint0",
-			"0",
-			"head",
-			"onload",
-			"group",
-			"d",
-			"shapes",
-			"this.velocity",
-			"velocity",
-			"5",
-			"this.counter/20+",
-			"20",
-			"this.velocity",
+			"line2",
+			"pos3",
 			"eyeL",
-			"this.smoothAngle",
+			"browRoot",
+			"browR",
+			"pos2",
 			"50",
-			"45",
-			"90",
-			"30",
+			"value",
+			"line1",
+			"Layer",
+			"chinL",
+			"pos",
+			"line1",
+			"line1Pos0",
+			"nose",
+			"fillColor",
+			"rootTreeMouth",
+			"log",
+			"mouth",
+			"log",
+			"speed",
+			"in",
+			"lipLower",
+			"fadeForce",
+			"lampMask",
+			"value",
+			"10",
 			"20",
-			"*",
-			"this.counter",
+			"rootSmallTrees",
+			"forestMask",
+			"head",
+			"forest",
+			"forestSVG",
+			"forest",
+			"wormMask",
+			"lampMask",
+			"emptyMask",
+			"this.currShapeNum",
+			"isMove",
+			"100",
+			"position",
+			"mouth",
+			"browL",
+			"mouth",
+			"nose",
 			"eyeR",
 			"eyeL",
-			"d",
-			"head",
-			"d.posPoint0[0]",
-			"y",
+			"next",
+			"this",
 			"value",
+			"width",
 			"0",
-			"osc",
-			"init",
-			"osc",
-			"init",
-			"d.",
-			"Point2",
-			"Point1",
-			"init",
-			"this.handleInAngle",
-			"posPoint1",
-			"pointPos2",
-			"0",
-			"point",
-			"osc",
-			"d",
+			"Things",
 			"value",
-			"In",
-			"InPoint1",
-			"pointHandleIn1",
-			"circleFaceMask",
-			"x",
-			"osc2 * p.rangeAngleTop",
-			"osc * p.rangeAngleBottom",
-			"rangeAngleAverage",
-			"osc2",
-			"bookm",
-			"osc2",
-			"30",
-			"rangeAngleBottom",
-			"20",
+			"arcMask",
+			"arcMask3",
+			"wormMask",
+			"emptyMask",
+			"450",
+			"paper",
+			"arcMask2",
+			"arcGrid2",
+			"arc2",
+			"3",
+			"earR",
+			"browL",
+			"earR",
+			"mouth",
+			"earL",
+			"mouth",
+			"tl",
+			"bl",
+			"nose",
+			"eyeR",
+			"eyeL",
+			"maxComb",
+			"rightComb",
+			"arcMask",
+			"isActive",
+			"this.rightComb[calc.randomInt(0, 5)]",
+			"Dist",
+			"dist",
+			"50",
+			"7",
 			"10",
-			"osc",
-			"10*i",
+			"Tween.up",
+			"Cirinstance",
+			"self",
+			"blockMask",
+			"emptyMask",
+			"browL",
+			"mouth",
+			"value",
+			"r",
+			"ofSetColor",
+			"ofFill",
+			"nose",
+			"eyeR",
+			"locations",
+			"eyeL",
+			"shape",
+			"value",
+			"j",
 			"i",
-			"40",
-			"20"
+			"value",
+			"new paper.Point(",
+			"tween.js",
+			"tween",
+			"tr",
+			"value",
+			"state",
+			"clipPath",
+			"forestMask",
+			"emptyMask",
+			"calc.deg(head.angle)",
+			"head",
+			"0",
+			"400",
+			"position",
+			"clipPath",
+			"position",
+			"forest",
+			"value",
+			"root",
+			"sun"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -728,19 +1067,606 @@
 		"reverse": false,
 		"show_context": true,
 		"use_buffer2": true,
-		"whole_word": true,
-		"wrap": true
+		"whole_word": false,
+		"wrap": false
 	},
 	"groups":
 	[
 		{
+			"selected": 4,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "javascript/pointsTest/src/Masks/forestMask/forestMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2364,
+								2364
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "f92b64fc",
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 708.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "javascript/pointsTest/src/Masks/lampMask/lampMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4846,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1058,
+								1058
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "288a807c",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 7.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "javascript/pointsTest/src/Masks/lampMask/treeMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4044,
+								4044
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "plain text",
+							"buffer_scroll_name": "24fba19b",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "javascript/pointsTest/assets/svg/lampMask/rootTreeEyeL.svg",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3022,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "xml",
+							"buffer_scroll_name": "740a8ac2",
+							"spell_check": false,
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "javascript/pointsTest/src/Masks/paperCutMask/paperCutMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1014,
+								766
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "ae121b67",
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage"
+						},
+						"translation.x": 2.0,
+						"translation.y": 7.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "javascript/pointsTest/src/utils/random.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								177,
+								177
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "158922a6",
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		},
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 6,
+					"file": "javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2431,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1839,
+								1858
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "aa757f6b",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 0.0,
+						"translation.y": 959.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "javascript/pointsTest/src/Masks/blockMask/blockMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6053,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5327,
+								5327
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "d7a89412",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 0.0,
+						"translation.y": 2537.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "javascript/pointsTest/src/Data/dataPlayer.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10837,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								373,
+								373
+							]
+						],
+						"settings":
+						{
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "ba619d87",
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "javascript/pointsTest/src/Masks/clipingMask/clipingMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6392,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5323,
+								5323
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "3fe15c86",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 28.0,
+						"translation.y": 2360.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "javascript/pointsTest/assets/svg/CutPaperMask/testPivot.svg",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1568,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								576,
+								576
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "xml",
+							"buffer_scroll_name": "6305d2b1",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/XML/XML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "javascript/pointsTest/src/Masks/circleClipMask/circleClipMask.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4156,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4088,
+								3209
+							]
+						],
+						"settings":
+						{
+							"always_show_minimap_viewport": false,
+							"auto_indent": true,
+							"bs_sintax": "javascriptnext",
+							"buffer_scroll_name": "f7f94229",
+							"color_scheme": "Packages/User/SublimeLinter/MarkdownLight (SL).tmTheme",
+							"detect_indentation": true,
+							"draw_centered": false,
+							"draw_minimap_border": false,
+							"draw_white_space": "selection",
+							"font_face": "Menlo",
+							"font_options":
+							[
+							],
+							"gutter": true,
+							"highlight_line": false,
+							"indent_subsequent_lines": true,
+							"line_numbers": true,
+							"line_padding_bottom": 0,
+							"line_padding_top": 0,
+							"match_brackets": true,
+							"match_brackets_angle": false,
+							"rulers":
+							[
+							],
+							"scroll_past_end": false,
+							"spell_check": false,
+							"syntax": "Packages/JavaScriptNext - ES6 Syntax/JavaScriptNext.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false,
+							"trim_automatic_white_space": true,
+							"trim_trailing_white_space_on_save": false,
+							"use_tab_stops": true,
+							"word_wrap": "auto",
+							"wrap_width": 0
+						},
+						"translation.x": 0.0,
+						"translation.y": 1666.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -772,7 +1698,7 @@
 		"cols":
 		[
 			0.0,
-			0.716856915756,
+			0.589294338007,
 			1.0
 		],
 		"rows":
@@ -808,40 +1734,312 @@
 		"selected_items":
 		[
 			[
-				"cir",
-				"javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js"
+				"for",
+				"javascript/pointsTest/src/Masks/forestMask/forestMask.js"
 			],
 			[
-				"mai",
-				"javascript/pointsTest/src/main.js"
+				"wormm",
+				"javascript/pointsTest/src/Masks/wormMask/wormMask.js"
 			],
 			[
-				"emp",
-				"javascript/pointsTest/src/Masks/emptyMask/emptyMask.js"
-			],
-			[
-				"svg",
-				"javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js"
-			],
-			[
-				"flower",
-				"javascript/pointsTest/src/Masks/flowerMask/flowerMask.js"
+				"da",
+				"javascript/pointsTest/src/Data/dataPlayer.js"
 			],
 			[
 				"poi",
 				"javascript/pointsTest/pointsPlayer.html"
 			],
 			[
-				"main",
-				"javascript/pointsTest/src/main.js"
+				"pap",
+				"javascript/pointsTest/src/Masks/paperCutMask/paperCutMask.js"
 			],
 			[
-				"mask",
-				"javascript/pointsTest/src/Masks/maskManager.js"
+				"ran",
+				"javascript/pointsTest/src/utils/random.js"
+			],
+			[
+				"fo",
+				"javascript/pointsTest/src/Masks/forestMask/forestMask.js"
+			],
+			[
+				"emp",
+				"javascript/pointsTest/src/Masks/emptyMask/emptyMask.js"
+			],
+			[
+				"mai",
+				"javascript/pointsTest/src/main.js"
 			],
 			[
 				"mama",
 				"javascript/pointsTest/src/Masks/maskManager.js"
+			],
+			[
+				"blo",
+				"javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask.js"
+			],
+			[
+				"ma",
+				"javascript/pointsTest/src/main.js"
+			],
+			[
+				"twe",
+				"javascript/pointsTest/vendor/Tween.js"
+			],
+			[
+				"arc",
+				"javascript/pointsTest/src/Masks/arcMask/arcMask2.js"
+			],
+			[
+				"svg",
+				"javascript/pointsTest/src/Svg/SvgLoader.js"
+			],
+			[
+				"em",
+				"javascript/pointsTest/src/Masks/emptyMask/emptyMask.js"
+			],
+			[
+				"po",
+				"javascript/pointsTest/pointsPlayer.html"
+			],
+			[
+				"block",
+				"javascript/pointsTest/src/Masks/blockMask/blockMask.js"
+			],
+			[
+				"main",
+				"javascript/pointsTest/src/main.js"
+			],
+			[
+				"circll",
+				"javascript/pointsTest/src/Masks/circleClipMask/circleClipMask.js"
+			],
+			[
+				"",
+				".gitignore"
+			],
+			[
+				"clip",
+				"javascript/pointsTest/src/Masks/clipingMask/clipingMask.js"
+			],
+			[
+				"devi",
+				"javascript/pointsTest/src/Masks/divideMask/divideMask.js"
+			],
+			[
+				"squa",
+				"javascript/pointsTest/src/Masks/squareMask/squareMask3.js"
+			],
+			[
+				"cir",
+				"javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js"
+			],
+			[
+				"dem",
+				"javascript/pointsTest/src/Masks/demoMask/demoMask.js"
+			],
+			[
+				"pe",
+				"javascript/pointsTest/src/Masks/pebblesMask/pebblesMask.js"
+			],
+			[
+				"ra",
+				"javascript/pointsTest/src/utils/random.js"
+			],
+			[
+				"pyr",
+				"javascript/pointsTest/src/Masks/pyrateMask/pyrateMask.js"
+			],
+			[
+				"clo",
+				"javascript/pointsTest/src/Masks/cloudMask/cloudMask.js"
+			],
+			[
+				"cloud",
+				"javascript/pointsTest/src/Masks/cloudMask/cloudMask.js"
+			],
+			[
+				"clou",
+				"javascript/pointsTest/src/Masks/cloudMask/cloudMask.js"
+			],
+			[
+				"mask",
+				"javascript/pointsTest/src/Masks/maskBase.js"
+			],
+			[
+				"cloudm",
+				"javascript/pointsTest/src/Masks/cloudMask/cloudMask.js"
+			],
+			[
+				"stri",
+				"javascript/pointsTest/src/Masks/stripeyMask/stripeyMask.js"
+			],
+			[
+				"je",
+				"javascript/pointsTest/src/Masks/jellyBeanMask/jellyBeanMask.js"
+			],
+			[
+				"j",
+				"javascript/pointsTest/src/Masks/jellyBeanMask/jellyBeanMask.js"
+			],
+			[
+				"svgl",
+				"javascript/pointsTest/src/Svg/SvgLoader.js"
+			],
+			[
+				"chtu",
+				"javascript/pointsTest/src/Masks/cthulhuMask/cthulhuMask.js"
+			],
+			[
+				"grabl",
+				"javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask2.js"
+			],
+			[
+				"blobgr",
+				"javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask.js"
+			],
+			[
+				"ener",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/energyCircle.js"
+			],
+			[
+				"sha",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/shapes.js"
+			],
+			[
+				"tub",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/tubeCircle.js"
+			],
+			[
+				"gradi",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/gradientCircleMask.js"
+			],
+			[
+				"cirs",
+				"javascript/pointsTest/src/Masks/circleClipMask/circleClipMask.js"
+			],
+			[
+				"sprin",
+				"javascript/paperShapeTest/javascript/Fx.Spring.js"
+			],
+			[
+				"cro",
+				"javascript/pointsTest/src/Masks/crowMask/crowMask.js"
+			],
+			[
+				"sh",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/shapes.js"
+			],
+			[
+				"ene",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/energyCircle.js"
+			],
+			[
+				"gra",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/gradientCircleMask.js"
+			],
+			[
+				"cand",
+				"javascript/pointsTest/src/Masks/candleMask/candleMask.js"
+			],
+			[
+				"squarema",
+				"javascript/pointsTest/src/Masks/squareMask/squareMask.js"
+			],
+			[
+				"clipp",
+				".metadata/.plugins/org.eclipse.core.runtime/.settings/org.eclipse.ui.prefs"
+			],
+			[
+				"roa",
+				"javascript/pointsTest/src/Masks/rotationMask/rotationMask.js"
+			],
+			[
+				"cliip",
+				"javascript/pointsTest/src/Masks/clipingMask/clipingMask.js"
+			],
+			[
+				"squ",
+				"javascript/pointsTest/src/Masks/squareMask/squareMask2.js"
+			],
+			[
+				"jell",
+				"javascript/pointsTest/src/Masks/jellyBeanMask/jellyBeanMask.js"
+			],
+			[
+				"flowersh",
+				"javascript/pointsTest/src/Masks/flowerShapeMask/flowerShapeMask.js"
+			],
+			[
+				"dat",
+				"javascript/pointsTest/src/Data/dataPlayer.js"
+			],
+			[
+				"squma",
+				"javascript/pointsTest/src/Masks/squareMask/squareMask.js"
+			],
+			[
+				"tube",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/tubeCircle.js"
+			],
+			[
+				"circlen",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/energyCircle.js"
+			],
+			[
+				"shap",
+				"javascript/pointsTest/src/Masks/gradientCircleMask/shapes.js"
+			],
+			[
+				"data",
+				"javascript/pointsTest/src/Data/dataPlayer.js"
+			],
+			[
+				"jally",
+				"javascript/pointsTest/src/Masks/jellyBeanMask/jellyBeanMask.js"
+			],
+			[
+				"ja",
+				"javascript/paperShapeTest/AnimatedStroke.html"
+			],
+			[
+				"uti",
+				"javascript/pointsTest/src/utils/perlin.js"
+			],
+			[
+				"noise",
+				"javascript/pointsTest/assets/svg/GridFace/noseLine.svg"
+			],
+			[
+				"circlef",
+				"javascript/pointsTest/src/Masks/circleFaceMask/circleFaceMask.js"
+			],
+			[
+				"blobma",
+				"javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask.js"
+			],
+			[
+				"phy",
+				"javascript/pointsTest/src/physicsManager.js"
+			],
+			[
+				"flow",
+				"javascript/pointsTest/src/Masks/flowerShapeMask/flowerShapeMask.js"
+			],
+			[
+				"ph",
+				"javascript/pointsTest/src/physicsManager.js"
+			],
+			[
+				"osc",
+				"javascript/pointsTest/src/utils/oscillator.js"
+			],
+			[
+				"flash",
+				"javascript/pointsTest/src/Masks/flowerShapeMask/flowerShapeMask.js"
+			],
+			[
+				"flower",
+				"javascript/pointsTest/src/Masks/flowerMask/flowerMask.js"
 			],
 			[
 				"ten",
@@ -864,10 +2062,6 @@
 				"javascript/pointsTest/src/Masks/flowerMask/flowerSvgLoader.js"
 			],
 			[
-				"po",
-				"javascript/pointsTest/pointsPlayer.html"
-			],
-			[
 				"att",
 				"javascript/pointsTest/src/Masks/attractFacePointMask/attractFacePointMask.js"
 			],
@@ -876,20 +2070,12 @@
 				"javascript/pointsTest/src/Masks/lineDisplaceMask/lineDisplaceMask.js"
 			],
 			[
-				"ma",
-				"javascript/pointsTest/src/main.js"
-			],
-			[
 				"contr",
 				"javascript/pointsTest/src/Masks/flowerMask/flowerMaskControl.js"
 			],
 			[
 				"grad",
 				"javascript/pointsTest/src/Masks/gradientMask/gradientMask.js"
-			],
-			[
-				"gra",
-				"javascript/pointsTest/src/Masks/gradientCircleMask/gradientCircleMask.js"
 			],
 			[
 				"circl",
@@ -904,20 +2090,8 @@
 				"javascript/pointsTest/src/Masks/gradientCircleMask/gradientCircleMask.js"
 			],
 			[
-				"dem",
-				"javascript/pointsTest/src/Masks/demoMask/demoMask.js"
-			],
-			[
-				"osc",
-				"javascript/pointsTest/src/utils/oscillator.js"
-			],
-			[
 				"de",
 				"javascript/pointsTest/src/Masks/demoMask/demoMask.js"
-			],
-			[
-				"clip",
-				"javascript/pointsTest/src/Masks/clipingMask/clipingMask.js"
 			],
 			[
 				"cli",
@@ -926,10 +2100,6 @@
 			[
 				"maman",
 				"javascript/pointsTest/src/Masks/maskManager.js"
-			],
-			[
-				"dat",
-				"javascript/pointsTest/src/Data/dataPlayer.js"
 			],
 			[
 				"maskma",
@@ -972,16 +2142,8 @@
 				"javascript/pointsTest/src/Masks/gradientMask/gradientMask.js"
 			],
 			[
-				"blo",
-				"javascript/pointsTest/src/Masks/blobGradientMask/blobGradientMask.js"
-			],
-			[
 				"masma",
 				"javascript/pointsTest/src/Masks/maskManager.js"
-			],
-			[
-				"da",
-				"javascript/pointsTest/src/Data/dataPlayer.js"
 			],
 			[
 				"grd",
@@ -1048,7 +2210,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": false,
-	"side_bar_width": 248.0,
+	"side_bar_width": 164.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

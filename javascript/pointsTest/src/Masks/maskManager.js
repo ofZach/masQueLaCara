@@ -45,6 +45,8 @@ class MaskManager {
 			new wormMask(),
 			new lampMask(),
 			new treeMask(),
+			new peacockMask(),
+			new mustachesMask(),
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {

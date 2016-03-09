@@ -47,7 +47,7 @@ gui.add(text, 'maskName', MM.names).onChange(function(value) {
     changeMask = true;
     newMaskName = value;
 });
-MM.setMaskByName('treeMask');
+MM.setMaskByName('mustachesMask');
 
 console.log(MM);
 
