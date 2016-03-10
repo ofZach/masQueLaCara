@@ -48,7 +48,6 @@ class peacockMask extends MaskBase {
 		this.eyeL.group.position = eyeL.position;
 		this.eyeL.energy = this.velocity/2;
 		
-		this.eyeR.update();
 		this.eyeR.group.position = eyeR.position;
 		this.eyeR.energy = this.velocity/2;
 		// data contains face data, see dataPlayer.js, ie face parts data['faceParts']['eyeL']['position'] as well as face points, etc...

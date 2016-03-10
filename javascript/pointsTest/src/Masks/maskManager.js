@@ -28,6 +28,7 @@ class MaskManager {
 			new squareMask4(),
 			new squareMask5(),
 			new stripeyMask(),
+			new stripeyMask2(),
 			new circleClipMask(),
 			new cthulhuMask(),
 			new blobGradientMask2(),
