@@ -49,6 +49,7 @@ class MaskManager {
 			new peacockMask(),
 			new mustachesMask(),
 			new crossLinesMask(),
+			new cloudyMask()
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
