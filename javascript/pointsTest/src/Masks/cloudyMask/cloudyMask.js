@@ -117,6 +117,9 @@ class cloudyMask extends MaskBase {
 			this.stripes[i].path.dashOffset += frameTime * this.stripes[i].speed;
 		}
 
+		this.timeElapsed += frameTime;
+		this.lightning.fillColor.brightness = noise.simplex2(this.timeElapsed, 0);
+
 		this.rainNoiseTimer += frameTime * 0.1;
 		var i = this.rainDrops.length;
 		while(i--) 
@@ -159,10 +162,12 @@ class cloudyMask extends MaskBase {
 	show() {
 		this.showLayer();
 		this.layer.removeChildren();
+		noiseSeed = Math.random(0, 255);
 		var skyColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.5, 1.0), brightness: calc.random(0.9, 1.0) });
 		this.skyColor = skyColor;
 		var groundColor = new Color({ hue: skyColor.hue + 180.0, saturation: calc.random(0.25, 0.6), brightness: calc.random(0.25, 0.6) });
 
+		var lightDir = new paper.Point(0, -1).rotate(calc.random(-90.0, 90.0)).normalize();
 		function makeCloud()
 		{
 			var grp = new paper.Group();
@@ -182,7 +187,7 @@ class cloudyMask extends MaskBase {
 			grp.addChild(ret);
 			var shadow = new paper.Path.Rectangle(ret.bounds);
 			var ellipse = new paper.Path.Ellipse(ret.bounds);
-			ellipse.translate([-10.0, -10.0]);
+			ellipse.translate(lightDir.multiply(calc.random(10.0, 25.0)));
 			applyNoiseToPath(ellipse, 10.0, calc.random(10.0, 20.0), 3.0);
 			var shadowCP = new paper.CompoundPath(shadow, ellipse);
 			var shadowCol = mixColor(cloudColor.convert("rgb"), groundColor.convert("rgb"), 0.15);
@@ -193,6 +198,7 @@ class cloudyMask extends MaskBase {
 		}
 
 		var bRoundStripeStroke = calc.random(0.0, 1.0) >= 0.5;
+		var bSmoothStripes = calc.random(0.0, 1.0) >= 0.5;
 		function makeStripe()
 		{
 			var ret = new paper.Path();
@@ -201,7 +207,8 @@ class cloudyMask extends MaskBase {
 			{
 				ret.add(new paper.Point(calc.random(0, 540), calc.random(0, 640)));
 			}
-			ret.smooth();
+			if(bSmoothStripes)
+				ret.smooth();
 			var len = ret.length;
 			ret.dashArray = [len * 0.1, len * calc.random(1.0, 10.0)];
 			var stripeColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.75, 1.0), brightness: calc.random(0.9, 1.0) })
@@ -241,7 +248,24 @@ class cloudyMask extends MaskBase {
 			this.stripes.push({path: stripePath, lastPos: new paper.Point(0, 0), easeFact: calc.random(0.5, 0.95), speed: calc.random(1600.0, 2500.0)});
 		}
 
-		console.log(this.rainStyle);
+		var darkenStripe = makeStripe();
+		darkenStripe.blendMode = "overlay";
+		darkenStripe.strokeColor = new Color(0.0, 0.0, 0.0, 0.5);
+		darkenStripe.strokeWidth = calc.random(100.0, 300.0);
+		darkenStripe.shadowColor = new Color(0.0, 0.0, 0.0, 1.0);
+		darkenStripe.shadowBlur = 30.0;
+		darkenStripe.shadowOffset = new paper.Point(30.0, 60.0);
+		darkenStripe.strokeCap = "round";
+		darkenStripe.strokeJoin = "round";
+		//darkenStripe.dashArray = [];
+		this.stripes.push({path: darkenStripe, lastPos: new paper.Point(0, 0), easeFact: calc.random(0.5, 0.95), speed: calc.random(1600.0, 2500.0)});
+
+		this.lightning = new paper.Path.Rectangle(paper.project.view.bounds);
+		this.lightning.fillColor = skyColor.convert("hsb");
+		this.lightning.fillColor.brightness = 1.0;
+		this.lightning.fillColor.alpha = 0.4;
+		this.lightning.blendMode = "lighten";
+		this.timeElapsed = 0;
 	}
 
 	hide() {
