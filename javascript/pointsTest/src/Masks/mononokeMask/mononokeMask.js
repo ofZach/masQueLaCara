@@ -11,7 +11,7 @@ class NoisePath
 		this.noiseDiv = _noiseDiv;
 		this.noiseScale = _noiseScale;
 		this.noiseTimer = calc.random(0, 255);
-		this.jiggleSpeedFact = calc.random(0.0001, 0.005)
+		this.jiggleSpeedFact = calc.random(0.00005, 0.002)
 		this.targetPosition = new paper.Point(0, 0);
 		this.lastPosition = new paper.Point(0, 0);
 		this.positionSmoothfactor = calc.random(0.3, 0.7);
@@ -65,24 +65,6 @@ class mononokeMask extends MaskBase {
 	setup() {
 		super.addLayer();
 		this.name = "mononokeMask";
-
-		var headPath = new paper.Path.Ellipse([0, 0], [calc.random(450, 600), calc.random(450, 600)]);
-		headPath.fillColor = "white";
-		this.head = new NoisePath(headPath, 100, 400, 20.0);
-
-		var leftEyePath = new paper.Path.Circle([0, 0], calc.random(30, 80));
-		leftEyePath.fillColor = "black";
-		this.leftEye = new NoisePath(leftEyePath, 50, 200, 10.0);
-
-		var rightEyePath = new paper.Path.Circle([0, 0], calc.random(30, 80));
-		rightEyePath.fillColor = "black";
-		this.rightEye = new NoisePath(rightEyePath, 50, 200, 10.0);
-
-		var mw = calc.random(50.0, 300.0);
-		var mhf = calc.random(0.5, 1.0);
-		var mouthPath = new paper.Path.Ellipse([0, 0], [mw, mw * mhf]);
-		mouthPath.fillColor = "black";
-		this.mouth = new NoisePath(mouthPath, 50, 200, 10.0);
 	}
 
 	//------------------------------------------
@@ -109,6 +91,9 @@ class mononokeMask extends MaskBase {
 		var dt = now - this.lastFrameTime;
 		this.lastFrameTime = now;
 
+		if(this.group)
+			this.group.remove();
+
 		this.head.update(dt);
 		this.head.setPosition(head.position);
 
@@ -120,11 +105,50 @@ class mononokeMask extends MaskBase {
 
 		this.mouth.update(dt);
 		this.mouth.setPosition(mouth.position.add(chin.position.subtract(mouth.position).multiply(0.4)));
+
+		var highlightA = new paper.Path.Rectangle(this.head.path.bounds);
+		var highlightB = this.head.path.clone();
+		highlightB.translate(this.lightDir.multiply(60.0));
+		var highlightCP = new paper.CompoundPath(highlightA, highlightB);
+		highlightCP.fillColor = this.lightColor;
+		this.group = new paper.Group(this.head.path.clone(), this.head.path, highlightCP, this.leftEye.path, this.rightEye.path, this.mouth.path);
+		this.group.clipped = true;
 	}
 
 	show() {
 		this.showLayer();
 		this.lastFrameTime = Date.now();
+
+		this.layer.removeChildren();
+		this.layer.activate();
+
+
+		function mixColor(_a, _b, _fact)
+		{
+			return _a.multiply(1.0 - _fact).add(_b.multiply(_fact));
+		}
+
+		this.lightColor = new Color({hue: calc.random(0, 360.0), saturation: calc.random(0.2, 0.5), brightness: calc.random(0.8, 0.95)});
+		this.lightDir = new paper.Point(0, -1).rotate(calc.random(-30.0, 30.0)).normalize();
+
+		var headCol = mixColor(new Color(1.0, 1.0, 1.0), this.lightColor.convert("rgb"), 0.25);
+		var headPath = new paper.Path.Ellipse([0, 0], [calc.random(450, 600), calc.random(450, 600)]);
+		headPath.fillColor = headCol;
+		this.head = new NoisePath(headPath, 100, 400, 20.0);
+
+		var leftEyePath = new paper.Path.Circle([0, 0], calc.random(30, 80));
+		leftEyePath.fillColor = "black";
+		this.leftEye = new NoisePath(leftEyePath, 50, 200, 10.0);
+
+		var rightEyePath = new paper.Path.Circle([0, 0], calc.random(30, 80));
+		rightEyePath.fillColor = "black";
+		this.rightEye = new NoisePath(rightEyePath, 50, 200, 10.0);
+
+		var mw = calc.random(50.0, 300.0);
+		var mhf = calc.random(0.5, 1.0);
+		var mouthPath = new paper.Path.Ellipse([0, 0], [mw, mw * mhf]);
+		mouthPath.fillColor = "black";
+		this.mouth = new NoisePath(mouthPath, 50, 200, 10.0);
 	}
 
 	hide() {

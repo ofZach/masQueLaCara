@@ -183,7 +183,7 @@ class cloudyMask extends MaskBase {
 			var sw = calc.random(5.0, 15.0);
 			var ret = arcifyPath(tmp, sw, sw * 3.0);
 			tmp.remove();
-			var cloudColor = new Color({hue: calc.random(0, 1), saturation: calc.random(0.0, 0.25), brightness: 1.0});
+			var cloudColor = new Color({hue: calc.random(0.0, 360.0), saturation: calc.random(0.0, 0.25), brightness: 1.0});
 			cloudColor = mixColor(cloudColor.convert("rgb"), skyColor.convert("rgb"), 0.15);
 			ret.fillColor = cloudColor;
 			ret.applyMatrix = false;
