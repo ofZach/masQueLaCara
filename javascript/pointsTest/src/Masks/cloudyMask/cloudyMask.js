@@ -120,7 +120,7 @@ class cloudyMask extends MaskBase {
 		this.timeElapsed += frameTime;
 		this.lightning.fillColor.brightness = noise.simplex2(this.timeElapsed, 0);
 
-		this.rainNoiseTimer += frameTime * 0.1;
+		this.rainNoiseTimer += frameTime * this.rainNoiseTimeDelta;
 		var i = this.rainDrops.length;
 		while(i--) 
 		{
@@ -128,8 +128,8 @@ class cloudyMask extends MaskBase {
 				this.rainDrops[i].dropPath.remove();
 
 			this.rainDrops[i].pos = this.rainDrops[i].pos.add([0.0, 80.0 * frameTime * this.rainDrops[i].rad]);
-			var n = noise.simplex3(this.rainDrops[i].pos.x / 300.0, this.rainDrops[i].pos.y / 300.0, this.rainNoiseTimer) * Math.PI;
-			this.rainDrops[i].pos = this.rainDrops[i].pos.add(new paper.Point(Math.cos(n), Math.sin(n)).multiply(0.75));
+			var n = noise.simplex3(this.rainDrops[i].pos.x / this.rainNoiseDiv, this.rainDrops[i].pos.y / this.rainNoiseDiv, this.rainNoiseTimer) * Math.PI;
+			this.rainDrops[i].pos = this.rainDrops[i].pos.add(new paper.Point(Math.cos(n), Math.sin(n)).multiply(this.rainNoiseScale));
 			var targetScale = Math.sin(Math.PI/this.rainDrops[i].lifeTime * this.rainDrops[i].age);
 			var rad = this.rainDrops[i].rad * targetScale;
 			if(this.rainStyle == 0)
@@ -147,6 +147,8 @@ class cloudyMask extends MaskBase {
 			}
 		}
 
+		for(var i=0; i < 1; i++)
+		{
 		var posRef = calc.random(0.0, 1.0) >= 0.5 ? this.rightEye : this.leftEye
 		var rdp = posRef.position.add([calc.random(-posRef.bounds.width * 0.5, posRef.bounds.width * 0.5), calc.random(0.0, posRef.bounds.height * 0.5)]);
 		
@@ -157,6 +159,7 @@ class cloudyMask extends MaskBase {
 			dropColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.75, 1.0), brightness: calc.random(0.9, 1.0) })
 		dropColor = mixColor(dropColor.convert("rgb"), this.skyColor.convert("rgb"), 0.25);
 		this.rainDrops.push({dropPath: null, age: 0, lifeTime: calc.random(0.5, 2.0), rad: calc.random(1, 4), pos: new paper.Point(rdp), color: dropColor});
+		}
 	}
 
 	show() {
@@ -266,6 +269,12 @@ class cloudyMask extends MaskBase {
 		this.lightning.fillColor.alpha = 0.4;
 		this.lightning.blendMode = "lighten";
 		this.timeElapsed = 0;
+
+		this.rainNoiseScale = calc.random(0.5, 1.25);
+		this.rainNoiseDiv = calc.random(150.0, 500.0);
+		this.rainNoiseTimeDelta = calc.random(0.1, 1.0);
+
+		console.log("SHOW CLOUDY MASK");
 	}
 
 	hide() {
