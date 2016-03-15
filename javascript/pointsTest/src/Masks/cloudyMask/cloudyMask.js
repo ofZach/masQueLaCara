@@ -83,6 +83,8 @@ class cloudyMask extends MaskBase {
 		var eyeL = data['faceParts']['eyeL'];
 		var eyeR = data['faceParts']['eyeR'];
 
+		this.layer.activate();
+
 		var now = Date.now();
 		var frameTime = (Date.now() - this.lastFrameTime) / 1000.0;
 		this.lastFrameTime = now;
@@ -164,6 +166,7 @@ class cloudyMask extends MaskBase {
 
 	show() {
 		this.showLayer();
+		this.layer.activate();
 		this.layer.removeChildren();
 		noiseSeed = Math.random(0, 255);
 		var skyColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.5, 1.0), brightness: calc.random(0.9, 1.0) });
