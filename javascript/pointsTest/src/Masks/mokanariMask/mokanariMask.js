@@ -108,6 +108,23 @@ class mokanariMask extends MaskBase {
 		this.nose.update(dt);
 		this.nose.setPosition(nose.position.subtract([0, 50.0]));
 		this.nose.setAngle(nose.angle * (180.0 / Math.PI));
+
+		this.chin.update(dt);
+		this.chin.setPosition(chin.position.subtract([0, 25.0]));
+		this.chin.setAngle(chin.angle * (180.0 / Math.PI));
+
+		if(this.rightCheek)
+		{
+			this.rightCheek.update(dt);
+			this.rightCheek.setPosition(cheekR.position);
+			this.rightCheek.setAngle(cheekR.angle * (180.0 / Math.PI));
+		}
+		if(this.leftCheek)
+		{
+			this.leftCheek.update(dt);
+			this.leftCheek.setPosition(cheekL.position);
+			this.leftCheek.setAngle(cheekL.angle * (180.0 / Math.PI));
+		}
 	}
 
 	show() {
@@ -250,36 +267,181 @@ class mokanariMask extends MaskBase {
 			}
 		}
 
-		var headPath = new paper.Path.Rectangle([0, 0], [400, 440]);
+		function makeHead()
+		{
+			var type = calc.randomInt(0, 3);
+			if(type == 0)
+			{
+				return new FaceElement(new paper.Path.Rectangle([0, 0], [400, 440]), 0.05);
+			}
+			else if(type == 1)
+			{
+				var path = new paper.Path();
+				path.add(0, 0);
+				path.add(400, 0);
+				path.add(400, calc.random(330, 400));
+				path.add(calc.random(300, 360), 440);
+				path.add(0, 440);
+				path.closePath();
+				return new FaceElement(path, 0.05);
+			}
+			else if(type == 2)
+			{
+				var path = new paper.Path();
+				path.add(0, 0);
+				path.add(400, 0);
+				path.add(400, 200);
+				path.arcTo(0, 200, true);
+				path.closePath();
+				return new FaceElement(path, 0.05);
+			}
+		}
+
+		function makeChin()
+		{
+			var type = calc.randomInt(0, 4);
+			if(type == 0)
+			{
+				var path = new paper.Path();
+				path.add(0, 0);
+				var y = calc.random(90, 200.0);
+				path.add(400, y);
+				path.add(0, y);
+				path.closePath();
+				if(calc.random(0.0, 1.0) >= 0.5)
+					path.rotate(180.0);
+				return new FaceElement(path, 0.05);
+			}
+			else if(type == 1)
+			{
+				var path = new paper.Path();
+				path.add(0, 0);
+				path.add(400, 0);
+				path.arcTo(300, 0, true);
+				path.arcTo(200, 0, true);
+				path.arcTo(100, 0, true);
+				path.arcTo(0, 0, true);
+				path.closePath();
+				if(calc.random(0, 1) >= 0.5)
+					path.rotate(180.0);
+				return new FaceElement(path, 0.05);
+			}
+			else if(type == 2)
+			{
+				var path = new paper.Path();
+				var y0 = calc.random(0, 50);
+				var y = calc.random(80, 200.0);
+				path.add(0, 0);
+				path.add(400, 0);
+				path.add(400, y0);
+				path.add(350, y);
+				path.add(300, y0);
+				path.add(250, y);
+				path.add(200, y0);
+				path.add(150, y);
+				path.add(100, y0);
+				path.add(50, y);
+				path.add(0, y0);
+				path.closePath();
+				if(calc.random(0, 1) >= 0.5)
+					path.rotate(180.0);
+				return new FaceElement(path, 0.05);
+			}
+			else if(type == 3)
+			{
+				var path = new paper.Path();
+				var w1 = calc.random(200.0, 400.0);
+				var w2 = calc.random(200.0, 400.0);
+				var h = calc.random(100.0, 200.0);
+				var l = calc.random(100.0, 200.0);
+				path.add(0, 0);
+				path.add(w1, 0);
+				path.add(w1, h / 3.0);
+				path.add(l, h / 3.0);
+				path.add(l, h / 3.0 * 2.0);
+				path.add(w2, h / 3.0 * 2.0);
+				path.add(w2, h);
+				path.add(0, h);
+				path.closePath();
+				if(calc.random(0, 1) >= 0.5)
+					path.rotate(180.0);
+				return new FaceElement(path, 0.05);
+			}
+		}
+
+		this.head = makeHead();
 		if(calc.random(0, 1) <= 0.25)
-			headPath.fillColor = "white";
+			this.head.path.fillColor = "white";
 		else
-			headPath.fillColor = new Color({hue: calc.random(0, 360.0), saturation: calc.random(0.2, 0.5), brightness: calc.random(0.8, 0.95)});
-		this.head = new FaceElement(headPath, 0.05);
+			this.head.path.fillColor = new Color({hue: calc.random(0, 360.0), saturation: calc.random(0.2, 0.7), brightness: calc.random(0.85, 1.0)});
 
 		var bNoseMoutBlack = calc.random(0, 1) >= 0.5;
 		var eyeMouthColor = "black";
 		if(!bNoseMoutBlack)
 		{
 			if(calc.random(0, 1) >= 0.5)
-				eyeMouthColor = new Color({hue: headPath.fillColor.hue + 180.0, saturation: calc.random(0.4, 1.0), brightness: calc.random(0.5, 1.0)});
+				eyeMouthColor = new Color({hue: this.head.path.fillColor.hue + calc.random(120.0, 200.0), saturation: calc.random(0.4, 1.0), brightness: calc.random(0.5, 1.0)});
 			else
 			{
-				eyeMouthColor = new Color(headPath.fillColor);
+				eyeMouthColor = new Color(this.head.path.fillColor);
 				eyeMouthColor.brightness *= calc.random(0.3, 0.6);
 			}
 		}
 		var eyes = makeEyes();
 		this.leftEye = eyes.leftEye;
 		this.leftEye.path.fillColor = eyeMouthColor;
+		//this.leftEye.path.blendMode = "overlay";
 		this.rightEye = eyes.rightEye;
 		this.rightEye.path.fillColor = eyeMouthColor;
+		//this.rightEye.path.blendMode = "overlay";
 
 		this.mouth = makeMouth();
 		this.mouth.path.fillColor = eyeMouthColor;
+		//this.mouth.path.blendMode = "overlay";
 
+		var headCol = this.head.path.fillColor;
+		function makeCheek()
+		{
+			var w = calc.random(50.0, 100.0);
+			var off = w / 3.0;
+			var p = new paper.Path();
+			p.add(calc.random(-off, off), calc.random(-off, off));
+			p.add(w + calc.random(-off, off), calc.random(-off, off));
+			p.add(w + calc.random(-off, off), w + calc.random(-off, off));
+			p.add(calc.random(-off, off), w + calc.random(-off, off));
+			p.closePath();
+
+			if(calc.random(0, 1) >= 0.75)
+				p.smooth();
+			if(calc.random(0, 1) <= 0.2)
+				p.fillColor = "red";
+			else if(calc.random(0, 1) <= 0.2)
+				p.fillColor = "black";
+			else
+				p.fillColor = new Color({hue: headCol.hue + calc.random(120.0, 200.0), saturation: 1.0, brightness: calc.random(0.85, 1.0)});
+			return new FaceElement(p, 0.15);
+		}
+		if(calc.random(0, 1) >= 0.5)
+		{
+			this.rightCheek = makeCheek();
+		}
+
+		if(calc.random(0, 1) >= 0.5)
+		{
+			this.leftCheek = makeCheek();
+		}
+
+		var noseCol = new Color({hue: this.head.path.fillColor.hue + calc.random(120.0, 200.0), saturation: calc.random(0.6, 1.0), brightness: calc.random(0.85, 1.0)});
 		this.nose = makeNose();
-		this.nose.path.fillColor = "red";
+		this.nose.path.fillColor = noseCol;
+		this.nose.path.blendMode = "multiply";
+
+		var chinCol = noseCol.clone();
+		chinCol.hue += calc.random(0.0, 200.0);
+		this.chin = makeChin();
+		this.chin.path.fillColor = chinCol;
+		this.chin.path.blendMode = "multiply";
+
 
 		this.lastFrameTime = Date.now();
 	}
