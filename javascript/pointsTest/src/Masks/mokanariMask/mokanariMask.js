@@ -494,12 +494,16 @@ class mokanariMask extends MaskBase {
 		this.chin = makeChin();
 		this.chin.path.fillColor = chinCol;
 		this.chin.path.blendMode = "multiply";
+		if(calc.random(0, 1) >= 0.5)
+			this.chin.path.smooth();
 
 		var hairCol = noseCol.clone();
 		hairCol.hue += calc.random(0.0, 200.0);
 		this.hair = makeChin();
 		this.hair.path.fillColor = hairCol;
 		this.hair.path.blendMode = "multiply";
+		if(calc.random(0, 1) >= 0.5)
+			this.hair.path.smooth();
 
 		this.lastFrameTime = Date.now();
 	}
