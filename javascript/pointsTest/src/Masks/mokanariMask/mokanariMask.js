@@ -113,6 +113,10 @@ class mokanariMask extends MaskBase {
 		this.chin.setPosition(chin.position.subtract([0, 25.0]));
 		this.chin.setAngle(chin.angle * (180.0 / Math.PI));
 
+		this.hair.update(dt);
+		this.hair.setPosition(nose.position.subtract([0, 250.0]));
+		this.hair.setAngle(head.angle * (180.0 / Math.PI));
+
 		if(this.rightCheek)
 		{
 			this.rightCheek.update(dt);
@@ -125,6 +129,8 @@ class mokanariMask extends MaskBase {
 			this.leftCheek.setPosition(cheekL.position);
 			this.leftCheek.setAngle(cheekL.angle * (180.0 / Math.PI));
 		}
+
+		console.log(data);
 	}
 
 	show() {
@@ -315,12 +321,21 @@ class mokanariMask extends MaskBase {
 			else if(type == 1)
 			{
 				var path = new paper.Path();
+				var w = 400;
+				var stepCount = calc.randomInt(2, 10);
+				var step = w / stepCount;
+				var x = w;
 				path.add(0, 0);
 				path.add(400, 0);
-				path.arcTo(300, 0, true);
+				for(var i = 0; i <= stepCount; i++)
+				{
+					path.arcTo(x, 0, true);
+					x -= step;
+				}
+				/*path.arcTo(300, 0, true);
 				path.arcTo(200, 0, true);
 				path.arcTo(100, 0, true);
-				path.arcTo(0, 0, true);
+				path.arcTo(0, 0, true);*/
 				path.closePath();
 				if(calc.random(0, 1) >= 0.5)
 					path.rotate(180.0);
@@ -331,20 +346,30 @@ class mokanariMask extends MaskBase {
 				var path = new paper.Path();
 				var y0 = calc.random(0, 50);
 				var y = calc.random(80, 200.0);
+				var w = 400;
+				var stepCount = calc.randomInt(2, 10);
+				var step = w / stepCount;
+				var x = w;
 				path.add(0, 0);
 				path.add(400, 0);
-				path.add(400, y0);
+				for(var i = 0; i <= stepCount; i++)
+				{
+					path.add(x, y0);
+					path.add(x - step * 0.5, y);
+					x -= step;
+				}
+				/*path.add(400, y0);
 				path.add(350, y);
 				path.add(300, y0);
 				path.add(250, y);
 				path.add(200, y0);
 				path.add(150, y);
 				path.add(100, y0);
-				path.add(50, y);
+				path.add(50, y);*/
 				path.add(0, y0);
 				path.closePath();
-				if(calc.random(0, 1) >= 0.5)
-					path.rotate(180.0);
+				/*if(calc.random(0, 1) >= 0.5)
+					path.rotate(180.0);*/
 				return new FaceElement(path, 0.05);
 			}
 			else if(type == 3)
@@ -402,24 +427,50 @@ class mokanariMask extends MaskBase {
 		var headCol = this.head.path.fillColor;
 		function makeCheek()
 		{
-			var w = calc.random(50.0, 100.0);
-			var off = w / 3.0;
-			var p = new paper.Path();
-			p.add(calc.random(-off, off), calc.random(-off, off));
-			p.add(w + calc.random(-off, off), calc.random(-off, off));
-			p.add(w + calc.random(-off, off), w + calc.random(-off, off));
-			p.add(calc.random(-off, off), w + calc.random(-off, off));
-			p.closePath();
+			var type = calc.randomInt(0, 2);
+			if(type == 0)
+			{
+				var w = calc.random(50.0, 100.0);
+				var off = w / 3.0;
+				var p = new paper.Path();
+				p.add(calc.random(-off, off), calc.random(-off, off));
+				p.add(w + calc.random(-off, off), calc.random(-off, off));
+				p.add(w + calc.random(-off, off), w + calc.random(-off, off));
+				p.add(calc.random(-off, off), w + calc.random(-off, off));
+				p.closePath();
 
-			if(calc.random(0, 1) >= 0.75)
-				p.smooth();
-			if(calc.random(0, 1) <= 0.2)
-				p.fillColor = "red";
-			else if(calc.random(0, 1) <= 0.2)
-				p.fillColor = "black";
-			else
-				p.fillColor = new Color({hue: headCol.hue + calc.random(120.0, 200.0), saturation: 1.0, brightness: calc.random(0.85, 1.0)});
-			return new FaceElement(p, 0.15);
+				if(calc.random(0, 1) >= 0.75)
+					p.smooth();
+				if(calc.random(0, 1) <= 0.2)
+					p.fillColor = "red";
+				else if(calc.random(0, 1) <= 0.2)
+					p.fillColor = "black";
+				else
+					p.fillColor = new Color({hue: headCol.hue + calc.random(120.0, 200.0), saturation: 1.0, brightness: calc.random(0.85, 1.0)});
+				return new FaceElement(p, 0.15);
+			}
+			else if(type == 1)
+			{
+				var w = calc.random(50.0, 200.0);
+				var p = new paper.Path();
+				for(var i=0; i < calc.randomInt(4, 12); i++)
+				{
+					p.add(calc.random(0, w), calc.random(0, w));
+				}
+				if(calc.random(0, 1) >= 0.5)
+					p.strokeColor = "black";
+				else if(calc.random(0, 1) >= 0.5)
+					p.strokeColor = "red";
+				else
+					p.strokeColor = new Color({hue: calc.random(0, 360.0), saturation: 1.0, brightness: 1.0});
+
+				if(calc.random(0, 1) >= 0.5)
+					p.smooth();
+				p.strokeJoin = "round";
+				p.strokeCap = "round";
+				p.strokeWidth = calc.random(2.0, 20.0);
+				return new FaceElement(p, 0.15);
+			}
 		}
 		if(calc.random(0, 1) >= 0.5)
 		{
@@ -433,6 +484,8 @@ class mokanariMask extends MaskBase {
 
 		var noseCol = new Color({hue: this.head.path.fillColor.hue + calc.random(120.0, 200.0), saturation: calc.random(0.6, 1.0), brightness: calc.random(0.85, 1.0)});
 		this.nose = makeNose();
+		if(calc.random(0, 1) >= 0.5)
+			this.nose.path.smooth();
 		this.nose.path.fillColor = noseCol;
 		this.nose.path.blendMode = "multiply";
 
@@ -442,6 +495,11 @@ class mokanariMask extends MaskBase {
 		this.chin.path.fillColor = chinCol;
 		this.chin.path.blendMode = "multiply";
 
+		var hairCol = noseCol.clone();
+		hairCol.hue += calc.random(0.0, 200.0);
+		this.hair = makeChin();
+		this.hair.path.fillColor = hairCol;
+		this.hair.path.blendMode = "multiply";
 
 		this.lastFrameTime = Date.now();
 	}
