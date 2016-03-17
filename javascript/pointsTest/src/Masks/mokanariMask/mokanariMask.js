@@ -151,6 +151,7 @@ class mokanariMask extends MaskBase {
 		this.layer.activate();
 		this.layer.removeChildren();
 
+		//helper function to generate a variation of different eyes
 		function makeEyes()
 		{
 			var type = calc.randomInt(0, 4);
@@ -202,6 +203,7 @@ class mokanariMask extends MaskBase {
 			}
 		}
 
+		//helper to make a selection of different mouths
 		function makeMouth()
 		{
 			var type = calc.randomInt(0, 4);
@@ -247,6 +249,7 @@ class mokanariMask extends MaskBase {
 			}
 		}
 
+		//helper function to generate a variation of different noses
 		function makeNose()
 		{
 			var type = calc.randomInt(0, 2);
@@ -285,6 +288,7 @@ class mokanariMask extends MaskBase {
 			}
 		}
 
+		//helper function to generate a variation of different head shapes
 		function makeHead()
 		{
 			var type = calc.randomInt(0, 3);
@@ -315,6 +319,7 @@ class mokanariMask extends MaskBase {
 			}
 		}
 
+		//helper function to generate a variation of different chins/hairs
 		function makeChin()
 		{
 			var type = calc.randomInt(0, 4);
@@ -344,10 +349,6 @@ class mokanariMask extends MaskBase {
 					path.arcTo(x, 0, true);
 					x -= step;
 				}
-				/*path.arcTo(300, 0, true);
-				path.arcTo(200, 0, true);
-				path.arcTo(100, 0, true);
-				path.arcTo(0, 0, true);*/
 				path.closePath();
 				if(calc.random(0, 1) >= 0.5)
 					path.rotate(180.0);
@@ -430,6 +431,8 @@ class mokanariMask extends MaskBase {
 		//this.mouth.path.blendMode = "overlay";
 
 		var headCol = this.head.path.fillColor;
+
+		//helper function to generate a variation of different cheeks
 		function makeCheek()
 		{
 			var type = calc.randomInt(0, 2);

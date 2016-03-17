@@ -1,6 +1,12 @@
 'use strict';
 
-class FaceRect
+// globals for scaling purposes
+var globalScale = 1.0;
+var faceWidth = 400.0 * globalScale;
+var faceHeight = 500.0 * globalScale;
+
+// helper to animate every item in the face
+class FaceItem
 {
 	constructor(_path, _positionSmoothFact, _angleSmoothFact)
 	{
@@ -40,7 +46,6 @@ class FaceRect
 		var a = smoothValue(this.lastAngle, this.targetAngle, this.angleSmoothfactor);
 		this.path.rotate(a - this.path.rotation);
 		this.lastAngle = a;
-		console.log(this.lastAngle);
 	}
 
 	setPosition(_pos)
@@ -69,22 +74,24 @@ class stackedLinesMask extends MaskBase {
 		var eyeL = data['faceParts']['eyeL'];
 		var eyeR = data['faceParts']['eyeR'];
 
-		this.outline.position = head.position;
-		this.outline.rotate((head.angle * (180.0/Math.PI)) - this.outline.rotation);
-		//console.log(head.position);
+		var now = Date.now();
+		var frameTime = now - this.lastFrameTime;
+		this.lastFrameTime = now;
 
+		// animate the grid
 		for(var i = 0; i < this.rectangles.length; i++)
 		{
-			this.rectangles[i].faceRect.update(0.16666);
-			this.rectangles[i].faceRect.setPosition(head.position);
-			this.rectangles[i].faceRect.setAngle(head.angle * (180.0/Math.PI));
+			this.rectangles[i].FaceItem.update(frameTime);
+			this.rectangles[i].FaceItem.setPosition(head.position);
+			this.rectangles[i].FaceItem.setAngle(head.angle * (180.0/Math.PI));
 		}
 
-		this.leftEye.update(0.1666);
+		// animate the eyes
+		this.leftEye.update(frameTime);
 		this.leftEye.setPosition(eyeL.position);
 		this.leftEye.setAngle(head.angle * (180.0/Math.PI));
 
-		this.rightEye.update(0.1666);
+		this.rightEye.update(frameTime);
 		this.rightEye.setPosition(eyeR.position);
 		this.rightEye.setAngle(head.angle * (180.0/Math.PI));
 	}
@@ -92,14 +99,15 @@ class stackedLinesMask extends MaskBase {
 	show() 
 	{
 		this.showLayer();
+
+		// regenerate the mask in here so it changes every time its picked.
 		this.layer.removeChildren();
 		this.layer.activate();
 
-		var gridWidth = 400.0;
-		var gridHeight = 500.0;
+		var gridWidth = faceWidth * calc.random(0.9, 1.1);
+		var gridHeight = faceHeight * calc.random(0.9, 1.1);
 		var colCount = calc.randomInt(4, 9);
 		var rowCount = calc.randomInt(4, 9);
-		//rowCount = colCount;
 		var center = new paper.Point(gridWidth * 0.5, gridHeight * 0.5);
 		var cellWidth = gridWidth / colCount;
 		var cellHeight = gridHeight / rowCount;
@@ -107,13 +115,11 @@ class stackedLinesMask extends MaskBase {
 		var cellCount = rowCount * cellCount;
 		var emptyCells = cellCount;
 
+
+		// the following is a simple bare bones rectangle packing algorithm
 		var cells = [];
 		var rectangles = [];
 
-		this.outline = new paper.Path.Rectangle([0, 0], new paper.Size(gridWidth, gridHeight));
-		this.outline.strokeColor = "white";
-		this.outline.applyMatrix = false;
-		this.outline.visible = false;
 		for(var x=0; x<colCount;x++)
 		{
 			for(var y=0; y<rowCount;y++)
@@ -163,6 +169,8 @@ class stackedLinesMask extends MaskBase {
 		var bArcReorient = calc.random(0, 1) >= 0.5;
 		var bSmoothArcs = calc.random(0, 1) >= 0.5;
 
+		// try to place a rectangle, this also generates all the path data
+		// if it succeeds.
 		function placeRectangle(_colCount, _rowCount)
 		{
 			for(var x = 0; x < colCount; x++)
@@ -200,13 +208,13 @@ class stackedLinesMask extends MaskBase {
 						else if(calc.random(0, 1) >= 0.75)
 							col.brightness = calc.random(0.1, 0.5);
 						
-
+						// fill a grid cell with lines
 						function makeLines()
 						{
 							var grp = new paper.Group();
 							var lineHeight = 0;
 							var lineCount = 0;
-							while(lineHeight <= 2.0)
+							while(lineHeight <= 2.0 * globalScale)
 							{
 								lineCount = calc.randomInt(5, 60);
 								lineHeight = h / lineCount / 2;
@@ -220,6 +228,7 @@ class stackedLinesMask extends MaskBase {
 							return grp;
 						}
 
+						// or a rectangle
 						function makeRect()
 						{
 							var p = new paper.Path.Rectangle(new paper.Point(xp, yp), new paper.Size(w, h));
@@ -227,6 +236,7 @@ class stackedLinesMask extends MaskBase {
 							return p;
 						}
 
+						// circle
 						function makeCircle()
 						{
 							var rad = Math.min(w, h) * circleRadFact;
@@ -235,6 +245,7 @@ class stackedLinesMask extends MaskBase {
 							return p;
 						}
 
+						// or arc
 						function makeArc()
 						{
 							var rad = Math.min(w, h) * arcSizeFact;
@@ -253,6 +264,7 @@ class stackedLinesMask extends MaskBase {
 							return p;
 						}
 
+						// pick how to fill the current grid cell
 						var item;
 						if(fillMode == 0)
 						{
@@ -282,8 +294,9 @@ class stackedLinesMask extends MaskBase {
 							item = makeArc();
 						}
 
+						//make sure we pivot around the mask center
 						item.pivot = center;
-						rectangles.push({faceRect: new FaceRect(item, calc.random(0.75, 0.9), calc.random(0.5, 0.75)), offset: center.subtract(new paper.Point(xp - w * 0.5, yp - h * 0.5))});
+						rectangles.push({FaceItem: new FaceItem(item, calc.random(0.75, 0.9), calc.random(0.5, 0.75)), offset: center.subtract(new paper.Point(xp - w * 0.5, yp - h * 0.5))});
 						markCellsFull(x, y, _colCount, _rowCount);
 						return true;
 					}
@@ -293,6 +306,7 @@ class stackedLinesMask extends MaskBase {
 			return false;
 		}
 
+		//give it a 100 tries to fill the grid
 		for(var i=0; i < 100; i++)
 		{
 			var rc = calc.randomInt(1, 3);
@@ -306,9 +320,10 @@ class stackedLinesMask extends MaskBase {
 				break;
 		}
 
+		// list that holds all the grid elements
 		this.rectangles = rectangles;
 
-		//make the eyes
+		// make the eyes
 		var eyeMode = calc.randomInt(0, 3);
 		if(eyeMode == 0)
 		{
@@ -322,8 +337,8 @@ class stackedLinesMask extends MaskBase {
 			rightEye.fillColor = eyeCol;
 			//rightEye.blendMode = "overlay";
 
-			this.leftEye = new FaceRect(leftEye, 0.75, 0.75);
-			this.rightEye = new FaceRect(rightEye, 0.75, 0.75);
+			this.leftEye = new FaceItem(leftEye, 0.75, 0.75);
+			this.rightEye = new FaceItem(rightEye, 0.75, 0.75);
 		}
 		else if(eyeMode == 1)
 		{
@@ -336,8 +351,8 @@ class stackedLinesMask extends MaskBase {
 			rightEye.fillColor = eyeCol;
 			//rightEye.blendMode = "overlay";
 
-			this.leftEye = new FaceRect(leftEye, 0.75, 0.75);
-			this.rightEye = new FaceRect(rightEye, 0.75, 0.75);
+			this.leftEye = new FaceItem(leftEye, 0.75, 0.75);
+			this.rightEye = new FaceItem(rightEye, 0.75, 0.75);
 		}
 		else if(eyeMode == 2)
 		{
@@ -354,7 +369,7 @@ class stackedLinesMask extends MaskBase {
 				var lineWidth = 0;
 				var lineCount = 0;
 				var x = 0;
-				while(lineWidth <= 2.0)
+				while(lineWidth <= 2.0 * globalScale)
 				{
 					lineCount = calc.randomInt(5, 60);
 					lineWidth = eyeWidth / lineCount / 2;
@@ -373,8 +388,10 @@ class stackedLinesMask extends MaskBase {
 
 			var leftEye = makeEye();
 			var rightEye = makeEye();
-			this.leftEye = new FaceRect(leftEye, 0.75, 0.75);
-			this.rightEye = new FaceRect(rightEye, 0.75, 0.75);
+			this.leftEye = new FaceItem(leftEye, 0.75, 0.75);
+			this.rightEye = new FaceItem(rightEye, 0.75, 0.75);
+
+			this.lastFrameTime = Date.now();
 		}
 	}
 
