@@ -309,7 +309,7 @@ class stackedLinesMask extends MaskBase {
 		this.rectangles = rectangles;
 
 		//make the eyes
-		var eyeMode = calc.randomInt(0, 2);
+		var eyeMode = calc.randomInt(0, 3);
 		if(eyeMode == 0)
 		{
 			var eyeWidth = gridWidth / calc.random(5.0, 12.0);
@@ -336,6 +336,43 @@ class stackedLinesMask extends MaskBase {
 			rightEye.fillColor = eyeCol;
 			//rightEye.blendMode = "overlay";
 
+			this.leftEye = new FaceRect(leftEye, 0.75, 0.75);
+			this.rightEye = new FaceRect(rightEye, 0.75, 0.75);
+		}
+		else if(eyeMode == 2)
+		{
+			var eyeWidth = gridWidth / calc.random(5.0, 12.0);
+			var hFact = calc.random(0.5, 1.0);
+			var eyeHeight = eyeWidth * hFact;
+			var bRainbowEyes = calc.random(0, 1) >= 0.5;
+			var eyeCol = new Color(0, 0, 0, 1.0);
+
+			function makeEye()
+			{
+				var grp = new paper.Group();
+
+				var lineWidth = 0;
+				var lineCount = 0;
+				var x = 0;
+				while(lineWidth <= 2.0)
+				{
+					lineCount = calc.randomInt(5, 60);
+					lineWidth = eyeWidth / lineCount / 2;
+				}
+				for(var j=0; j < lineCount; j++)
+				{
+					if(bRainbowEyes)
+						eyeCol = new Color({hue: calc.random(0, 360.0), saturation: calc.random(0.9, 1), brightness: calc.random(0.9, 1)});
+					var p = new paper.Path.Rectangle(new paper.Point(x + j * lineWidth * 2.0, 0), new paper.Size(lineWidth, eyeHeight));
+					p.fillColor = eyeCol;
+					grp.addChild(p);
+				}
+
+				return grp;
+			}
+
+			var leftEye = makeEye();
+			var rightEye = makeEye();
 			this.leftEye = new FaceRect(leftEye, 0.75, 0.75);
 			this.rightEye = new FaceRect(rightEye, 0.75, 0.75);
 		}
