@@ -188,7 +188,7 @@ class cloudyMask extends MaskBase {
 		//pick some colors to work with
 		var skyColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.5, 1.0), brightness: calc.random(0.9, 1.0) });
 		this.skyColor = skyColor;
-		var groundColor = new Color({ huekey: "value",  skyColor.hue + 180.0, saturation: calc.random(0.25, 0.6), brightness: calc.random(0.25, 0.6) });
+		var groundColor = new Color({ hue: skyColor.hue + 180.0, saturation: calc.random(0.25, 0.6), brightness: calc.random(0.25, 0.6) });
 
 		//used for the shadows on the cloud
 		var lightDir = new paper.Point(0, -1).rotate(calc.random(-90.0, 90.0)).normalize();
