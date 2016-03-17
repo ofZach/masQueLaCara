@@ -1,5 +1,20 @@
 'use strict';
 
+//globals to configure scale related things
+var globalScale = 1.0; //change this to scale everything;
+var minCloudSize = 80.0 * globalScale;
+var maxCloudSize = 160.0 * globalScale;
+var minCloudArc = 5.0 * globalScale;
+var maxCloudArc = 15.0 * globalScale;
+var cloudNoiseSampleDist = 2.0 * globalScale;
+var cloudNoiseDiv = 60.0 * globalScale;
+var cloudNoiseScale = 6.0 * globalScale;
+var cloudShadowOff = 10.0 * globalScale;
+var raindropRad = 1.0 * globalScale;
+var stripeRad = 1.0 * globalScale;
+var stripeMaxX = 500.0 * globalScale;
+var stripeMaxY = 640.0 * globalScale;
+
 // function to help generating the clouds.
 function arcifyPath(_path, _sampleDistMin, _sampleDistMax)
 {
@@ -169,7 +184,7 @@ class cloudyMask extends MaskBase {
 		else
 			dropColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.75, 1.0), brightness: calc.random(0.9, 1.0) })
 		dropColor = mixColor(dropColor.convert("rgb"), this.skyColor.convert("rgb"), 0.25);
-		this.rainDrops.push({dropPath: null, age: 0, lifeTime: calc.random(0.5, 2.0), rad: calc.random(1, 4), pos: new paper.Point(rdp), color: dropColor});
+		this.rainDrops.push({dropPath: null, age: 0, lifeTime: calc.random(0.5, 2.0), rad: calc.random(raindropRad, raindropRad * 4.0), pos: new paper.Point(rdp), color: dropColor});
 	}
 
 	show() {
@@ -198,23 +213,23 @@ class cloudyMask extends MaskBase {
 		{
 			var grp = new paper.Group();
 			grp.transformContent = false;
-			var w = calc.random(80, 160);
+			var w = calc.random(minCloudSize, maxCloudSize);
 			var tmp = new paper.Path.Ellipse(new paper.Point(0, 0), [w, w * calc.random(0.5, 0.75)]);
-			var sw = calc.random(5.0, 15.0);
+			var sw = calc.random(minCloudArc, maxCloudArc);
 			var ret = arcifyPath(tmp, sw, sw * 3.0);
 			tmp.remove();
 			var cloudColor = new Color({hue: calc.random(0.0, 360.0), saturation: calc.random(0.0, 0.25), brightness: 1.0});
 			cloudColor = mixColor(cloudColor.convert("rgb"), skyColor.convert("rgb"), 0.15);
 			ret.fillColor = cloudColor;
 			ret.applyMatrix = false;
-			applyNoiseToPath(ret, 2.0, 50.0, 6.0);
+			applyNoiseToPath(ret, cloudNoiseSampleDist, cloudNoiseDiv, cloudNoiseScale);
 
 			grp.addChild(ret.clone());
 			grp.addChild(ret);
 			var shadow = new paper.Path.Rectangle(ret.bounds);
 			var ellipse = new paper.Path.Ellipse(ret.bounds);
-			ellipse.translate(lightDir.multiply(calc.random(10.0, 25.0)));
-			applyNoiseToPath(ellipse, 10.0, calc.random(10.0, 20.0), 3.0);
+			ellipse.translate(lightDir.multiply(calc.random(cloudShadowOff, cloudShadowOff * 2.5)));
+			applyNoiseToPath(ellipse, cloudNoiseSampleDist * 5.0, calc.random(cloudNoiseDiv / 6.0, cloudNoiseDiv / 3.0), cloudNoiseScale / 5.0);
 			var shadowCP = new paper.CompoundPath(shadow, ellipse);
 			var shadowCol = mixColor(cloudColor.convert("rgb"), groundColor.convert("rgb"), 0.15);
 			shadowCP.fillColor = shadowCol;
@@ -234,7 +249,7 @@ class cloudyMask extends MaskBase {
 			var pc = calc.randomInt(3, 12);
 			for(var i = 0; i < pc; i++)
 			{
-				ret.add(new paper.Point(calc.random(0, 540), calc.random(0, 640)));
+				ret.add(new paper.Point(calc.random(0, stripeMaxX), calc.random(0, stripeMaxY)));
 			}
 			if(bSmoothStripes)
 				ret.smooth();
@@ -243,7 +258,7 @@ class cloudyMask extends MaskBase {
 			var stripeColor = new Color({ hue: calc.random(0.0, 360.0), saturation: calc.random(0.75, 1.0), brightness: calc.random(0.9, 1.0) })
 			stripeColor = mixColor(stripeColor.convert("rgb"), skyColor.convert("rgb"), 0.25);
 			ret.strokeColor = stripeColor;
-			ret.strokeWidth = calc.random(1.0, 5.0);
+			ret.strokeWidth = calc.random(stripeRad, stripeRad * 6.0);
 			ret.blendMode = "overlay";
 			if(bRoundStripeStroke)
 			{
@@ -273,8 +288,8 @@ class cloudyMask extends MaskBase {
 		this.rainStyle = calc.randomInt(0, 2);
 
 		//randomize the noise stuff for the rain particles
-		this.rainNoiseScale = calc.random(0.5, 1.25);
-		this.rainNoiseDiv = calc.random(150.0, 500.0);
+		this.rainNoiseScale = calc.random(globalScale * 0.5, globalScale * 1.25);
+		this.rainNoiseDiv = calc.random(stripeMaxX / 3.0, stripeMaxX);
 		this.rainNoiseTimeDelta = calc.random(0.1, 1.0);
 
 		//generate the stripes/lightnings
@@ -289,10 +304,10 @@ class cloudyMask extends MaskBase {
 		var darkenStripe = makeStripe();
 		darkenStripe.blendMode = "overlay";
 		darkenStripe.strokeColor = new Color(0.0, 0.0, 0.0, 0.5);
-		darkenStripe.strokeWidth = calc.random(100.0, 300.0);
+		darkenStripe.strokeWidth = calc.random(stripeMaxX / 5.0, stripeMaxX / 1.5);
 		darkenStripe.shadowColor = new Color(0.0, 0.0, 0.0, 1.0);
-		darkenStripe.shadowBlur = 30.0;
-		darkenStripe.shadowOffset = new paper.Point(30.0, 60.0);
+		darkenStripe.shadowBlur = stripeMaxX / 15.0;
+		darkenStripe.shadowOffset = new paper.Point(stripeMaxX / 15.0, stripeMaxX / 9.0);
 		darkenStripe.strokeCap = "round";
 		darkenStripe.strokeJoin = "round";
 		this.stripes.push({path: darkenStripe, lastPos: new paper.Point(0, 0), easeFact: calc.random(0.5, 0.95), speed: calc.random(1600.0, 2500.0)});
