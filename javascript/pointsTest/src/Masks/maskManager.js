@@ -50,7 +50,9 @@ class MaskManager {
 			new mustachesMask(),
 			new crossLinesMask(),
 			new cloudyMask(),
-			new mononokeMask()
+			new mononokeMask(),
+			new mokanariMask(),
+			new stackedLinesMask()
 		];
 		this.curMaskNum = 0;
 		for (var i = 0; i < this.masks.length; i++) {
