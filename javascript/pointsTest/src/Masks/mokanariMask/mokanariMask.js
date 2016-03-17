@@ -1,5 +1,17 @@
 'use strict';
 
+// globals for scaling purposes
+var globalScale = 1.0;
+var eyeSizeMin = 20.0 * globalScale;
+var eyeSizeMax = 60.0 * globalScale;
+var mouthSizeMin = 10.0 * globalScale;
+var mouthSizeMax = 70.0 * globalScale;
+var minNoseHeight = 60.0 * globalScale;
+var maxNoseHeight = 180.0 * globalScale;
+var headSize = 400.0 * globalScale;
+
+// helper class to animate and position all the paths
+// in the composition.
 class FaceElement
 {
 	constructor(_path, _bWobbleScaleFact)
@@ -142,8 +154,8 @@ class mokanariMask extends MaskBase {
 		function makeEyes()
 		{
 			var type = calc.randomInt(0, 4);
-			var leftEyeSize = calc.random(20.0, 60.0);
-			var rightEyeSize = calc.random(20.0, 60.0);
+			var leftEyeSize = calc.random(eyeSizeMin, eyeSizeMax);
+			var rightEyeSize = calc.random(eyeSizeMin, eyeSizeMax);
 			if(type == 0)
 			{
 				var leftEye = new paper.Path.Rectangle([0, 0], [leftEyeSize, leftEyeSize]);
@@ -194,17 +206,17 @@ class mokanariMask extends MaskBase {
 		{
 			var type = calc.randomInt(0, 4);
 			if(type == 0)
-			{	var mw = calc.random(10.0, 70.0);
+			{	var mw = calc.random(mouthSizeMin, mouthSizeMax);
 				return new FaceElement(new paper.Path.Circle([0, 0], mw * 0.5), 0.25);
 			}
 			else if(type == 1)
 			{
-				var mw = calc.random(10.0, 70.0);
+				var mw = calc.random(mouthSizeMin, mouthSizeMax);
 				return new FaceElement(new paper.Path.Rectangle([0, 0], [mw, mw * calc.random(0.4, 1.0)]), 0.25);
 			}
 			else if(type == 2)
 			{	
-				var mw = calc.random(10.0, 70.0);
+				var mw = calc.random(mouthSizeMin, mouthSizeMax);
 				var mh = mw * calc.random(0.4, 0.7);
 				var path = new paper.Path();
 				path.add(0, 0);
@@ -220,7 +232,7 @@ class mokanariMask extends MaskBase {
 			}
 			else if(type == 3)
 			{
-				var mw = calc.random(10.0, 70.0);
+				var mw = calc.random(mouthSizeMin, mouthSizeMax);
 				var mh = mw * calc.random(0.4, 0.7);
 				var path = new paper.Path();
 				path.add(0, 0);
@@ -240,7 +252,7 @@ class mokanariMask extends MaskBase {
 			var type = calc.randomInt(0, 2);
 			if(type == 0)
 			{
-				var nh = calc.random(60, 180);
+				var nh = calc.random(minNoseHeight, maxNoseHeight);
 				var nw = nh * calc.random(0.4, 0.7);
 				var path = new paper.Path();
 				path.add(0, 0);
@@ -257,7 +269,7 @@ class mokanariMask extends MaskBase {
 			}
 			else if(type == 1)
 			{
-				var nh = calc.random(60, 180);
+				var nh = calc.random(minNoseHeight, maxNoseHeight);
 				var nw = nh * calc.random(0.4, 0.7);
 				var path = new paper.Path();
 				path.add(0, 0);
@@ -278,16 +290,16 @@ class mokanariMask extends MaskBase {
 			var type = calc.randomInt(0, 3);
 			if(type == 0)
 			{
-				return new FaceElement(new paper.Path.Rectangle([0, 0], [400, 440]), 0.05);
+				return new FaceElement(new paper.Path.Rectangle([0, 0], [headSize, headSize * 1.1]), 0.05);
 			}
 			else if(type == 1)
 			{
 				var path = new paper.Path();
 				path.add(0, 0);
-				path.add(400, 0);
-				path.add(400, calc.random(330, 400));
-				path.add(calc.random(300, 360), 440);
-				path.add(0, 440);
+				path.add(headSize, 0);
+				path.add(headSize, calc.random(headSize * 0.75, 400));
+				path.add(calc.random(headSize * 0.75, headSize * 0.85), headSize * 1.1);
+				path.add(0, headSize * 1.1);
 				path.closePath();
 				return new FaceElement(path, 0.05);
 			}
@@ -295,9 +307,9 @@ class mokanariMask extends MaskBase {
 			{
 				var path = new paper.Path();
 				path.add(0, 0);
-				path.add(400, 0);
-				path.add(400, 200);
-				path.arcTo(0, 200, true);
+				path.add(headSize, 0);
+				path.add(headSize, headSize * 0.5);
+				path.arcTo(0, headSize * 0.5, true);
 				path.closePath();
 				return new FaceElement(path, 0.05);
 			}
@@ -310,8 +322,8 @@ class mokanariMask extends MaskBase {
 			{
 				var path = new paper.Path();
 				path.add(0, 0);
-				var y = calc.random(90, 200.0);
-				path.add(400, y);
+				var y = calc.random(headSize * 0.2, headSize * 0.5);
+				path.add(headSize, y);
 				path.add(0, y);
 				path.closePath();
 				if(calc.random(0.0, 1.0) >= 0.5)
@@ -321,12 +333,12 @@ class mokanariMask extends MaskBase {
 			else if(type == 1)
 			{
 				var path = new paper.Path();
-				var w = 400;
+				var w = headSize;
 				var stepCount = calc.randomInt(2, 10);
 				var step = w / stepCount;
 				var x = w;
 				path.add(0, 0);
-				path.add(400, 0);
+				path.add(headSize, 0);
 				for(var i = 0; i <= stepCount; i++)
 				{
 					path.arcTo(x, 0, true);
@@ -344,41 +356,33 @@ class mokanariMask extends MaskBase {
 			else if(type == 2)
 			{
 				var path = new paper.Path();
-				var y0 = calc.random(0, 50);
-				var y = calc.random(80, 200.0);
-				var w = 400;
+				var y0 = calc.random(0, headSize * 0.15);
+				var y = calc.random(headSize / 5.0, headSize * 0.5);
+				var w = headSize;
 				var stepCount = calc.randomInt(2, 10);
 				var step = w / stepCount;
 				var x = w;
 				path.add(0, 0);
-				path.add(400, 0);
+				path.add(headSize, 0);
 				for(var i = 0; i <= stepCount; i++)
 				{
 					path.add(x, y0);
 					path.add(x - step * 0.5, y);
 					x -= step;
 				}
-				/*path.add(400, y0);
-				path.add(350, y);
-				path.add(300, y0);
-				path.add(250, y);
-				path.add(200, y0);
-				path.add(150, y);
-				path.add(100, y0);
-				path.add(50, y);*/
 				path.add(0, y0);
 				path.closePath();
-				/*if(calc.random(0, 1) >= 0.5)
-					path.rotate(180.0);*/
+				if(calc.random(0, 1) >= 0.5)
+					path.rotate(180.0);
 				return new FaceElement(path, 0.05);
 			}
 			else if(type == 3)
 			{
 				var path = new paper.Path();
-				var w1 = calc.random(200.0, 400.0);
-				var w2 = calc.random(200.0, 400.0);
-				var h = calc.random(100.0, 200.0);
-				var l = calc.random(100.0, 200.0);
+				var w1 = calc.random(headSize * 0.5, headSize);
+				var w2 = calc.random(headSize * 0.5, headSize);
+				var h = calc.random(headSize * 0.25, headSize * 0.5);
+				var l = calc.random(headSize * 0.25, headSize * 0.5);
 				path.add(0, 0);
 				path.add(w1, 0);
 				path.add(w1, h / 3.0);
@@ -412,6 +416,7 @@ class mokanariMask extends MaskBase {
 				eyeMouthColor.brightness *= calc.random(0.3, 0.6);
 			}
 		}
+
 		var eyes = makeEyes();
 		this.leftEye = eyes.leftEye;
 		this.leftEye.path.fillColor = eyeMouthColor;
@@ -430,7 +435,7 @@ class mokanariMask extends MaskBase {
 			var type = calc.randomInt(0, 2);
 			if(type == 0)
 			{
-				var w = calc.random(50.0, 100.0);
+				var w = calc.random(headSize * 0.15, headSize * 0.25);
 				var off = w / 3.0;
 				var p = new paper.Path();
 				p.add(calc.random(-off, off), calc.random(-off, off));
@@ -451,7 +456,7 @@ class mokanariMask extends MaskBase {
 			}
 			else if(type == 1)
 			{
-				var w = calc.random(50.0, 200.0);
+				var w = calc.random(headSize * 0.15, headSize * 0.5);
 				var p = new paper.Path();
 				for(var i=0; i < calc.randomInt(4, 12); i++)
 				{
